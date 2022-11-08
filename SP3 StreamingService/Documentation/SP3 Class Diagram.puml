@@ -35,10 +35,14 @@ FedFlix : - void Setup()
 FedFlix : - void mainMenu()
 
 
+Setup : + static ArrayList<String> userNames;
+Setup : + static ArrayList<String> passwords;
+Setup : + FileIO fileIO = new FileIO()
 Setup : + TextUI textUI = new TextUI()
 Setup : + void runSetUp()
-Setup : + User register()
 Setup : + User login()
+Setup : + ArrayList<User> createUsers()
+Setup : + User register()
 
 
 MainMenu : + User currentUser
