@@ -11,7 +11,7 @@ public class SearchFunction
         this.media = media;
     }
 
-
+    //TODO Test searchfunction
     public ArrayList<IMedia> searchMedia(String input)
     {
         ArrayList<IMedia> output = new ArrayList<>();
