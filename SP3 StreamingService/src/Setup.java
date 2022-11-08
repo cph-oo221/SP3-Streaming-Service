@@ -31,10 +31,22 @@ public class Setup
         String pass;
         name = textUI.getUserInput("Please enter your Username");
         pass = textUI.getUserInput("Please enter your Password");
-        ArrayList<User> users = createUsers();
+        ArrayList<User> users = new ArrayList<>();
+        users = createUsers();
         for (User i : users)
         {
-            if(name == i.getUsername() && pass == i.getPassword())
+
+            //SLET DETTE - PRINT TEST
+            System.out.println("******");
+            System.out.println(name);
+            System.out.println(pass);
+            System.out.println("*****");
+            System.out.println(i.getUsername());
+            System.out.println(i.getPassword());
+            //SLET OVENSTÅENDE - PRINT TEST
+
+
+            if(name.equals(i.getUsername()) && pass.equals(i.getPassword()))
             {
                 textUI.displayMessage("Login successful");
                 return i;
@@ -42,9 +54,7 @@ public class Setup
             else
             {
                 textUI.displayMessage("Username or Password does not exist. Please try again.");
-                login();
             }
-
         }
         return null;
     }
@@ -52,13 +62,19 @@ public class Setup
     private ArrayList<User> createUsers()
     {
         ArrayList<String> userData = fileIO.readUserData();
+
         ArrayList<User> users = new ArrayList<>();
-        for (int i = 0; i < userData.size(); i++) {
-            String[] s = userData.get(i).split(",");
-            User user = new User(s[0], s[1]);
+        for (String s : userData)
+        {
+            String trimmed = s.replaceAll("[\\\\p{P}]","").replaceAll(";","").replaceAll(" ","");
+            System.out.println(trimmed);
+            String[] arr = trimmed.split(",");
+            User user = new User (arr[0], arr[1]);
             users.add(user);
+            System.out.println(user);
         }
         return users;
+        //return null;
     }
     private User register()
     {

@@ -57,7 +57,7 @@ public class FileIO
 
             while (input.hasNextLine())
             {
-                data.add(input.nextLine() + "\n");
+                data.add(input.nextLine());
             }
         }
         catch (FileNotFoundException e)
@@ -75,7 +75,7 @@ public class FileIO
             FileWriter writer = new FileWriter("Data/userData.csv", true);
 
             writer.write(user.getUsername() + ", ");
-            writer.write(user.getPassword() + ", \n");
+            writer.write(user.getPassword() + "; \n");
 
             writer.close();
 
