@@ -50,4 +50,11 @@ public class MainMenu
 
     }
 
+    // logout method to return to login screen
+    protected void logOut()
+    {
+        FedFlix fedFlix = new FedFlix();
+        fedFlix.runFedFlix();
+    }
+
 }
