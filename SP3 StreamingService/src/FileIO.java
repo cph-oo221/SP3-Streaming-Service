@@ -75,7 +75,7 @@ public class FileIO
             FileWriter writer = new FileWriter("Data/userData.csv", true);
 
             writer.write(user.getUsername() + ", ");
-            writer.write(user.getPassword() + "; \n");
+            writer.write(user.getPassword() + "; ");
 
             writer.close();
 
