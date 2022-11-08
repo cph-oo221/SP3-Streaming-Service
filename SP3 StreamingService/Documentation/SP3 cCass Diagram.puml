@@ -1,0 +1,104 @@
+@startuml
+'https://plantuml.com/class-diagram
+!pragma layout smetana
+
+class Main
+class MainMenu
+class TextUI
+class User
+class FileIO
+/'class ExceptionHandler << (S,#FF7700) >>'/
+abstract class Media implements IMedia
+class Movie extends Media
+class Series extends Media
+/'class SearchFunction << (S,#FF7700) >>'/
+class MainMenu
+class FedFlix
+class Setup
+
+Main *-- FedFlix
+FedFlix *-- Setup
+
+Setup *-- User
+Setup *-- FileIO
+Setup *-- TextUI
+
+FedFlix *-- MainMenu
+MainMenu *--IMedia
+
+Main : + static final FedFlix fedFlix = new FedFlix()
+Main : + static void main(String[] args)
+Main : + fedFlix.runFedFlix()
+
+FedFlix : + void runFedFlix()
+FedFlix : - void Setup()
+FedFlix : - void mainMenu()
+
+
+Setup : + TextUI textUI = new TextUI()
+Setup : + void runSetUp()
+Setup : + User register()
+Setup : + User login()
+
+
+MainMenu : + User currentUser
+MainMenu : + ArrayList<IMedia> media = new ArrayList<>()
+MainMenu : + MainMenu(User currentUser)
+MainMenu : + void runMainMenu()
+MainMenu : + void createMedia()
+
+
+
+
+FileIO : + ArrayList<String> readMovieData()
+FileIO : + ArrayList<String> readSeriesData()
+FileIO : + ArrayList<String> readUserData()
+FileIO : + void writeUserData(User user)
+
+
+
+User : - Arraylist<String> showsSeen
+User : - Arraylist<String> favouriteShows
+User : - String username
+User : - String password
+User : + User(String username, String password)
+User : + User(String username, String password, ArrayList<String> showsSeen, ArrayList<String> favouriteShows)
+User : + String getUsername()
+User : + String getPassword()
+User : + ArrayList<String> getShowsSeen()
+User : + ArrayList<String> getFavouriteShows()
+User : + void setUsername(String username)
+User : + void setPassword(String password)
+User : + void setShowsSeen(ArrayList<String> showsSeen)
+User : + void setFavouriteShows(ArrayList<String> favouriteShows)
+User : + String toString()
+
+
+IMedia : + void play()
+IMedia : + String toString()
+
+TextUI : + Scanner scan = new Scanner(System.in)
+TextUI : + void displayMessage(String msg)
+TextUI : + String getUserInput()
+TextUI : + String getUserInput(String msg)
+TextUI : + int getUserInput(String msg, ArrayList<String> options)
+
+
+Media : -String name
+Media : -int year
+Media : -String[] genre
+Media : -float rating
+Media : + void play();
+Media : + String toString();
+Media : + String getName();
+Media : + int getYear();
+Media : + String[] getGenre();
+Media : + float getRating();
+
+Movie : + String toString();
+
+Series : - int seasons
+Series : + String toString();
+
+
+@enduml
