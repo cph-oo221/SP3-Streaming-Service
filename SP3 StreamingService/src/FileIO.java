@@ -10,7 +10,7 @@ public class FileIO
 
     public ArrayList<String> readMovieData()
     {
-        File file = new File("SP03/Data/movieList.txt");
+        File file = new File("Data/movieList.txt");
         ArrayList<String> data = new ArrayList<>();
         try {
             Scanner input = new Scanner(file);
@@ -29,7 +29,7 @@ public class FileIO
 
     public ArrayList<String> readSeriesData()
     {
-        File file = new File("SP03/Data/seriesList.txt");
+        File file = new File("Data/seriesList.txt");
         ArrayList<String> data = new ArrayList<>();
         try {
             Scanner input = new Scanner(file);
@@ -50,7 +50,7 @@ public class FileIO
 
     public ArrayList<String> readUserData()
     {
-        File file = new File("SP03/Data/userData.csv");
+        File file = new File("Data/userData.csv");
         ArrayList<String> data = new ArrayList<>();
         try {
             Scanner input = new Scanner(file);
@@ -72,7 +72,7 @@ public class FileIO
         try
         {
             Scanner input = new Scanner(System.in);
-            FileWriter writer = new FileWriter("SP03/Data/userData.csv", true);
+            FileWriter writer = new FileWriter("Data/userData.csv", true);
 
             writer.write(user.getUsername() + ", ");
             writer.write(user.getPassword() + ", \n");
