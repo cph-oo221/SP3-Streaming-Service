@@ -17,8 +17,15 @@ public class MainMenu
         createMedia();
 
         textUI.displayMessage("Welcome to fedFlix, " + currentUser.getUsername() + "!");
-        textUI.displayMessage("Press 1 to view all media, press 2 to view all series, press 3 to view all movies, " +
-                "press 4 to view your watchlist, press 5 to view your history, press 6 to search for media, press 7 to logout");
+        textUI.displayMessage("Press 1 to view all media\npress 2 to view all series\npress 3 to view all movies\n" +
+                "press 4 to view your watchlist\npress 5 to view your history\npress 6 to search for media\npress 7 to logout");
+
+        String input = textUI.getUserInput();
+
+        if (input.equals("1"))
+        {
+            media.toString();
+        }
     }
 
     private void createMedia()
