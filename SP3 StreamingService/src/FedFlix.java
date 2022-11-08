@@ -1,11 +1,10 @@
 public class FedFlix
 {
-    Setup setUp = new Setup();
     public void runFedFlix()
     {
-        setUp();
-        //mainMenu(setUp.login());
+        User currentUser = setUp();
 
+        mainMenu(currentUser);
     }
 
     private User setUp()
@@ -14,5 +13,11 @@ public class FedFlix
         setUp.runSetUp();
         User user = new User("temp", "temp");
         return user;
+    }
+
+    private void mainMenu(User currentUser)
+    {
+        MainMenu mainMenu = new MainMenu(currentUser);
+        mainMenu.runMainMenu();
     }
 }
