@@ -4,8 +4,7 @@ public class MainMenu
 {
     User currentUser;
     ArrayList<IMedia> media = new ArrayList<>();
-
-    SearchFunction search = new SearchFunction(currentUser, media);
+    public TextUI textUI = new TextUI();
 
     public MainMenu(User currentUser)
     {
@@ -14,9 +13,12 @@ public class MainMenu
 
     public void runMainMenu()
     {
+
         createMedia();
 
-
+        textUI.displayMessage("Welcome to fedFlix, " + currentUser.getUsername() + "!");
+        textUI.displayMessage("Press 1 to view all media, press 2 to view all series, press 3 to view all movies, " +
+                "press 4 to view your watchlist, press 5 to view your history, press 6 to search for media, press 7 to logout");
     }
 
     private void createMedia()
@@ -46,6 +48,13 @@ public class MainMenu
         }
 
 
+    }
+
+    // logout method to return to login screen
+    protected void logOut()
+    {
+        FedFlix fedFlix = new FedFlix();
+        fedFlix.runFedFlix();
     }
 
 }

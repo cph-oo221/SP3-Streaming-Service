@@ -14,6 +14,8 @@ public class User
     // make a password
     private String password;
 
+    public FileIO fileIO = new FileIO();
+
 
     // constructor for a new user where there is no showsSeen and favouriteShows.
     public User(String username, String password)
@@ -73,6 +75,17 @@ public class User
         this.favouriteShows = favouriteShows;
     }
 
+    // make a function to add a show to the showsSeen arraylist
+    public void addShowsSeen(String show)
+    {
+        showsSeen.add(show);
+    }
+
+    // make a function that saves the showsSeen arraylist to a file
+    public void saveUserData(User user)
+    {
+        fileIO.writeUserData(user, showsSeen, favouriteShows);
+    }
 
 
 
