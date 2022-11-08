@@ -11,7 +11,7 @@ public class Main
         // test code
         Setup setup = new Setup();
         // User user = setup.runSetUp();
-        User user = new User("Oskar", "123");
+        User user = new User("Oskar", "123"); /*, new ArrayList<>(), new ArrayList<>()*/
         user.addShowsSeen("The Office");
         user.addShowsSeen("Titanic");
         user.addShowsSeen("the flash");
