@@ -5,6 +5,7 @@ public class MainMenu
     User currentUser;
     ArrayList<IMedia> media = new ArrayList<>();
 
+    SearchFunction search = new SearchFunction(currentUser, media);
 
     public MainMenu(User currentUser)
     {
@@ -14,6 +15,8 @@ public class MainMenu
     public void runMainMenu()
     {
         createMedia();
+
+
     }
 
     private void createMedia()
