@@ -26,6 +26,7 @@ public class MainMenu
         {
             media.toString();
         }
+
     }
 
     private void createMedia()

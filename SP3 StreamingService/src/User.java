@@ -75,24 +75,30 @@ public class User
         this.favouriteShows = favouriteShows;
     }
 
+    // make a function to add a show to the favouriteShows arraylist
+
+    public void addFavouriteShows(String show)
+    {
+        favouriteShows.add(show);
+    }
+
     // make a function to add a show to the showsSeen arraylist
     public void addShowsSeen(String show)
     {
         showsSeen.add(show);
     }
 
-    // make a function that saves the showsSeen arraylist to a file
+    // Make a function that saves showsSeen and favouriteShows to a file
     public void saveUserData(User user)
     {
         fileIO.writeUserData(user, showsSeen, favouriteShows);
     }
 
-
-
     // toString
     @Override
     public String toString()
     {
-        return "Username: " + username + ", Password: " + password + ", Shows seen: " + showsSeen + ", Favourite shows: " + favouriteShows;
+        return "| Username: " + username + " | Shows seen: " + showsSeen +
+                " | Favourite shows: " + favouriteShows + '|';
     }
 }
