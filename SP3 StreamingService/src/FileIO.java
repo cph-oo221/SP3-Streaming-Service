@@ -10,7 +10,7 @@ public class FileIO
 
     public ArrayList<String> readMovieData()
     {
-        File file = new File("Data/movieList.txt");
+        File file = new File("Data/movieList.csv");
         ArrayList<String> data = new ArrayList<>();
         try {
             Scanner input = new Scanner(file);
@@ -29,7 +29,7 @@ public class FileIO
 
     public ArrayList<String> readSeriesData()
     {
-        File file = new File("Data/seriesList.txt");
+        File file = new File("Data/seriesList.csv");
         ArrayList<String> data = new ArrayList<>();
         try {
             Scanner input = new Scanner(file);
@@ -76,6 +76,28 @@ public class FileIO
 
             writer.write(user.getUsername() + ", ");
             writer.write(user.getPassword() + "; \n");
+
+            writer.close();
+
+        }
+        catch (IOException e)
+        {
+            System.out.println(e + "You fucked up mate");
+        }
+    }
+
+    // Overlaid function that take user, showsSeen and favouriteShows as parameters
+    public void writeUserData(User user, ArrayList<String> showsSeen, ArrayList<String> favouriteShows)
+    {
+        try
+        {
+            Scanner input = new Scanner(System.in);
+            FileWriter writer = new FileWriter("Data/userData.csv", true);
+
+            writer.write(user.getUsername() + ", ");
+            writer.write(user.getPassword() + ", ");
+            writer.write(showsSeen + ", ");
+            writer.write(favouriteShows + ", \n");
 
             writer.close();
 
