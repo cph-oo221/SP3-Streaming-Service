@@ -3,7 +3,6 @@ public class FedFlix
     public void runFedFlix()
     {
         User currentUser = setUp();
-
         mainMenu(currentUser);
     }
 
