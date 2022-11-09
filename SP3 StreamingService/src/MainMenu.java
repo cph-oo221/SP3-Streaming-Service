@@ -23,30 +23,34 @@ public class MainMenu
 
         String input = textUI.getUserInput();
 
-
+        // View all media
         if (input.equals("1"))
         {
             searchFunction.viewAllMedia();
         }
 
+        // View all series
         if (input.equals("2"))
         {
             searchFunction.viewAllSeries();
         }
 
+        // View all movies
         if (input.equals("3"))
         {
             searchFunction.viewAllMovies();
         }
 
+        // View watchList/FavouriteShows
         if (input.equals("4"))
         {
-
+            searchFunction.viewWatchlist();
         }
 
+        // View showsSeen
         if (input.equals("5"))
         {
-
+            searchFunction.viewHistory();
         }
 
         if (input.equals("6"))
@@ -56,7 +60,7 @@ public class MainMenu
 
         if (input.equals("7"))
         {
-
+            logOut();
         }
 
     }

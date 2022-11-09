@@ -26,12 +26,14 @@ public class SearchFunction
         return output;
     }
 
+    // Option 1 view all media
     public void viewAllMedia()
     {
         viewAllSeries();
         viewAllMovies();
     }
 
+    // Option 2 view all series
     public void viewAllSeries()
     {
         for (IMedia i : media)
@@ -42,6 +44,8 @@ public class SearchFunction
             }
         }
     }
+
+    // Option 3 view all movies
     public void viewAllMovies()
     {
         for (IMedia i : media)
@@ -53,7 +57,23 @@ public class SearchFunction
         }
     }
 
+    // Option 4 view watchlist
+    public void viewWatchlist()
+    {
+        for (String s : currentUser.getFavouriteShows())
+        {
+            textUI.displayMessage(s);
+        }
+    }
 
+    // Option 5 view history
+    public void viewHistory()
+    {
+        for (String s : currentUser.getShowsSeen())
+        {
+            textUI.displayMessage(s);
+        }
+    }
 
 
 }
