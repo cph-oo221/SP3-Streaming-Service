@@ -33,8 +33,6 @@ public class MainMenu
             {
                 input = textUI.getUserInput("Search media: ");
                 System.out.println(searchFunction.searchMedia(input));
-
-
             }
 
         }
