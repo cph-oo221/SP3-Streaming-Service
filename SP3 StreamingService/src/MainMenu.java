@@ -24,7 +24,8 @@ public class MainMenu
 
         if (input.equals("1"))
         {
-            media.toString();
+            System.out.println(currentUser);
+            //media.toString();
         }
     }
 
