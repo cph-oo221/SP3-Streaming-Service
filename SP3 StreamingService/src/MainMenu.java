@@ -6,6 +6,8 @@ public class MainMenu
     ArrayList<IMedia> media = new ArrayList<>();
     public TextUI textUI = new TextUI();
 
+    public SearchFunction searchFunction = new SearchFunction(currentUser, media);
+
     public MainMenu(User currentUser)
     {
         this.currentUser = currentUser;
@@ -13,20 +15,28 @@ public class MainMenu
 
     public void runMainMenu()
     {
-
         createMedia();
 
         textUI.displayMessage("Welcome to fedFlix, " + currentUser.getUsername() + "!");
-        textUI.displayMessage("Press 1 to view all media\npress 2 to view all series\npress 3 to view all movies\n" +
-                "press 4 to view your watchlist\npress 5 to view your history\npress 6 to search for media\npress 7 to logout");
 
-        String input = textUI.getUserInput();
-
-        if (input.equals("6"))
+        boolean running = true;
+        while (running)
         {
 
-        }
+            textUI.displayMessage("Press 1 to view all media\npress 2 to view all series\npress 3 to view all movies\n" +
+                    "press 4 to view your watchlist\npress 5 to view your history\npress 6 to search for media\npress 7 to logout");
 
+            String input = textUI.getUserInput();
+
+            if (input.equals("6"))
+            {
+                input = textUI.getUserInput("Search media: ");
+                System.out.println(searchFunction.searchMedia(input));
+
+
+            }
+
+        }
     }
 
     private void createMedia()

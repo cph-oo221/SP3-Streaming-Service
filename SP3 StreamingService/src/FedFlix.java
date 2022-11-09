@@ -9,7 +9,7 @@ public class FedFlix
     private User setUp()
     {
         Setup setUp = new Setup();
-        //setUp.runSetUp();
+        setUp.runSetUp();
         User user = new User("temp", "temp");
         return user;
     }
