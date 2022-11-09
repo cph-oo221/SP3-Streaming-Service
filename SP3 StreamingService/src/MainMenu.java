@@ -80,6 +80,7 @@ public class MainMenu
                                 if (playChoice.equalsIgnoreCase("Y"))
                                 {
                                     // show.play();
+                                    // user.addShow
                                 }
 
                                 else { break; }
