@@ -94,6 +94,7 @@ public class User
         fileIO.writeUserData(user, showsSeen, favouriteShows);
     }
 
+
     @Override
     public String toString()
     {

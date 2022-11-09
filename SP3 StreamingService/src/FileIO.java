@@ -112,7 +112,7 @@ public class FileIO
                 writer.write(show + ", ");
             }
 
-            //writer.write("; ");
+            writer.write("; " + '\n');
 
             writer.close();
 

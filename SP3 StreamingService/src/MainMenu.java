@@ -53,11 +53,13 @@ public class MainMenu
             searchFunction.viewHistory();
         }
 
+        // Search for media
         if (input.equals("6"))
         {
 
         }
 
+        // logOut = runs fedFlix.runFedFlix();
         if (input.equals("7"))
         {
             logOut();
