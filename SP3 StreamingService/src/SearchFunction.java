@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SearchFunction
 {
@@ -76,5 +77,75 @@ public class SearchFunction
         }
     }
 
+    // option viewAllCategory
+    public ArrayList<IMedia> viewAllCategory()
+    {
+        textUI.displayMessage("What category you want to view?");
+        textUI.displayMessage("1. Action\n2. Comedy\n3. Drama\n4. Horror\n5. Sci-Fi\n6. Thriller");
+        String input = textUI.getUserInput();
 
+        ArrayList<IMedia> output = new ArrayList<>();
+
+        if (input.equals("1"))
+        {
+            for (IMedia i : media)
+            {
+                // print all moves and series that contains category Action
+                if (i.getGenre().equals("Action"))
+                {
+                    i.getGenre();
+                }
+            }
+            return output;
+        }
+
+        if (input.equals("2"))
+        {
+            for (IMedia i : media)
+            {
+                if (i.getGenre().equals("Comedy"))
+                {
+                    output.add(i);
+                }
+            }
+            return output;
+        }
+
+        if (input.equals("3"))
+        {
+            for (IMedia i : media)
+            {
+                if (i.getGenre().toString().equals("Drama"))
+                {
+                    output.add(i);
+                }
+            }
+            return output;
+        }
+
+        if (input.equals("4"))
+        {
+            for (IMedia i : media)
+            {
+                if (i.getGenre().equals("Horror"))
+                {
+                    output.add(i);
+                }
+            }
+            return output;
+        }
+
+        if (input.equals("5"))
+        {
+            for (IMedia i : media)
+            {
+                if (i.getGenre().equals("Sci-Fi"))
+                {
+                    output.add(i);
+                }
+            }
+            return output;
+        }
+        return output;
+    }
 }

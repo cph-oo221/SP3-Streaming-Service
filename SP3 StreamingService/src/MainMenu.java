@@ -60,7 +60,12 @@ public class MainMenu
                 System.out.println(searchFunction.searchMedia(input));
             }
 
-            if (input.equals("7"))
+            if(input.equals("7"))
+            {
+                searchFunction.viewAllCategory();
+            }
+
+            if (input.equals("8"))
             {
                 logOut();
             }
