@@ -83,10 +83,12 @@ public class SearchFunction
     public void viewAllCategory()
     {
         textUI.displayMessage("What category would you like to watch?");
+        textUI.displayMessage("****************************************");
         textUI.displayMessage("1. Action\n2. Adventure\n3. Animation\n4. Biography\n5. Comedy\n6. Crime\n7. Documentary\n" +
                 "8. Drama\n9. Family\n10. Fantasy\n11. Film-Noir\n12. History\n13. Horror\n14. Music\n15. Musical\n" +
                 "16. Mystery\n17. Romance\n18. Sci-fi\n19. Sport\n20. Talk-Show\n21. Thriller\n22. War\n23. Western");
-        String input = textUI.getUserInput();
+        textUI.displayMessage("****************************************");
+        String input = textUI.getUserInput("Enter a number for your choose: ");
 
         // View media for Action
         if (input.equals("1"))
