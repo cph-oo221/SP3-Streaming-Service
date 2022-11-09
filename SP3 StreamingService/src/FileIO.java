@@ -87,7 +87,45 @@ public class FileIO
     }
 
     // Overlaid function that take user, showsSeen and favouriteShows as parameters
+    // and writes them to the file userData.csv
     public void writeUserData(User user, ArrayList<String> showsSeen, ArrayList<String> favouriteShows)
+    {
+        try
+        {
+            FileWriter writer = new FileWriter("Data/userData.csv");
+
+            // Write username and password
+            writer.write(user.getUsername() + ", ");
+            writer.write(user.getPassword() + ", \n");
+
+            // Write showsSeen to file
+            for (String show : showsSeen)
+            {
+                writer.write(show + ", ");
+            }
+
+           // writer.write("; ");
+
+            // Write favouriteShows to file
+            for (String show : favouriteShows)
+            {
+                writer.write(show + ", ");
+            }
+
+            //writer.write("; ");
+
+            writer.close();
+
+        }
+        catch (IOException e)
+        {
+            System.out.println(e + "An error has occurred");
+        }
+    }
+
+    // the old overload writeUserData function
+
+    /*public void writeUserData(User user, ArrayList<String> showsSeen, ArrayList<String> favouriteShows)
     {
         try
         {
@@ -106,5 +144,8 @@ public class FileIO
         {
             System.out.println(e + "You fucked up mate");
         }
-    }
+    }*/
+
+
+
 }

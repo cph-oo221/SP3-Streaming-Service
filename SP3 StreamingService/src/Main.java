@@ -1,6 +1,10 @@
-public class Main {
+import java.util.ArrayList;
+
+public class Main
+{
     static FedFlix fedFlix = new FedFlix();
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         fedFlix.runFedFlix();
     }
 }
