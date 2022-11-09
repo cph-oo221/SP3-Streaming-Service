@@ -56,47 +56,28 @@ public class MainMenu
 
             if (input.equals("6"))
             {
-                input = textUI.getUserInput("Search media: ");
-                ArrayList<IMedia> options = searchFunction.searchMedia(input);
-                boolean showingChoice = true;
-                boolean choicesActive = true;
-                while(choicesActive)
+
+                    input = textUI.getUserInput("Search media: ");
+                    ArrayList<IMedia> options = searchFunction.searchMedia(input);
+                while (true)
                 {
-                    String choice  = textUI.getUserInput("Search results. Enter number to choose or 'Q' to return ", options);
+                    IMedia show = textUI.mediaMenu(options);
 
-                    if (choice.equalsIgnoreCase("Q")) { break; }
+                    if (show == null) { break; }
 
-                    while(showingChoice)
+                    while (true)
                     {
-                        try
+                        String playChoice = textUI.getUserInput("Do you want to play " + show.getName() + "? (Y/N)");
+
+                        if (playChoice.equalsIgnoreCase("Y"))
                         {
-                            int choiceInt = Integer.parseInt(choice);
-
-                            if (choiceInt >= 0 && choiceInt < options.size())
-                            {
-                                IMedia show = options.get(choiceInt);
-                                String playChoice = textUI.getUserInput("Do you want to play " + show.getName() + "? (Y/N)");
-
-                                if (playChoice.equalsIgnoreCase("Y"))
-                                {
-                                    // show.play();
-                                    // user.addShow
-                                }
-
-                                else { break; }
-                            }
-
-                            else
-                            {
-                                textUI.displayMessage("Please enter a valid number on the list");
-                                break;
-                            }
+                            // currentUser.addShowsSeen(show);
+                            // show.play();
+                            textUI.displayMessage("Playing " + show.getName() + ". Press any key to return"); // test
+                            textUI.getUserInput();
+                            break;
                         }
-
-                        catch (NumberFormatException e)
-                        {
-                            textUI.displayMessage("Enter A number on the list, or 'Q' to return to menu");
-                        }
+                        else break;
                     }
                 }
             }
@@ -144,5 +125,4 @@ public class MainMenu
         FedFlix fedFlix = new FedFlix();
         fedFlix.runFedFlix();
     }
-
 }
