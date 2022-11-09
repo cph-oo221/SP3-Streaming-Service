@@ -65,7 +65,7 @@ public class Setup
         ArrayList<User> users = new ArrayList<>();
         for (String s : userData)
         {
-            String trimmed = s.replaceAll("[\\\\{}]","").replaceAll(";","").replaceAll(" ","");
+            String trimmed = s.replaceAll("[\\\\p{P}]","").replaceAll(";","").replaceAll(" ","");
             System.out.println(trimmed);
             String[] arr = trimmed.split(",");
             User user = new User (arr[0], arr[1]);

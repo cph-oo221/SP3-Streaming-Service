@@ -112,7 +112,7 @@ public class FileIO
                 writer.write(show + ", ");
             }
 
-            //writer.write("; ");
+            writer.write("; " + '\n');
 
             writer.close();
 
@@ -122,30 +122,5 @@ public class FileIO
             System.out.println(e + "An error has occurred");
         }
     }
-
-    // the old overload writeUserData function
-
-    /*public void writeUserData(User user, ArrayList<String> showsSeen, ArrayList<String> favouriteShows)
-    {
-        try
-        {
-            Scanner input = new Scanner(System.in);
-            FileWriter writer = new FileWriter("Data/userData.csv", true);
-
-            writer.write(user.getUsername() + ", ");
-            writer.write(user.getPassword() + ", ");
-            writer.write(showsSeen + ", ");
-            writer.write(favouriteShows + ", \n");
-
-            writer.close();
-
-        }
-        catch (IOException e)
-        {
-            System.out.println(e + "You fucked up mate");
-        }
-    }*/
-
-
 
 }
