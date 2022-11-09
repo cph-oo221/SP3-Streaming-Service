@@ -27,6 +27,39 @@ public class MainMenu
             media.toString();
         }
 
+        if (input.equals("2"))
+        {
+            for (IMedia i : media)
+            {
+                if (i instanceof Series)
+                {
+                    textUI.displayMessage(i.toString());
+                }
+            }
+        }
+
+        if (input.equals("3"))
+        {
+            for (IMedia i : media)
+            {
+                if (i instanceof Movie)
+                {
+                    textUI.displayMessage(i.toString());
+                }
+            }
+        }
+
+        if (input.equals("4"))
+        {
+
+            currentUser.addShowsSeen("The Office");
+            currentUser.addShowsSeen("Taxi");
+            currentUser.addShowsSeen("The flash");
+
+            currentUser.addFavouriteShows("The Office");
+            currentUser.saveUserData(currentUser);
+        }
+
     }
 
     private void createMedia()

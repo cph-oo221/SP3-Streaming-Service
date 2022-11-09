@@ -85,7 +85,7 @@ public class User
     // make a function to add a show to the showsSeen arraylist
     public void addShowsSeen(String show)
     {
-        showsSeen.add(show);
+        this.showsSeen.add(show);
     }
 
     // Make a function that saves showsSeen and favouriteShows to a file
@@ -94,7 +94,6 @@ public class User
         fileIO.writeUserData(user, showsSeen, favouriteShows);
     }
 
-    // toString
     @Override
     public String toString()
     {

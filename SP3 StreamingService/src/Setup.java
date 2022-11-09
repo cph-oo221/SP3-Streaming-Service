@@ -22,7 +22,7 @@ public class Setup
             login();
         }
 
-        User user = new User("temp","temp");
+        User user = new User("temp", "temp");
         return user;
     }
 
