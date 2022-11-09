@@ -12,17 +12,16 @@ public class Setup
     {
         textUI.displayMessage("Welcome to fedFlix! Press 1 to register new user, or press 2 for login");
         String choice = textUI.getUserInput();
+        User user = new User("temp","temp");
 
         if(choice.equals("1"))
         {
-            register();
+            user=register();
         }
         else
         {
-            login();
+            user=login();
         }
-
-        User user = new User("temp","temp");
         return user;
     }
 
@@ -66,7 +65,7 @@ public class Setup
         ArrayList<User> users = new ArrayList<>();
         for (String s : userData)
         {
-            String trimmed = s.replaceAll("[\\\\p{P}]","").replaceAll(";","").replaceAll(" ","");
+            String trimmed = s.replaceAll("[\\\\{}]","").replaceAll(";","").replaceAll(" ","");
             System.out.println(trimmed);
             String[] arr = trimmed.split(",");
             User user = new User (arr[0], arr[1]);

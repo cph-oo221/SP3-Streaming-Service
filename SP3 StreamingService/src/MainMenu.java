@@ -15,6 +15,7 @@ public class MainMenu
 
     public void runMainMenu()
     {
+
         createMedia();
 
         textUI.displayMessage("Welcome to fedFlix, " + currentUser.getUsername() + "!");
