@@ -5,7 +5,6 @@ public class MainMenu
     User currentUser;
     ArrayList<IMedia> media = new ArrayList<>();
     public TextUI textUI = new TextUI();
-    public SearchFunction searchFunction = new SearchFunction(currentUser, media);
 
     public MainMenu(User currentUser)
     {
@@ -18,55 +17,22 @@ public class MainMenu
         createMedia();
 
         textUI.displayMessage("Welcome to fedFlix, " + currentUser.getUsername() + "!");
-        textUI.displayMessage("Press 1 to view all media\npress 2 to view all series\npress 3 to view all movies\n" +
-                "press 4 to view your watchlist\npress 5 to view your history\npress 6 to search for media\npress 7 to logout");
 
-        String input = textUI.getUserInput();
-
-        Boolean running = true;
+        boolean running = true;
         while (running)
         {
-            // View all media
-            if (input.equals("1"))
-            {
-                searchFunction.viewAllMedia();
-            }
 
-            // View all series
-            if (input.equals("2"))
-            {
-                searchFunction.viewAllSeries();
-            }
+            textUI.displayMessage("Press 1 to view all media\npress 2 to view all series\npress 3 to view all movies\n" +
+                    "press 4 to view your watchlist\npress 5 to view your history\npress 6 to search for media\npress 7 to logout");
 
-            // View all movies
-            if (input.equals("3"))
-            {
-                searchFunction.viewAllMovies();
-            }
+            String input = textUI.getUserInput();
 
-            // View watchList/FavouriteShows
-            if (input.equals("4"))
-            {
-                searchFunction.viewWatchlist();
-            }
-
-            // View showsSeen
-            if (input.equals("5"))
-            {
-                searchFunction.viewHistory();
-            }
-
-            // Search for media
             if (input.equals("6"))
             {
-
+                input = textUI.getUserInput("Search media: ");
+                System.out.println(searchFunction.searchMedia(input));
             }
 
-            // logOut = runs fedFlix.runFedFlix();
-            if (input.equals("7"))
-            {
-                logOut();
-            }
         }
     }
 

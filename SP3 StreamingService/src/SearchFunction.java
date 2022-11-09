@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class SearchFunction
 {
-    TextUI textUI = new TextUI();
    User currentUser;
    ArrayList<IMedia> media;
     public SearchFunction(User currentUser, ArrayList<IMedia> media)
@@ -18,7 +17,7 @@ public class SearchFunction
 
         for (IMedia m: media)
         {
-            if (m.getName().contains(input))
+            if (m.getName().toLowerCase().contains(input.toLowerCase()))
             {
                 output.add(m);
             }
