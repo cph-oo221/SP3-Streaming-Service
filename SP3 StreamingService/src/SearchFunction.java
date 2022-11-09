@@ -25,4 +25,35 @@ public class SearchFunction
         }
         return output;
     }
+
+    public void viewAllMedia()
+    {
+        viewAllSeries();
+        viewAllMovies();
+    }
+
+    public void viewAllSeries()
+    {
+        for (IMedia i : media)
+        {
+            if (i instanceof Series)
+            {
+                textUI.displayMessage(i.toString());
+            }
+        }
+    }
+    public void viewAllMovies()
+    {
+        for (IMedia i : media)
+        {
+            if (i instanceof Movie)
+            {
+                textUI.displayMessage(i.toString());
+            }
+        }
+    }
+
+
+
+
 }
