@@ -57,7 +57,47 @@ public class MainMenu
             if (input.equals("6"))
             {
                 input = textUI.getUserInput("Search media: ");
-                System.out.println(searchFunction.searchMedia(input));
+                ArrayList<IMedia> options = searchFunction.searchMedia(input);
+                boolean showingChoice = true;
+                boolean choicesActive = true;
+                while(choicesActive)
+                {
+                    String choice  = textUI.getUserInput("Search results. Enter number to choose or 'Q' to return ", options);
+
+                    if (choice.equalsIgnoreCase("Q")) { break; }
+
+                    while(showingChoice)
+                    {
+                        try
+                        {
+                            int choiceInt = Integer.parseInt(choice);
+
+                            if (choiceInt >= 0 && choiceInt < options.size())
+                            {
+                                IMedia show = options.get(choiceInt);
+                                String playChoice = textUI.getUserInput("Do you want to play " + show.getName() + "? (Y/N)");
+
+                                if (playChoice.equalsIgnoreCase("Y"))
+                                {
+                                    // show.play();
+                                }
+
+                                else { break; }
+                            }
+
+                            else
+                            {
+                                textUI.displayMessage("Please enter a valid number on the list");
+                                break;
+                            }
+                        }
+
+                        catch (NumberFormatException e)
+                        {
+                            textUI.displayMessage("Enter A number on the list, or 'Q' to return to menu");
+                        }
+                    }
+                }
             }
 
             if (input.equals("7"))

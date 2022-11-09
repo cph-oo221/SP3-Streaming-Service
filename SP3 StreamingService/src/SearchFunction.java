@@ -27,6 +27,8 @@ public class SearchFunction
         return output;
     }
 
+
+
     // Option 1 view all media
     public void viewAllMedia()
     {
