@@ -23,48 +23,51 @@ public class MainMenu
 
         String input = textUI.getUserInput();
 
-        // View all media
-        if (input.equals("1"))
+        Boolean running = true;
+        while (running)
         {
-            searchFunction.viewAllMedia();
+            // View all media
+            if (input.equals("1"))
+            {
+                searchFunction.viewAllMedia();
+            }
+
+            // View all series
+            if (input.equals("2"))
+            {
+                searchFunction.viewAllSeries();
+            }
+
+            // View all movies
+            if (input.equals("3"))
+            {
+                searchFunction.viewAllMovies();
+            }
+
+            // View watchList/FavouriteShows
+            if (input.equals("4"))
+            {
+                searchFunction.viewWatchlist();
+            }
+
+            // View showsSeen
+            if (input.equals("5"))
+            {
+                searchFunction.viewHistory();
+            }
+
+            // Search for media
+            if (input.equals("6"))
+            {
+
+            }
+
+            // logOut = runs fedFlix.runFedFlix();
+            if (input.equals("7"))
+            {
+                logOut();
+            }
         }
-
-        // View all series
-        if (input.equals("2"))
-        {
-            searchFunction.viewAllSeries();
-        }
-
-        // View all movies
-        if (input.equals("3"))
-        {
-            searchFunction.viewAllMovies();
-        }
-
-        // View watchList/FavouriteShows
-        if (input.equals("4"))
-        {
-            searchFunction.viewWatchlist();
-        }
-
-        // View showsSeen
-        if (input.equals("5"))
-        {
-            searchFunction.viewHistory();
-        }
-
-        // Search for media
-        if (input.equals("6"))
-        {
-
-        }
-
-        // logOut = runs fedFlix.runFedFlix();
-        if (input.equals("7"))
-        {
-            logOut();
-        }
-
     }
 
     private void createMedia()
