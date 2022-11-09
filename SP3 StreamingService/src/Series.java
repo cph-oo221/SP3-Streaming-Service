@@ -7,6 +7,7 @@ public class Series extends Media
 
     String type = "Series";
 
+
     public Series(String name, String year, String[] genre, String rating, String[] seasons)
     {
         super(name, year, genre, rating);

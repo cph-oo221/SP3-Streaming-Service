@@ -6,7 +6,7 @@ public class MainMenu
     ArrayList<IMedia> media = new ArrayList<>();
     public TextUI textUI = new TextUI();
 
-    public SearchFunction searchFunction = new SearchFunction(currentUser, media);
+    public SearchFunction searchFunction =new SearchFunction(currentUser, media);
 
     public MainMenu(User currentUser)
     {
@@ -29,10 +29,40 @@ public class MainMenu
 
             String input = textUI.getUserInput();
 
+            if(input.equals("1"))
+            {
+                searchFunction.viewAllMedia();
+            }
+
+            if (input.equals("2"))
+            {
+                searchFunction.viewAllSeries();
+            }
+
+            if (input.equals("3"))
+            {
+                searchFunction.viewAllMovies();
+            }
+
+            if (input.equals("4"))
+            {
+                searchFunction.viewWatchlist();
+            }
+
+            if (input.equals("5"))
+            {
+                searchFunction.viewHistory();
+            }
+
             if (input.equals("6"))
             {
                 input = textUI.getUserInput("Search media: ");
                 System.out.println(searchFunction.searchMedia(input));
+            }
+
+            if (input.equals("7"))
+            {
+                logOut();
             }
 
         }
