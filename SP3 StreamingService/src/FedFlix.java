@@ -3,14 +3,13 @@ public class FedFlix
     public void runFedFlix()
     {
         User currentUser = setUp();
-
         mainMenu(currentUser);
     }
 
     private User setUp()
     {
         Setup setUp = new Setup();
-        setUp.runSetUp();
+        //setUp.runSetUp();
         User user = new User("temp", "temp");
         return user;
     }

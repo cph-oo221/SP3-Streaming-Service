@@ -22,9 +22,9 @@ public class MainMenu
 
         String input = textUI.getUserInput();
 
-        if (input.equals("1"))
+        if (input.equals("6"))
         {
-            media.toString();
+
         }
     }
 
