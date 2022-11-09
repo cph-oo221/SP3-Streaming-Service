@@ -25,41 +25,48 @@ public class MainMenu
         {
 
             textUI.displayMessage("Press 1 to view all media\npress 2 to view all series\npress 3 to view all movies\n" +
-                    "press 4 to view your watchlist\npress 5 to view your history\npress 6 to search for media\npress 7 to logout");
+                    "press 4 to view your watchlist\npress 5 to view your history\npress 6 to search for media\npress 7 to choose Category\npress 8 to logout");
 
             String input = textUI.getUserInput();
 
+            // view all media
             if(input.equals("1"))
             {
                 searchFunction.viewAllMedia();
             }
 
+            // view all series
             if (input.equals("2"))
             {
                 searchFunction.viewAllSeries();
             }
 
+            // view all movies
             if (input.equals("3"))
             {
                 searchFunction.viewAllMovies();
             }
 
+            // view watchlist(favorites)
             if (input.equals("4"))
             {
                 searchFunction.viewWatchlist();
             }
 
+            // view history(showsSeen)
             if (input.equals("5"))
             {
                 searchFunction.viewHistory();
             }
 
+            // search for media
             if (input.equals("6"))
             {
                 input = textUI.getUserInput("Search media: ");
                 System.out.println(searchFunction.searchMedia(input));
             }
 
+            // choose Category
             if(input.equals("7"))
             {
                 searchFunction.viewAllCategory();
