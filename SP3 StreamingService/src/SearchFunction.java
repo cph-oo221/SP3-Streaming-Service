@@ -40,45 +40,33 @@ public class SearchFunction
     }
 
     // Option 2 view all series
-    public void viewAllSeries()
+    public ArrayList<IMedia> viewAllSeries()
     {
+        ArrayList<IMedia> seriesOutput = new ArrayList<>();
+
         for (IMedia i : media)
         {
             if (i instanceof Series)
             {
-                textUI.displayMessage(i.toString());
+                seriesOutput.add(i);
             }
         }
+        return seriesOutput;
     }
 
     // Option 3 view all movies
-    public void viewAllMovies()
+    public ArrayList<IMedia> viewAllMovies()
     {
+        ArrayList<IMedia> movieOutput = new ArrayList<>();
+
         for (IMedia i : media)
         {
             if (i instanceof Movie)
             {
-                textUI.displayMessage(i.toString());
+                movieOutput.add(i);
             }
         }
-    }
-
-    // Option 4 view watchlist
-    public void viewWatchlist()
-    {
-        for (String s : currentUser.getFavouriteShows())
-        {
-            textUI.displayMessage(s);
-        }
-    }
-
-    // Option 5 view history
-    public void viewHistory()
-    {
-        for (String s : currentUser.getShowsSeen())
-        {
-            textUI.displayMessage(s);
-        }
+        return movieOutput;
     }
 
     // option viewAllCategory

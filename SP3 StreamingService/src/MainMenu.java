@@ -38,25 +38,67 @@ public class MainMenu
             // view all series
             if (input.equals("2"))
             {
-                searchFunction.viewAllSeries();
+                ArrayList<IMedia> options = searchFunction.viewAllSeries();
+                while (true)
+                {
+                    IMedia show = textUI.mediaMenu(options);
+
+                    if (show == null) { break; }
+
+                    while (true)
+                    {
+                        String playChoice = textUI.getUserInput("Do you want to play " + show.getName() + "? (Y/N)");
+
+                        if (playChoice.equalsIgnoreCase("Y"))
+                        {
+                            // currentUser.addShowsSeen(show);
+                            // show.play();
+                            textUI.displayMessage("Playing " + show.getName() + ". Press any key to return"); // test
+                            textUI.getUserInput();
+                            break;
+                        }
+                        else break;
+                    }
+                }
             }
 
             // view all movies
             if (input.equals("3"))
             {
-                searchFunction.viewAllMovies();
+                ArrayList<IMedia> options = searchFunction.viewAllMovies();
+                while (true)
+                {
+                    IMedia show = textUI.mediaMenu(options);
+
+                    if (show == null) { break; }
+
+                    while (true)
+                    {
+                        String playChoice = textUI.getUserInput("Do you want to play " + show.getName() + "? (Y/N)");
+
+                        if (playChoice.equalsIgnoreCase("Y"))
+                        {
+                            // currentUser.addShowsSeen(show);
+                            // show.play();
+                            textUI.displayMessage("Playing " + show.getName() + ". Press any key to return"); // test
+                            textUI.getUserInput();
+                            break;
+                        }
+                        else break;
+                    }
+                }
             }
 
             // view watchlist(favorites)
             if (input.equals("4"))
             {
-                searchFunction.viewWatchlist();
+                //searchFunction.viewWatchlist();
             }
 
             // view history(showsSeen)
             if (input.equals("5"))
             {
-                searchFunction.viewHistory();
+                //searchFunction.viewHistory();
             }
 
             // search for media
@@ -91,7 +133,28 @@ public class MainMenu
             // choose Category
             if(input.equals("7"))
             {
-                searchFunction.viewAllCategory();
+                ArrayList<IMedia> options = searchFunction.viewAllCategory();
+                while (true)
+                {
+                    IMedia show = textUI.mediaMenu(options);
+
+                    if (show == null) { break; }
+
+                    while (true)
+                    {
+                        String playChoice = textUI.getUserInput("Do you want to play " + show.getName() + "? (Y/N)");
+
+                        if (playChoice.equalsIgnoreCase("Y"))
+                        {
+                            // currentUser.addShowsSeen(show);
+                            // show.play();
+                            textUI.displayMessage("Playing " + show.getName() + ". Press any key to return"); // test
+                            textUI.getUserInput();
+                            break;
+                        }
+                        else break;
+                    }
+                }
             }
 
             if (input.equals("8"))
