@@ -31,8 +31,8 @@ public class Setup
             for (User i : users)
             {
                 if (name.equalsIgnoreCase(i.getUsername()) && pass.equals(i.getPassword())) {
-                    textUI.displayMessage("Login successful");
                     textUI.displayMessage("****************");
+                    textUI.displayMessage("Login successful");
                     textUI.displayMessage("****************");
                     return i;
                 } else
@@ -53,7 +53,6 @@ public class Setup
         for (String s : userData)
         {
             String trimmed = s.replaceAll("[\\\\{}]","").replaceAll(";","").replaceAll(" ","");
-            System.out.println(trimmed);
             String[] arr = trimmed.split(",");
             User user = new User (arr[0], arr[1]);
             users.add(user);
