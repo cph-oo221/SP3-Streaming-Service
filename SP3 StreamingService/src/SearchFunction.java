@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
-
 
 
 public class SearchFunction
@@ -60,24 +58,6 @@ public class SearchFunction
             {
                 textUI.displayMessage(i.toString());
             }
-        }
-    }
-
-    // Option 4 view watchlist
-    public void viewWatchlist()
-    {
-        for (String s : currentUser.getFavouriteShows())
-        {
-            textUI.displayMessage(s);
-        }
-    }
-
-    // Option 5 view history
-    public void viewHistory()
-    {
-        for (String s : currentUser.getShowsSeen())
-        {
-            textUI.displayMessage(s);
         }
     }
 
