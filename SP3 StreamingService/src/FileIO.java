@@ -67,6 +67,35 @@ public class FileIO
         return data;
     }
 
+    protected ArrayList<String> readUserData0()
+    {
+        File file = new File("Data/userData.csv");
+        ArrayList<String> data = new ArrayList<>();
+        try {
+            Scanner input = new Scanner(file);
+
+            while (input.hasNextLine())
+            {
+                String s = input.nextLine();
+                int i, j;
+                i = 0;
+                j = s.indexOf(";");
+                if(i != -1 && j != -1)
+                {
+                    String value = s.substring(i, j);
+                    data.add(value);
+                }
+            }
+        }
+        catch (FileNotFoundException e)
+        {
+            data = null;
+        }
+
+        return data;
+
+    }
+
     protected ArrayList<String> readUserData1()
     {
         File file = new File("Data/userData.csv");
@@ -79,7 +108,7 @@ public class FileIO
                 String s = input.nextLine();
                 int i, j;
                 i = s.indexOf(";");
-                j = s.indexOf("*");
+                j = s.indexOf("'");
                 if(i != -1 && j != -1)
                 {
                     String value = s.substring(i, j);
@@ -106,7 +135,7 @@ public class FileIO
             {
                 String s = input.nextLine();
                 int i, j;
-                i = s.indexOf("*");
+                i = s.indexOf("'");
                 j = s.indexOf("!");
                 if(i != -1 && j != -1)
                 {
@@ -123,6 +152,7 @@ public class FileIO
         return data;
 
     }
+
 
 
     protected void writeUserData(User user)
