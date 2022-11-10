@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class FileIO
 {
 
-    public ArrayList<String> readMovieData()
+    protected ArrayList<String> readMovieData()
     {
         File file = new File("Data/movieList.csv");
         ArrayList<String> data = new ArrayList<>();
@@ -27,7 +27,7 @@ public class FileIO
         return data;
     }
 
-    public ArrayList<String> readSeriesData()
+    protected ArrayList<String> readSeriesData()
     {
         File file = new File("Data/seriesList.csv");
         ArrayList<String> data = new ArrayList<>();
@@ -48,7 +48,7 @@ public class FileIO
 
 
 
-    public ArrayList<String> readUserData()
+    protected ArrayList<String> readUserData()
     {
         File file = new File("Data/userData.csv");
         ArrayList<String> data = new ArrayList<>();
@@ -67,7 +67,65 @@ public class FileIO
         return data;
     }
 
-    public void writeUserData(User user)
+    protected ArrayList<String> readUserData1()
+    {
+        File file = new File("Data/userData.csv");
+        ArrayList<String> data = new ArrayList<>();
+        try {
+            Scanner input = new Scanner(file);
+
+            while (input.hasNextLine())
+            {
+                String s = input.nextLine();
+                int i, j;
+                i = s.indexOf(";");
+                j = s.indexOf("*");
+                if(i != -1 && j != -1)
+                {
+                    String value = s.substring(i, j);
+                    data.add(value);
+                }
+            }
+        }
+        catch (FileNotFoundException e)
+        {
+            data = null;
+        }
+
+        return data;
+    }
+
+    protected ArrayList<String> readUserData2()
+    {
+        File file = new File("Data/userData.csv");
+        ArrayList<String> data = new ArrayList<>();
+        try {
+            Scanner input = new Scanner(file);
+
+            while (input.hasNextLine())
+            {
+                String s = input.nextLine();
+                int i, j;
+                i = s.indexOf("*");
+                j = s.indexOf("!");
+                if(i != -1 && j != -1)
+                {
+                    String value = s.substring(i, j);
+                    data.add(value);
+                }
+            }
+        }
+        catch (FileNotFoundException e)
+        {
+            data = null;
+        }
+
+        return data;
+
+    }
+
+
+    protected void writeUserData(User user)
     {
         try
         {
@@ -85,42 +143,23 @@ public class FileIO
             System.out.println(e + "You fucked up mate");
         }
     }
-
-    // Overlaid function that take user, showsSeen and favouriteShows as parameters
-    // and writes them to the file userData.csv
-    public void writeUserData(User user, ArrayList<String> showsSeen, ArrayList<String> favouriteShows)
+    protected int userCounter()
     {
         try
         {
-            FileWriter writer = new FileWriter("Data/userData.csv");
-
-            // Write username and password
-            writer.write(user.getUsername() + ", ");
-            writer.write(user.getPassword() + ", \n");
-
-            // Write showsSeen to file
-            for (String show : showsSeen)
+            int count = 0;
+            File file = new File("Data/userData.csv");
+            Scanner input = new Scanner(file);
+            while (input.hasNextLine())
             {
-                writer.write(show + ", ");
+                count++;
+                input.nextLine();
             }
-
-           // writer.write("; ");
-
-            // Write favouriteShows to file
-            for (String show : favouriteShows)
-            {
-                writer.write(show + ", ");
-            }
-
-            writer.write("; " + '\n');
-
-            writer.close();
-
+            return count;
         }
-        catch (IOException e)
+        catch (FileNotFoundException e)
         {
-            System.out.println(e + "An error has occurred");
+            return -1;
         }
     }
-
 }
