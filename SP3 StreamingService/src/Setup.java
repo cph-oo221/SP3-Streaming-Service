@@ -2,9 +2,6 @@ import java.util.ArrayList;
 
 public class Setup
 {
-    static ArrayList<String> userNames;
-    static ArrayList<String> passWords;
-
     TextUI textUI = new TextUI();
     FileIO fileIO = new FileIO();
 
@@ -12,47 +9,37 @@ public class Setup
     {
         textUI.displayMessage("Welcome to fedFlix! Press 1 to register new user, or press 2 for login");
         String choice = textUI.getUserInput();
-        User user = new User("temp","temp");
 
         if(choice.equals("1"))
         {
-            user=register();
+            return register();
         }
         else
         {
-            user=login();
+            return login();
         }
-        return user;
     }
 
     protected User login() {
-        String name;
-        String pass;
-        name = textUI.getUserInput("Please enter your Username");
-        pass = textUI.getUserInput("Please enter your Password");
-        ArrayList<User> users = new ArrayList<>();
-        users = createUsers();
-        for (User i : users)
+        boolean running;
+        running = true;
+        ArrayList<User> users = createUsers();
+        while(running)
         {
-
-            //SLET DETTE - PRINT TEST
-            System.out.println("******");
-            System.out.println(name);
-            System.out.println(pass);
-            System.out.println("*****");
-            System.out.println(i.getUsername());
-            System.out.println(i.getPassword());
-            //SLET OVENSTÅENDE - PRINT TEST
-
-
-            if(name.equals(i.getUsername()) && pass.equals(i.getPassword()))
+        String name = textUI.getUserInput("Please enter your Username");
+        String pass = textUI.getUserInput("Please enter your Password");
+            for (User i : users)
             {
-                textUI.displayMessage("Login successful");
-                return i;
-            }
-            else
-            {
-                textUI.displayMessage("Username or Password does not exist. Please try again.");
+                if (name.equalsIgnoreCase(i.getUsername()) && pass.equals(i.getPassword())) {
+                    textUI.displayMessage("****************");
+                    textUI.displayMessage("Login successful");
+                    textUI.displayMessage("****************");
+                    return i;
+                } else
+                {
+                    textUI.displayMessage("Username or Password does not exist. Please try again.");
+                    break;
+                }
             }
         }
         return null;
@@ -61,16 +48,14 @@ public class Setup
     private ArrayList<User> createUsers()
     {
         ArrayList<String> userData = fileIO.readUserData();
-
         ArrayList<User> users = new ArrayList<>();
+
         for (String s : userData)
         {
-            String trimmed = s.replaceAll("[\\\\p{P}]","").replaceAll(";","").replaceAll(" ","");
-            System.out.println(trimmed);
+            String trimmed = s.replaceAll("[\\\\{}]","").replaceAll(";","").replaceAll(" ","");
             String[] arr = trimmed.split(",");
             User user = new User (arr[0], arr[1]);
             users.add(user);
-            System.out.println(user);
         }
         return users;
         //return null;

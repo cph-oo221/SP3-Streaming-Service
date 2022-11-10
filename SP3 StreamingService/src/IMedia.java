@@ -3,16 +3,17 @@ import java.net.URISyntaxException;
 
 public interface IMedia
 {
-    public void play() throws URISyntaxException, IOException;
+    void play() throws URISyntaxException, IOException;
 
-    public String toString();
+    String toString();
 
-    public String getName();
+    String getName();
 
-    public String getYear();
+    String getYear();
 
-    public String[] getGenre();
 
-    public String getRating();
+    String[] getGenre();
+
+    String getRating();
 
 }

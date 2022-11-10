@@ -96,7 +96,7 @@ public class FileIO
 
             // Write username and password
             writer.write(user.getUsername() + ", ");
-            writer.write(user.getPassword() + ", ");
+            writer.write(user.getPassword() + ", \n");
 
             // Write showsSeen to file
             for (String show : showsSeen)
