@@ -33,10 +33,25 @@ public class SearchFunction
 
 
     // Option 1 view all media
-    public void viewAllMedia()
+    public ArrayList<IMedia> viewAllMedia()
     {
-        viewAllSeries();
-        viewAllMovies();
+        ArrayList<IMedia> allMediaOutput = new ArrayList<>();
+        for (IMedia i : media)
+        {
+            if (i instanceof Series)
+            {
+                allMediaOutput.add(i);
+            }
+        }
+
+        for (IMedia i : media)
+        {
+            if (i instanceof Movie)
+            {
+                allMediaOutput.add(i);
+            }
+        }
+        return allMediaOutput;
     }
 
     // Option 2 view all series

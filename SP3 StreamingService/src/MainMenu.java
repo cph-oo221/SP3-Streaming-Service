@@ -32,7 +32,28 @@ public class MainMenu
             // view all media
             if(input.equals("1"))
             {
-                searchFunction.viewAllMedia();
+                ArrayList<IMedia> options = searchFunction.viewAllMedia();
+                while (true)
+                {
+                    IMedia show = textUI.mediaMenu(options);
+
+                    if (show == null) { break; }
+
+                    while (true)
+                    {
+                        String playChoice = textUI.getUserInput("Do you want to play " + show.getName() + "? (Y/N)");
+
+                        if (playChoice.equalsIgnoreCase("Y"))
+                        {
+                            // currentUser.addShowsSeen(show);
+                            // show.play();
+                            textUI.displayMessage("Playing " + show.getName() + ". Press any key to return"); // test
+                            textUI.getUserInput();
+                            break;
+                        }
+                        else break;
+                    }
+                }
             }
 
             // view all series
