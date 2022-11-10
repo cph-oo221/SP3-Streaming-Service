@@ -88,17 +88,10 @@ public class User
         this.showsSeen.add(show);
     }
 
-    // Make a function that saves showsSeen and favouriteShows to a file
-    public void saveUserData(User user)
-    {
-        fileIO.writeUserData(user, showsSeen, favouriteShows);
-    }
-
-
     @Override
     public String toString()
     {
-        return "| Username: " + username + " | Shows seen: " + showsSeen +
+        return "| Username: " + username + " |Password: " + password +" | Shows seen: " + showsSeen +
                 " | Favourite shows: " + favouriteShows + '|';
     }
 }
