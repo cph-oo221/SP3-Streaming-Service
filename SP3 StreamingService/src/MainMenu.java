@@ -32,19 +32,22 @@ public class MainMenu
             // view all media
             if(input.equals("1"))
             {
-                searchFunction.viewAllMedia();
+                ArrayList<IMedia> options = searchFunction.viewAllMedia();
+                textUI.mediaMenu(options, currentUser);
             }
 
             // view all series
             if (input.equals("2"))
             {
-                searchFunction.viewAllSeries();
+                ArrayList<IMedia> options = searchFunction.viewAllSeries();
+                textUI.mediaMenu(options, currentUser);
             }
 
             // view all movies
             if (input.equals("3"))
             {
-                searchFunction.viewAllMovies();
+                ArrayList<IMedia> options = searchFunction.viewAllMovies();
+                textUI.mediaMenu(options, currentUser);
             }
 
             // view watchlist(favorites)
@@ -85,7 +88,8 @@ public class MainMenu
             // choose Category
             if(input.equals("7"))
             {
-                 searchFunction.viewAllCategory();
+                ArrayList<IMedia> options = searchFunction.viewAllCategory();
+                textUI.mediaMenu(options, currentUser);
             }
 
             if (input.equals("8"))
