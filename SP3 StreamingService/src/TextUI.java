@@ -27,11 +27,12 @@ public class TextUI
     public String getUserInput(String msg, ArrayList<IMedia> options)
     {
 
-        System.out.println(msg);
         for(int i = 0; i<options.size(); i++)
         {
             System.out.println(i + 1 + ". "+options.get(i));
         }
+        System.out.println(msg);
+
         return scan.nextLine();
     }
 
@@ -57,20 +58,25 @@ public class TextUI
                     {
                         IMedia show = options.get(choiceInt);
 
-                        String playChoice = getUserInput("Do you want to play " + show.getName() + "? (Y/N)");
+                        String playChoice = getUserInput("Do you want to play " + show.getName() + "? (Y/Q).\n Press 'F' to add to watchlist");
+
+                        if (playChoice.equalsIgnoreCase("F"))
+                        {
+                            currentUser.addFavouriteShows(show.getName());
+                            displayMessage(show.getName() + " Added to watchlist.");
+                        }
 
                         if (playChoice.equalsIgnoreCase("Y"))
                         {
                             currentUser.addShowsSeen(show.getName());
 
-                                show.play();
+                            show.play();
 
-                           // displayMessage("Playing " + show.getName() + ". Press any key to return"); // test
                             getUserInput();
                             break;
                         }
 
-                        else break;
+                        if (playChoice.equalsIgnoreCase("Q")) { break; }
                     }
 
                     else
@@ -95,6 +101,7 @@ public class TextUI
                 catch (IOException i)
                 {
                     displayMessage("IO Failure");
+                    break;
                 }
             }
         }
