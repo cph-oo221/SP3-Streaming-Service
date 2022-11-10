@@ -58,7 +58,7 @@ public class TextUI
                     {
                         IMedia show = options.get(choiceInt);
 
-                        String playChoice = getUserInput("Do you want to play " + show.getName() + "? (Y/Q).\n Press 'F' to add to watchlist");
+                        String playChoice = getUserInput("Do you want to play " + show.getName() + "? (Y/Q).\nEnter 'F' to add to watchlist");
 
                         if (playChoice.equalsIgnoreCase("F"))
                         {
