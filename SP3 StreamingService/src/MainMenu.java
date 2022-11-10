@@ -112,6 +112,7 @@ public class MainMenu
                 logOut();
             }
 
+            else { textUI.displayMessage("Invalid input. Try again"); }
         }
     }
 
