@@ -71,7 +71,7 @@ public class MainMenu
             // view history(showsSeen)
             if (input.equals("5"))
             {
-
+                //searchFunction.viewHistory();
             }
 
             // search for media

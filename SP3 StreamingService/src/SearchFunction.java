@@ -31,34 +31,56 @@ public class SearchFunction
 
 
     // Option 1 view all media
-    public void viewAllMedia()
+    public ArrayList<IMedia> viewAllMedia()
     {
-        viewAllSeries();
-        viewAllMovies();
-    }
-
-    // Option 2 view all series
-    public void viewAllSeries()
-    {
+        ArrayList<IMedia> allMediaOutput = new ArrayList<>();
         for (IMedia i : media)
         {
             if (i instanceof Series)
             {
-                textUI.displayMessage(i.toString());
+                allMediaOutput.add(i);
             }
         }
-    }
 
-    // Option 3 view all movies
-    public void viewAllMovies()
-    {
         for (IMedia i : media)
         {
             if (i instanceof Movie)
             {
-                textUI.displayMessage(i.toString());
+                allMediaOutput.add(i);
             }
         }
+
+        return allMediaOutput;
+    }
+
+    // Option 2 view all series
+    public ArrayList<IMedia> viewAllSeries()
+    {
+        ArrayList<IMedia> seriesOutput = new ArrayList<>();
+
+        for (IMedia i : media)
+        {
+            if (i instanceof Series)
+            {
+                seriesOutput.add(i);
+            }
+        }
+        return seriesOutput;
+    }
+
+    // Option 3 view all movies
+    public ArrayList<IMedia> viewAllMovies()
+    {
+        ArrayList<IMedia> movieOutput = new ArrayList<>();
+
+        for (IMedia i : media)
+        {
+            if (i instanceof Movie)
+            {
+                movieOutput.add(i);
+            }
+        }
+        return movieOutput;
     }
 
     // option viewAllCategory
