@@ -73,12 +73,11 @@ public class Setup
 
         for (int i = 0; i < entries ; i++ )
         {
-<<<<<<< Updated upstream
-            String trimmed = s.replaceAll("[\\\\{}]","").replaceAll(";","").replaceAll(" ","");
+            String trimmed = userData.replaceAll("[\\\\{}]","").replaceAll(";","").replaceAll(" ","");
             System.out.println(trimmed);
             String[] arr = trimmed.split(",");
             User user = new User (arr[0], arr[1]);
-=======
+
             for (int j = 0; j < userData.size(); j++)
             {
                 String trimmed = userData.get(j).replaceAll("[\\\\{}]", "").replaceAll(" ", "").replaceAll(";","");
