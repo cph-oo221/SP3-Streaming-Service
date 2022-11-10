@@ -35,8 +35,8 @@ public class Setup
             {
                 textUI.displayMessage("User :"+i);
                 if (name.equalsIgnoreCase(i.getUsername()) && pass.equals(i.getPassword())) {
-                    textUI.displayMessage("Login successful");
                     textUI.displayMessage("****************");
+                    textUI.displayMessage("Login successful");
                     textUI.displayMessage("****************");
                     return i;
                 }
@@ -73,11 +73,6 @@ public class Setup
 
         for (int i = 0; i < entries ; i++ )
         {
-            String trimmed = userData.replaceAll("[\\\\{}]","").replaceAll(";","").replaceAll(" ","");
-            System.out.println(trimmed);
-            String[] arr = trimmed.split(",");
-            User user = new User (arr[0], arr[1]);
-
             for (int j = 0; j < userData.size(); j++)
             {
                 String trimmed = userData.get(j).replaceAll("[\\\\{}]", "").replaceAll(" ", "").replaceAll(";","");
@@ -112,7 +107,6 @@ public class Setup
 
 
             User user = new User(IDs[i][0], IDs[i][1], showsSeen, favouriteShows);
->>>>>>> Stashed changes
             users.add(user);
             textUI.displayMessage("Bruger genereret og tilføjet uden fejl");
             textUI.displayMessage(i+":"+ user.toString());
