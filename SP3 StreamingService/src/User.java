@@ -33,6 +33,13 @@ public class User
         this.favouriteShows = favouriteShows;
     }
 
+    public User(String username, String password, ArrayList<String> showsSeen)
+    {
+        this.username = username;
+        this.password = password;
+        this.showsSeen = showsSeen;
+    }
+
     // getters
     public String getUsername()
     {

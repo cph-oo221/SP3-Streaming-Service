@@ -1,5 +1,6 @@
-import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Setup
 {
@@ -48,73 +49,66 @@ public class Setup
 
     }
 
-    private ArrayList<User> createUsers()
-    {
-        textUI.displayMessage("readuserdata ingen fejl");
-
+    private ArrayList<User> createUsers() {
         ArrayList<User> users = new ArrayList<>();
-
         ArrayList<String> userData = fileIO.readUserData();
 
-        textUI.displayMessage("readShowsSeen ingen fejl");
-        ArrayList<String> showsSeenRaw = fileIO.readUserData1();
-
-        textUI.displayMessage("readFavouriteShowsRaw  ingen fejl");
-        ArrayList<String> favouriteShowsRaw = fileIO.readUserData2();
-        ArrayList<String> favouriteShows = new ArrayList<>();
-        ArrayList<String> showsSeen = new ArrayList<>();
-
-        textUI.displayMessage("readuserdata ingen fejl");
         int entries = fileIO.userCounter();
-        String[][] IDs = new String[entries][];
-        textUI.displayMessage("entries talt uden fejl");
+        textUI.displayMessage("entries talt uden fejl :" +entries);
+
+        for (int i = 0; i < entries; i++) {
+
+            String[] allTheData = userData.get(i).split(";");
+            ArrayList<String> showsSeen = new ArrayList<>();
+            ArrayList<String> watchList = new ArrayList<>();
+
+            textUI.displayMessage(allTheData[0]);
+            textUI.displayMessage(allTheData[1]);
 
 
+            String[] ID = allTheData[0].replaceAll(" ","").split(",");
 
-        for (int i = 0; i < entries ; i++ )
-        {
-            for (int j = 0; j < userData.size(); j++)
+            if (allTheData.length >= 2)
             {
-                String trimmed = userData.get(j).replaceAll("[\\\\{}]", "").replaceAll(" ", "").replaceAll(";","");
-                String[] arr = trimmed.split(",");
-                textUI.displayMessage(arr+"Tilføjet");
-                IDs[j] = arr;
-            }
-            textUI.displayMessage("ID [] genereret uden fejl");
-            textUI.displayMessage("ID"+ IDs.toString());
-            for (int j = 0; j < showsSeenRaw.size(); j++)
-            {
-                String trimmed = showsSeenRaw.get(j).replaceAll("[\\\\{}]", "").replaceAll(" ", "");
-                String[] arr = trimmed.split(",");
-                for (int k = 0; k < arr.length; k++)
+                String[] showsSeenArr = allTheData[1].split(",");
+
+                for (int j = 0; j < showsSeenArr.length; j++)
                 {
-                    showsSeen.add(arr[i]);
+                    showsSeen.add(showsSeenArr[j]);
+                }
+
+            }
+
+
+            if (allTheData.length >= 3)
+            {
+                textUI.displayMessage(allTheData[2]);
+                String[] watchListArr = allTheData[2].split(",");
+                for (int k = 0; k < watchListArr.length; k++)
+                {
+                    watchList.add(watchListArr[k]);
                 }
             }
-            textUI.displayMessage("showsSeen genereret uden fejl");
-            textUI.displayMessage("showsSeen :" + showsSeen.toString());
-            for (int j = 0; j < favouriteShowsRaw.size(); j++)
+
+
+            if(allTheData.length == 1)
             {
-                String trimmed = favouriteShowsRaw.get(j).replaceAll("[\\\\{}]", "").replaceAll(" ", "");
-                String[] arr = trimmed.split(",");
-                for (int k = 0; k < arr.length; k++)
-                {
-                    favouriteShows.add(arr[j]);
-                }
+                User user = new User(ID[0],ID[1],showsSeen);
+                users.add(user);
             }
-            textUI.displayMessage("favouriteShows genereret uden fejl");
-            textUI.displayMessage("favouriteShows :" + favouriteShows.toString());
-
-
-            User user = new User(IDs[i][0], IDs[i][1], showsSeen, favouriteShows);
-            users.add(user);
-            textUI.displayMessage("Bruger genereret og tilføjet uden fejl");
-            textUI.displayMessage(i+":"+ user.toString());
+            if(allTheData.length == 2 )
+            {
+                User user = new User(ID[0], ID[1], showsSeen, watchList);
+                users.add(user);
+            }
+            else
+            {
+                User user = new User(ID[0], ID[1]);
+                users.add(user);
+            }
         }
-        textUI.displayMessage("Alt klaret, brugere returneret");
         return users;
     }
-
     private User register()
     {
         textUI.displayMessage("Register new user:");
