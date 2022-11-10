@@ -50,24 +50,25 @@ public class Setup
 
     private ArrayList<User> createUsers()
     {
-        textUI.displayMessage("readuserdata ingen fejl");
+
 
         ArrayList<User> users = new ArrayList<>();
 
         ArrayList<String> userData = fileIO.readUserData();
 
-        textUI.displayMessage("readShowsSeen ingen fejl");
         ArrayList<String> showsSeenRaw = fileIO.readUserData1();
 
-        textUI.displayMessage("readFavouriteShowsRaw  ingen fejl");
+
         ArrayList<String> favouriteShowsRaw = fileIO.readUserData2();
+
+
         ArrayList<String> favouriteShows = new ArrayList<>();
         ArrayList<String> showsSeen = new ArrayList<>();
 
-        textUI.displayMessage("readuserdata ingen fejl");
+
         int entries = fileIO.userCounter();
         String[][] IDs = new String[entries][];
-        textUI.displayMessage("entries talt uden fejl");
+
 
 
 
