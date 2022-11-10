@@ -27,39 +27,19 @@ abstract public class Media implements IMedia
 
         TextUI text = new TextUI();
 
-        Scanner scan = new Scanner(System.in);
-        String input = "";
-
-
-
         text.displayMessage("You are now watching " + name +" and you are having a jolly good time!");
+        text.displayMessage("Press any key to return to menu.");
 
 
         //RickRoll happens to user
         Desktop d = Desktop.getDesktop();
-        d.browse(new URI("https://shattereddisk.github.io/rickroll/rickroll.mp4%22" ));
-
-                //User can exit to main menu.
-                text.displayMessage("Would you like to exit to the Main Menu");
-        text.displayMessage("If yes press 1, otherwise just enjoy your movie");
-
-        input = String.valueOf(scan.hasNextLine());
-        boolean playing = true;
-        while(playing)
-        {
-            if (input.equals("1"))
-            {
-                playing = false;
-            }
-        }
-        scan.close();
+        d.browse(new URI("https://shattereddisk.github.io/rickroll/rickroll.mp4"));
     }
 
     @Override
     public String toString()
     {
-        return "Media | " +
-                "Name: " + name +
+        return "Name: " + name +
                 ", Year: " + year +
                 ", Genre: " + Arrays.toString(genre) +
                 ", Rating: " + rating;

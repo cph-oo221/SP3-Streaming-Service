@@ -25,46 +25,94 @@ public class MainMenu
         {
 
             textUI.displayMessage("Press 1 to view all media\npress 2 to view all series\npress 3 to view all movies\n" +
-                    "press 4 to view your watchlist\npress 5 to view your history\npress 6 to search for media\npress 7 to logout");
+                    "press 4 to view your watchlist\npress 5 to view your history\npress 6 to search for media\npress 7 to choose Category\npress 8 to logout");
 
             String input = textUI.getUserInput();
 
+            // view all media
             if(input.equals("1"))
             {
-                searchFunction.viewAllMedia();
+                ArrayList<IMedia> options = searchFunction.viewAllMedia();
+                textUI.mediaMenu(options, currentUser);
             }
 
+            // view all series
             if (input.equals("2"))
             {
-                searchFunction.viewAllSeries();
+                ArrayList<IMedia> options = searchFunction.viewAllSeries();
+                textUI.mediaMenu(options, currentUser);
             }
 
+            // view all movies
             if (input.equals("3"))
             {
-                searchFunction.viewAllMovies();
+                ArrayList<IMedia> options = searchFunction.viewAllMovies();
+                textUI.mediaMenu(options, currentUser);
             }
 
+            // view watchlist(favorites)
             if (input.equals("4"))
             {
-                searchFunction.viewWatchlist();
+               ArrayList<IMedia> options = new ArrayList<>();
+
+               ArrayList<String> userFaves = currentUser.getFavouriteShows();
+
+                for (String s: userFaves)
+                {
+                    for (IMedia m: media)
+                    {
+                        if (s.equals(m.getName()))
+                        {
+                            options.add(m);
+                        }
+                    }
+                }
+                    textUI.displayMessage("Your list of favourites.");
+                    textUI.mediaMenu(options, currentUser);
             }
 
+            // view history(showsSeen)
             if (input.equals("5"))
             {
-                searchFunction.viewHistory();
+                ArrayList<IMedia> options = new ArrayList<>();
+
+                ArrayList<String> userWatched = currentUser.getShowsSeen();
+
+                for (String s: userWatched)
+                {
+                    for (IMedia m: media)
+                    {
+                        if (s.equals(m.getName()))
+                        {
+                            options.add(m);
+                        }
+                    }
+                }
+                textUI.displayMessage("Your recently watched movies. ");
+                textUI.mediaMenu(options, currentUser);
             }
 
+            // search for media
             if (input.equals("6"))
             {
                 input = textUI.getUserInput("Search media: ");
-                System.out.println(searchFunction.searchMedia(input));
+                ArrayList<IMedia> options = searchFunction.searchMedia(input);
+                textUI.mediaMenu(options, currentUser);
             }
 
-            if (input.equals("7"))
+            // choose Category
+            if(input.equals("7"))
+            {
+                ArrayList<IMedia> options = searchFunction.viewAllCategory();
+                textUI.mediaMenu(options, currentUser);
+            }
+
+            if (input.equals("8"))
             {
                 logOut();
             }
 
+            else { textUI.displayMessage("Invalid input. Try again"); }
         }
     }
 
@@ -103,5 +151,4 @@ public class MainMenu
         FedFlix fedFlix = new FedFlix();
         fedFlix.runFedFlix();
     }
-
 }

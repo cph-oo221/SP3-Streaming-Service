@@ -1,6 +1,4 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Setup
 {
@@ -10,7 +8,6 @@ public class Setup
     protected User runSetUp()
     {
         textUI.displayMessage("Welcome to fedFlix! Press 1 to register new user, or press 2 for login");
-        textUI.displayMessage(fileIO.readUserData().toString());
         String choice = textUI.getUserInput();
 
         if(choice.equals("1"))
@@ -34,10 +31,9 @@ public class Setup
         String pass = textUI.getUserInput("Please enter your Password");
             for (User i : users)
             {
-                textUI.displayMessage("User :"+i);
                 if (name.equalsIgnoreCase(i.getUsername()) && pass.equals(i.getPassword())) {
-                    textUI.displayMessage("****************");
                     textUI.displayMessage("Login successful");
+                    textUI.displayMessage("****************");
                     textUI.displayMessage("****************");
                     return i;
                 }
