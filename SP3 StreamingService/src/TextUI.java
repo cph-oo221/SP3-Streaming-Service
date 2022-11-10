@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -60,8 +62,10 @@ public class TextUI
                         if (playChoice.equalsIgnoreCase("Y"))
                         {
                             currentUser.addShowsSeen(show.getName());
-                            // show.play();
-                            displayMessage("Playing " + show.getName() + ". Press any key to return"); // test
+
+                                show.play();
+
+                           // displayMessage("Playing " + show.getName() + ". Press any key to return"); // test
                             getUserInput();
                             break;
                         }
@@ -80,6 +84,17 @@ public class TextUI
                 {
                     displayMessage("Enter a valid number on the list, or 'Q' to return");
                     break;
+                }
+
+                catch (URISyntaxException u)
+                {
+                    displayMessage("URI failure");
+                    break;
+                }
+
+                catch (IOException i)
+                {
+                    displayMessage("IO Failure");
                 }
             }
         }
