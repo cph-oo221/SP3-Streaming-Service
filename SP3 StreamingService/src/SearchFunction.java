@@ -51,6 +51,7 @@ public class SearchFunction
                 allMediaOutput.add(i);
             }
         }
+        
         return allMediaOutput;
     }
 
