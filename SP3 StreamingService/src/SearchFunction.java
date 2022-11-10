@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
-
 
 
 public class SearchFunction
@@ -51,7 +49,7 @@ public class SearchFunction
                 allMediaOutput.add(i);
             }
         }
-        
+
         return allMediaOutput;
     }
 

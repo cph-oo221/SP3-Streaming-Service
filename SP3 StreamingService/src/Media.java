@@ -58,8 +58,7 @@ abstract public class Media implements IMedia
     @Override
     public String toString()
     {
-        return "Media | " +
-                "Name: " + name +
+        return "Name: " + name +
                 ", Year: " + year +
                 ", Genre: " + Arrays.toString(genre) +
                 ", Rating: " + rating;

@@ -28,13 +28,13 @@ public class TextUI
         System.out.println(msg);
         for(int i = 0; i<options.size(); i++)
         {
-            System.out.println(i + ". "+options.get(i));
+            System.out.println(i + 1 + ". "+options.get(i));
         }
         return scan.nextLine();
     }
 
     // Displays a menu of Media, and returns the selected. Returns null if user inputs 'Q'
-    public IMedia mediaMenu(ArrayList<IMedia> options)
+    public void mediaMenu(ArrayList<IMedia> options, User currentUser)
     {
         boolean showingChoice = true;
         boolean optionsActive = true;
@@ -49,11 +49,24 @@ public class TextUI
                 try
                 {
                     int choiceInt = Integer.parseInt(choice);
+                    choiceInt--;
 
                     if (choiceInt >= 0 && choiceInt < options.size())
                     {
                         IMedia show = options.get(choiceInt);
-                        return show;
+
+                        String playChoice = getUserInput("Do you want to play " + show.getName() + "? (Y/N)");
+
+                        if (playChoice.equalsIgnoreCase("Y"))
+                        {
+                            currentUser.addShowsSeen(show.getName());
+                            // show.play();
+                            displayMessage("Playing " + show.getName() + ". Press any key to return"); // test
+                            getUserInput();
+                            break;
+                        }
+
+                        else break;
                     }
 
                     else
@@ -70,6 +83,5 @@ public class TextUI
                 }
             }
         }
-        return null;
     }
 }

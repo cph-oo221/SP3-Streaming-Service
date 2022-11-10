@@ -32,88 +32,40 @@ public class MainMenu
             // view all media
             if(input.equals("1"))
             {
-                ArrayList<IMedia> options = searchFunction.viewAllMedia();
-                while (true)
-                {
-                    IMedia show = textUI.mediaMenu(options);
-
-                    if (show == null) { break; }
-
-                    while (true)
-                    {
-                        String playChoice = textUI.getUserInput("Do you want to play " + show.getName() + "? (Y/N)");
-
-                        if (playChoice.equalsIgnoreCase("Y"))
-                        {
-                            // currentUser.addShowsSeen(show);
-                            // show.play();
-                            textUI.displayMessage("Playing " + show.getName() + ". Press any key to return"); // test
-                            textUI.getUserInput();
-                            break;
-                        }
-                        else break;
-                    }
-                }
+                searchFunction.viewAllMedia();
             }
 
             // view all series
             if (input.equals("2"))
             {
-                ArrayList<IMedia> options = searchFunction.viewAllSeries();
-                while (true)
-                {
-                    IMedia show = textUI.mediaMenu(options);
-
-                    if (show == null) { break; }
-
-                    while (true)
-                    {
-                        String playChoice = textUI.getUserInput("Do you want to play " + show.getName() + "? (Y/N)");
-
-                        if (playChoice.equalsIgnoreCase("Y"))
-                        {
-                            // currentUser.addShowsSeen(show);
-                            // show.play();
-                            textUI.displayMessage("Playing " + show.getName() + ". Press any key to return"); // test
-                            textUI.getUserInput();
-                            break;
-                        }
-                        else break;
-                    }
-                }
+                searchFunction.viewAllSeries();
             }
 
             // view all movies
             if (input.equals("3"))
             {
-                ArrayList<IMedia> options = searchFunction.viewAllMovies();
-                while (true)
-                {
-                    IMedia show = textUI.mediaMenu(options);
-
-                    if (show == null) { break; }
-
-                    while (true)
-                    {
-                        String playChoice = textUI.getUserInput("Do you want to play " + show.getName() + "? (Y/N)");
-
-                        if (playChoice.equalsIgnoreCase("Y"))
-                        {
-                            // currentUser.addShowsSeen(show);
-                            // show.play();
-                            textUI.displayMessage("Playing " + show.getName() + ". Press any key to return"); // test
-                            textUI.getUserInput();
-                            break;
-                        }
-                        else break;
-                    }
-                }
+                searchFunction.viewAllMovies();
             }
 
             // view watchlist(favorites)
             if (input.equals("4"))
             {
-                //searchFunction.viewWatchlist();
+               ArrayList<IMedia> options = new ArrayList<>();
+
+               ArrayList<String> userFaves = currentUser.getFavouriteShows();
+
+                for (String s: userFaves)
+                {
+                    for (IMedia m: media)
+                    {
+                        if (s.equals(m.getName()))
+                        {
+                            options.add(m);
+                        }
+                    }
+                }
+
+                    textUI.mediaMenu(options, currentUser);
             }
 
             // view history(showsSeen)
@@ -125,57 +77,15 @@ public class MainMenu
             // search for media
             if (input.equals("6"))
             {
-
-                    input = textUI.getUserInput("Search media: ");
-                    ArrayList<IMedia> options = searchFunction.searchMedia(input);
-                while (true)
-                {
-                    IMedia show = textUI.mediaMenu(options);
-
-                    if (show == null) { break; }
-
-                    while (true)
-                    {
-                        String playChoice = textUI.getUserInput("Do you want to play " + show.getName() + "? (Y/N)");
-
-                        if (playChoice.equalsIgnoreCase("Y"))
-                        {
-                            // currentUser.addShowsSeen(show);
-                            // show.play();
-                            textUI.displayMessage("Playing " + show.getName() + ". Press any key to return"); // test
-                            textUI.getUserInput();
-                            break;
-                        }
-                        else break;
-                    }
-                }
+                input = textUI.getUserInput("Search media: ");
+                ArrayList<IMedia> options = searchFunction.searchMedia(input);
+                textUI.mediaMenu(options, currentUser);
             }
 
             // choose Category
             if(input.equals("7"))
             {
-                ArrayList<IMedia> options = searchFunction.viewAllCategory();
-                while (true)
-                {
-                    IMedia show = textUI.mediaMenu(options);
-
-                    if (show == null) { break; }
-
-                    while (true)
-                    {
-                        String playChoice = textUI.getUserInput("Do you want to play " + show.getName() + "? (Y/N)");
-
-                        if (playChoice.equalsIgnoreCase("Y"))
-                        {
-                            // currentUser.addShowsSeen(show);
-                            // show.play();
-                            textUI.displayMessage("Playing " + show.getName() + ". Press any key to return"); // test
-                            textUI.getUserInput();
-                            break;
-                        }
-                        else break;
-                    }
-                }
+                 searchFunction.viewAllCategory();
             }
 
             if (input.equals("8"))

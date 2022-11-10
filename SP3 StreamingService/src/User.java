@@ -89,11 +89,11 @@ public class User
     }
 
     // Make a function that saves showsSeen and favouriteShows to a file
-    public void saveUserData(User user)
+    /* public void saveUserData(User user)
     {
         fileIO.writeUserData(user, showsSeen, favouriteShows);
     }
-
+*/
 
     @Override
     public String toString()
