@@ -80,8 +80,10 @@ public class SearchFunction
     }
 
     // option viewAllCategory
-    public void viewAllCategory()
+    public ArrayList<IMedia> viewAllCategory()
     {
+        ArrayList<IMedia> categoryOutput = new ArrayList<>();
+
         textUI.displayMessage("What category would you like to watch?");
         textUI.displayMessage("****************************************");
         textUI.displayMessage("1. Action\n2. Adventure\n3. Animation\n4. Biography\n5. Comedy\n6. Crime\n7. Documentary\n" +
@@ -97,7 +99,7 @@ public class SearchFunction
             {
                 if (i.toString().contains("Action"))
                 {
-                    textUI.displayMessage(i.toString());
+                    categoryOutput.add(i);
                 }
             }
         }
@@ -109,7 +111,7 @@ public class SearchFunction
             {
                 if (i.toString().contains("Adventure"))
                 {
-                    textUI.displayMessage(i.toString());
+                    categoryOutput.add(i);
                 }
             }
         }
@@ -121,7 +123,7 @@ public class SearchFunction
             {
                 if (i.toString().contains("Animation"))
                 {
-                    textUI.displayMessage(i.toString());
+                    categoryOutput.add(i);
                 }
             }
         }
@@ -133,7 +135,7 @@ public class SearchFunction
             {
                 if (i.toString().contains("Biography"))
                 {
-                    textUI.displayMessage(i.toString());
+                    categoryOutput.add(i);
                 }
             }
         }
@@ -145,7 +147,7 @@ public class SearchFunction
             {
                 if (i.toString().contains("Comedy"))
                 {
-                    textUI.displayMessage(i.toString());
+                    categoryOutput.add(i);
                 }
             }
         }
@@ -157,7 +159,7 @@ public class SearchFunction
             {
                 if (i.toString().contains("Crime"))
                 {
-                    textUI.displayMessage(i.toString());
+                    categoryOutput.add(i);
                 }
             }
         }
@@ -169,7 +171,7 @@ public class SearchFunction
             {
                 if (i.toString().contains("Documentary"))
                 {
-                    textUI.displayMessage(i.toString());
+                    categoryOutput.add(i);
                 }
             }
         }
@@ -181,7 +183,7 @@ public class SearchFunction
             {
                 if (i.toString().contains("Drama"))
                 {
-                    textUI.displayMessage(i.toString());
+                    categoryOutput.add(i);
                 }
             }
         }
@@ -193,7 +195,7 @@ public class SearchFunction
             {
                 if (i.toString().contains("Family"))
                 {
-                    textUI.displayMessage(i.toString());
+                    categoryOutput.add(i);
                 }
             }
         }
@@ -205,7 +207,7 @@ public class SearchFunction
             {
                 if (i.toString().contains("Fantasy"))
                 {
-                    textUI.displayMessage(i.toString());
+                    categoryOutput.add(i);
                 }
             }
         }
@@ -217,7 +219,7 @@ public class SearchFunction
             {
                 if (i.toString().contains("Film-Noir"))
                 {
-                    textUI.displayMessage(i.toString());
+                    categoryOutput.add(i);
                 }
             }
         }
@@ -229,7 +231,7 @@ public class SearchFunction
             {
                 if (i.toString().contains("History"))
                 {
-                    textUI.displayMessage(i.toString());
+                    categoryOutput.add(i);
                 }
             }
         }
@@ -241,7 +243,7 @@ public class SearchFunction
             {
                 if (i.toString().contains("Horror"))
                 {
-                    textUI.displayMessage(i.toString());
+                    categoryOutput.add(i);
                 }
             }
         }
@@ -254,7 +256,7 @@ public class SearchFunction
             {
                 if (i.toString().contains("Music") && !i.toString().contains("Musical"))
                 {
-                    textUI.displayMessage(i.toString());
+                    categoryOutput.add(i);
                 }
             }
         }
@@ -266,7 +268,7 @@ public class SearchFunction
             {
                 if (i.toString().contains("Musical"))
                 {
-                    textUI.displayMessage(i.toString());
+                    categoryOutput.add(i);
                 }
             }
         }
@@ -278,7 +280,7 @@ public class SearchFunction
             {
                 if (i.toString().contains("Mystery"))
                 {
-                    textUI.displayMessage(i.toString());
+                    categoryOutput.add(i);
                 }
             }
         }
@@ -290,7 +292,7 @@ public class SearchFunction
             {
                 if (i.toString().contains("Romance"))
                 {
-                    textUI.displayMessage(i.toString());
+                    categoryOutput.add(i);
                 }
             }
         }
@@ -302,7 +304,7 @@ public class SearchFunction
             {
                 if (i.toString().contains("Sci-fi"))
                 {
-                    textUI.displayMessage(i.toString());
+                    categoryOutput.add(i);
                 }
             }
         }
@@ -314,7 +316,7 @@ public class SearchFunction
             {
                 if (i.toString().contains("Sport"))
                 {
-                    textUI.displayMessage(i.toString());
+                    categoryOutput.add(i);
                 }
             }
         }
@@ -326,7 +328,7 @@ public class SearchFunction
             {
                 if (i.toString().contains("Talk-show"))
                 {
-                    textUI.displayMessage(i.toString());
+                    categoryOutput.add(i);
                 }
             }
         }
@@ -338,7 +340,7 @@ public class SearchFunction
             {
                 if (i.toString().contains("Thriller"))
                 {
-                    textUI.displayMessage(i.toString());
+                    categoryOutput.add(i);
                 }
             }
         }
@@ -350,7 +352,7 @@ public class SearchFunction
             {
                 if (i.toString().contains("War"))
                 {
-                    textUI.displayMessage(i.toString());
+                    categoryOutput.add(i);
                 }
             }
         }
@@ -362,9 +364,12 @@ public class SearchFunction
             {
                 if (i.toString().contains("Western"))
                 {
-                    textUI.displayMessage(i.toString());
+                    categoryOutput.add(i);
                 }
             }
         }
+
+
+        return categoryOutput;
     }
 }
