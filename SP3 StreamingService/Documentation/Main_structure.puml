@@ -1,0 +1,288 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "Main",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_1793153887 { 
+   	label=TextUI
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   TextUI1793153887[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)TextUI</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   scan: Scanner [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ displayMessage(msg: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getUserInput(msg: String): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getUserInput(msg: String, options: ArrayList&lt;String&gt;): int</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_2104327106 { 
+   	label=FileIO
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   FileIO2104327106[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)FileIO</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ readMovieData(): ArrayList&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ readSeriesData(): ArrayList&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ readUserData(): ArrayList&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ writeUserData(user: User)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ writeUserData(user: User, showsSeen: ArrayList&lt;String&gt;, favouriteShows: ArrayList&lt;String&gt;)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_2390489 { 
+   	label=Main
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Main2390489[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Main</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ main(args: String[])</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_2645995 { 
+   	label=User
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   User2645995[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)User</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   favouriteShows: ArrayList&lt;String&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   fileIO: FileIO [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   password: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   showsSeen: ArrayList&lt;String&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   username: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addShowsSeen(show: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveUserData(user: User)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_55996120 { 
+   	label=MainMenu
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   MainMenu55996120[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)MainMenu</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   currentUser: User [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   media: ArrayList&lt;IMedia&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   textUI: TextUI [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- createMedia()</TD></TR>
+<TR><TD ALIGN="LEFT" ># logOut()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ runMainMenu()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_686837114 { 
+   	label=FedFlix
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   FedFlix686837114[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)FedFlix</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- mainMenu(currentUser: User)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ runFedFlix()</TD></TR>
+<TR><TD ALIGN="LEFT" >- setUp(): User</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_74219460 { 
+   	label=Media
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Media74219460[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Media</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   genre: String[] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   rating: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   year: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ play()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_79776349 { 
+   	label=Setup
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Setup79776349[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Setup</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   fileIO: FileIO [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   textUI: TextUI [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- createUsers(): ArrayList&lt;User&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" ># login(): User</TD></TR>
+<TR><TD ALIGN="LEFT" >- register(): User</TD></TR>
+<TR><TD ALIGN="LEFT" ># runSetUp(): User</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+'edges    
+FedFlix686837114 -> MainMenu55996120[label="mainMenu() -> runMainMenu()"];
+FedFlix686837114 -> Setup79776349[label="setUp() -> runSetUp()"];
+Main2390489 -> FedFlix686837114[label="main() -> runFedFlix()"];
+MainMenu55996120 -> FedFlix686837114[label="logOut() -> runFedFlix()"];
+MainMenu55996120 -> Media74219460[arrowhead=none];
+MainMenu55996120 -> TextUI1793153887[label="textUI
+[0..1]"];
+MainMenu55996120 -> User2645995[label="currentUser
+[0..1]"];
+Setup79776349 -> FileIO2104327106[label="fileIO
+[0..1]"];
+Setup79776349 -> TextUI1793153887[label="textUI
+[0..1]"];
+    
+}
+@enduml

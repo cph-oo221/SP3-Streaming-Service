@@ -10,7 +10,7 @@ public class FileIO
 
     public ArrayList<String> readMovieData()
     {
-        File file = new File("Data/movieList.txt");
+        File file = new File("Data/movieList.csv");
         ArrayList<String> data = new ArrayList<>();
         try {
             Scanner input = new Scanner(file);
@@ -29,7 +29,7 @@ public class FileIO
 
     public ArrayList<String> readSeriesData()
     {
-        File file = new File("Data/seriesList.txt");
+        File file = new File("Data/seriesList.csv");
         ArrayList<String> data = new ArrayList<>();
         try {
             Scanner input = new Scanner(file);
@@ -57,7 +57,7 @@ public class FileIO
 
             while (input.hasNextLine())
             {
-                data.add(input.nextLine() + "\n");
+                data.add(input.nextLine());
             }
         }
         catch (FileNotFoundException e)
@@ -75,7 +75,7 @@ public class FileIO
             FileWriter writer = new FileWriter("Data/userData.csv", true);
 
             writer.write(user.getUsername() + ", ");
-            writer.write(user.getPassword() + ", \n");
+            writer.write(user.getPassword() + "; \n");
 
             writer.close();
 
@@ -85,4 +85,42 @@ public class FileIO
             System.out.println(e + "You fucked up mate");
         }
     }
+
+    // Overlaid function that take user, showsSeen and favouriteShows as parameters
+    // and writes them to the file userData.csv
+    public void writeUserData(User user, ArrayList<String> showsSeen, ArrayList<String> favouriteShows)
+    {
+        try
+        {
+            FileWriter writer = new FileWriter("Data/userData.csv");
+
+            // Write username and password
+            writer.write(user.getUsername() + ", ");
+            writer.write(user.getPassword() + ", \n");
+
+            // Write showsSeen to file
+            for (String show : showsSeen)
+            {
+                writer.write(show + ", ");
+            }
+
+           // writer.write("; ");
+
+            // Write favouriteShows to file
+            for (String show : favouriteShows)
+            {
+                writer.write(show + ", ");
+            }
+
+            writer.write("; " + '\n');
+
+            writer.close();
+
+        }
+        catch (IOException e)
+        {
+            System.out.println(e + "An error has occurred");
+        }
+    }
+
 }

@@ -4,7 +4,9 @@ public class MainMenu
 {
     User currentUser;
     ArrayList<IMedia> media = new ArrayList<>();
+    public TextUI textUI = new TextUI();
 
+    public SearchFunction searchFunction =new SearchFunction(currentUser, media);
 
     public MainMenu(User currentUser)
     {
@@ -13,7 +15,57 @@ public class MainMenu
 
     public void runMainMenu()
     {
+
         createMedia();
+
+        textUI.displayMessage("Welcome to fedFlix, " + currentUser.getUsername() + "!");
+
+        boolean running = true;
+        while (running)
+        {
+
+            textUI.displayMessage("Press 1 to view all media\npress 2 to view all series\npress 3 to view all movies\n" +
+                    "press 4 to view your watchlist\npress 5 to view your history\npress 6 to search for media\npress 7 to logout");
+
+            String input = textUI.getUserInput();
+
+            if(input.equals("1"))
+            {
+                searchFunction.viewAllMedia();
+            }
+
+            if (input.equals("2"))
+            {
+                searchFunction.viewAllSeries();
+            }
+
+            if (input.equals("3"))
+            {
+                searchFunction.viewAllMovies();
+            }
+
+            if (input.equals("4"))
+            {
+                searchFunction.viewWatchlist();
+            }
+
+            if (input.equals("5"))
+            {
+                searchFunction.viewHistory();
+            }
+
+            if (input.equals("6"))
+            {
+                input = textUI.getUserInput("Search media: ");
+                System.out.println(searchFunction.searchMedia(input));
+            }
+
+            if (input.equals("7"))
+            {
+                logOut();
+            }
+
+        }
     }
 
     private void createMedia()
@@ -43,6 +95,13 @@ public class MainMenu
         }
 
 
+    }
+
+    // logout method to return to login screen
+    protected void logOut()
+    {
+        FedFlix fedFlix = new FedFlix();
+        fedFlix.runFedFlix();
     }
 
 }
