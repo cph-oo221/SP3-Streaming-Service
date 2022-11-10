@@ -64,14 +64,29 @@ public class MainMenu
                         }
                     }
                 }
-
+                    textUI.displayMessage("Your list of favourites.");
                     textUI.mediaMenu(options, currentUser);
             }
 
             // view history(showsSeen)
             if (input.equals("5"))
             {
-                //searchFunction.viewHistory();
+                ArrayList<IMedia> options = new ArrayList<>();
+
+                ArrayList<String> userWatched = currentUser.getShowsSeen();
+
+                for (String s: userWatched)
+                {
+                    for (IMedia m: media)
+                    {
+                        if (s.equals(m.getName()))
+                        {
+                            options.add(m);
+                        }
+                    }
+                }
+                textUI.displayMessage("Your recently watched movies. ");
+                textUI.mediaMenu(options, currentUser);
             }
 
             // search for media
