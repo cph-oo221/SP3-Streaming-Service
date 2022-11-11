@@ -3,10 +3,10 @@ import java.util.ArrayList;
 
 public class SearchFunction
 {
-   User currentUser;
-   ArrayList<IMedia> media;
+    private User currentUser;
+    private ArrayList<IMedia> media;
 
-   TextUI textUI = new TextUI();
+    private TextUI textUI = new TextUI();
     public SearchFunction(User currentUser, ArrayList<IMedia> media)
     {
         this.currentUser = currentUser;

@@ -2,12 +2,12 @@ import java.util.ArrayList;
 
 public class MainMenu
 {
-    User currentUser;
-    ArrayList<IMedia> media = new ArrayList<>();
-    public TextUI textUI = new TextUI();
+    private User currentUser;
+    private ArrayList<IMedia> media = new ArrayList<>();
+    private TextUI textUI = new TextUI();
 
     FileIO fileIO = new FileIO();
-    public SearchFunction searchFunction =new SearchFunction(currentUser, media);
+    public SearchFunction searchFunction = new SearchFunction(currentUser, media);
 
     public MainMenu(User currentUser)
     {

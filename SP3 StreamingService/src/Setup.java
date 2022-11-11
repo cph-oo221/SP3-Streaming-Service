@@ -3,8 +3,8 @@ import java.util.Arrays;
 
 public class Setup
 {
-    TextUI textUI = new TextUI();
-    FileIO fileIO = new FileIO();
+    private TextUI textUI = new TextUI();
+    private FileIO fileIO = new FileIO();
 
     protected User runSetUp()
     {
