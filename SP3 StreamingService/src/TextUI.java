@@ -26,11 +26,12 @@ public class TextUI
     // Displays a message, and a list of options. Take an input from the user afterwards
     public String getUserInput(String msg, ArrayList<IMedia> options)
     {
-
+        displayMessage("*************************************************************");
         for(int i = 0; i<options.size(); i++)
         {
             System.out.println(i + 1 + ". "+options.get(i));
         }
+        displayMessage("*************************************************************");
         System.out.println(msg);
 
         return scan.nextLine();

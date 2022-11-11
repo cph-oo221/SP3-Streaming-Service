@@ -112,23 +112,42 @@ public class Setup
     private User register()
     {
         users = createUsers();
-        textUI.displayMessage("Register new user:");
-        String name = textUI.getUserInput("Username: ");
-        // userNames.add(name);
-        String pass = textUI.getUserInput("Password: ");
-        if(!name.contains(",") && !pass.contains(","))
-        {
-            User user = new User(name, pass);
-            users.add(user);
-            return user;
 
-        }
-        else
+        while (true)
         {
-            textUI.displayMessage("Please only use letters and numbers");
-            register();
+            boolean exists = false;
+            textUI.displayMessage("Register new user:");
+            String name = textUI.getUserInput("Username: ");
+            // userNames.add(name);
+            String pass = textUI.getUserInput("Password: ");
+
+            for (User u : users)
+            {
+                if (u.getUsername().equalsIgnoreCase(name))
+                {
+                    exists = true;
+
+                }
+
+            }
+
+
+
+            if (!name.contains(",") && !pass.contains(","))
+            {
+                if (!exists)
+                {
+                    User user = new User(name, pass);
+                    users.add(user);
+                    return user;
+                }
+                else textUI.displayMessage("User already exists");
+            }
+            else
+            {
+                textUI.displayMessage("Please only use letters and numbers");
+            }
         }
-        return null;
     }
 
     private User exit()

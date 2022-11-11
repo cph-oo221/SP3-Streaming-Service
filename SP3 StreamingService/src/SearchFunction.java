@@ -115,7 +115,7 @@ public class SearchFunction
                 22. War
                 23. Western""");
         textUI.displayMessage("****************************************");
-        String input = textUI.getUserInput("Enter a number for your choose: ");
+        String input = textUI.getUserInput("Enter a number for your choice: ");
 
         // View media for Action
         if (input.equals("1"))
