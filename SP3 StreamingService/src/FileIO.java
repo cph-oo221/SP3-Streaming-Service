@@ -8,6 +8,8 @@ import java.util.Scanner;
 public class FileIO
 {
 
+    File file = new File("Data/userData.csv");
+
     protected ArrayList<String> readMovieData()
     {
         File file = new File("Data/movieList.csv");
@@ -50,7 +52,7 @@ public class FileIO
 
     protected ArrayList<String> readUserData()
     {
-        File file = new File("Data/userData.csv");
+
         ArrayList<String> data = new ArrayList<>();
         try {
             Scanner input = new Scanner(file);
@@ -69,23 +71,40 @@ public class FileIO
 
 
 
-    protected void writeUserData(User user)
+    protected void writeUserData(ArrayList<User> users)
     {
         try
         {
-            FileWriter writer = new FileWriter("Data/userData.csv", true);
+            FileWriter writer = new FileWriter("Data/userData.csv");
 
-            if (user.getShowsSeen().size() < 1 && user.getFavouriteShows().size() < 1)
+            for (User user: users)
             {
                 writer.write(user.getUsername() + ", ");
-                writer.write(user.getPassword() + "; \n");
+                writer.write(user.getPassword() + ";");
+
+                if (user.getShowsSeen().size() > 0)
+                {
+                    for (String s : user.getShowsSeen())
+                    {
+                        writer.write(s + ",");
+                    }
+                    writer.write(";");
+                } else writer.write("null;");
+
+                if (user.getFavouriteShows().size() > 0)
+                {
+
+                    for (String s : user.getFavouriteShows())
+                    {
+                        writer.write(s + ",");
+                    }
+                    writer.write(";");
+                } else writer.write("null;");
+
+                writer.write('\n');
             }
+                writer.close();
 
-           // else if ()
-
-
-
-            writer.close();
 
         }
         catch (IOException e)
@@ -111,5 +130,10 @@ public class FileIO
         {
             return -1;
         }
+    }
+
+    protected boolean deleteFile() throws FileNotFoundException
+    {
+        return file.delete();
     }
 }

@@ -1,7 +1,9 @@
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class MainMenu
 {
+    ArrayList<User> users;
     User currentUser;
     ArrayList<IMedia> media = new ArrayList<>();
     public TextUI textUI = new TextUI();
@@ -9,9 +11,10 @@ public class MainMenu
     FileIO fileIO = new FileIO();
     public SearchFunction searchFunction =new SearchFunction(currentUser, media);
 
-    public MainMenu(User currentUser)
+    public MainMenu(User currentUser, ArrayList<User> users)
     {
         this.currentUser = currentUser;
+        this.users = users;
     }
 
     public void runMainMenu()
@@ -155,7 +158,17 @@ public class MainMenu
     // logout method to return to login screen
     protected void logOut()
     {
-        fileIO.writeUserData(currentUser);
+        try
+        {
+            fileIO.deleteFile();
+        }
+
+        catch (FileNotFoundException f)
+        {
+            textUI.displayMessage(f.getMessage());
+        }
+
+        fileIO.writeUserData(users);
 
         FedFlix fedFlix = new FedFlix();
         fedFlix.runFedFlix();

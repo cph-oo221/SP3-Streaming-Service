@@ -6,6 +6,8 @@ public class Setup
     TextUI textUI = new TextUI();
     FileIO fileIO = new FileIO();
 
+    ArrayList<User> users = new ArrayList<>();
+
     protected User runSetUp()
     {
         textUI.displayMessage("""
@@ -64,7 +66,6 @@ public class Setup
     }
 
     private ArrayList<User> createUsers() {
-        ArrayList<User> users = new ArrayList<>();
         ArrayList<String> userData = fileIO.readUserData();
 
 
@@ -86,7 +87,7 @@ public class Setup
 
             User user = new User(ID[0], ID[1]);
 
-            if (allTheData.length >= 2 && !allTheData[1].equals("null"))
+            if (!allTheData[1].equals("null"))
             {
                 String[] showsSeenArr = allTheData[1].split(",");
                 showsSeen.addAll(Arrays.asList(showsSeenArr));
@@ -94,7 +95,7 @@ public class Setup
             }
 
 
-            if (allTheData.length >= 3 && !allTheData[2].equals("null"))
+            if (!allTheData[2].equals("null"))
             {
                 String[] watchListArr = allTheData[2].split(",");
                 watchList.addAll(Arrays.asList(watchListArr));
@@ -104,9 +105,9 @@ public class Setup
             users.add(user);
 
 
-            if(allTheData.length >= 4 || allTheData.length <= 0)
+            if(allTheData.length != 3)
             {
-                textUI.displayMessage("Noget gik galt, upsi");
+                textUI.displayMessage("User data error!");
             }
 
         }
@@ -121,7 +122,6 @@ public class Setup
         if(!name.contains(",") && !pass.contains(","))
         {
             User user = new User(name, pass);
-            fileIO.writeUserData(user);
             return user;
 
         }
@@ -141,5 +141,10 @@ public class Setup
         System.exit(0);
         // Return null because the method is supposed to return a User object
         return null;
+    }
+
+    public ArrayList<User> getUsers()
+    {
+        return users;
     }
 }
