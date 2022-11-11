@@ -44,21 +44,21 @@ public class MainMenu
             if(input.equals("1"))
             {
                 ArrayList<IMedia> options = searchFunction.viewAllMedia();
-                textUI.mediaMenu(options, currentUser);
+                textUI.mediaMenu(options, currentUser, false);
             }
 
             // view all series
             if (input.equals("2"))
             {
                 ArrayList<IMedia> options = searchFunction.viewAllSeries();
-                textUI.mediaMenu(options, currentUser);
+                textUI.mediaMenu(options, currentUser, false);
             }
 
             // view all movies
             if (input.equals("3"))
             {
                 ArrayList<IMedia> options = searchFunction.viewAllMovies();
-                textUI.mediaMenu(options, currentUser);
+                textUI.mediaMenu(options, currentUser, false);
             }
 
             // view watchlist(favorites)
@@ -79,7 +79,7 @@ public class MainMenu
                     }
                 }
                     textUI.displayMessage("Your list of favourites.");
-                    textUI.mediaMenu(options, currentUser);
+                    textUI.mediaMenu(options, currentUser, true);
             }
 
             // view history(showsSeen)
@@ -100,7 +100,7 @@ public class MainMenu
                     }
                 }
                 textUI.displayMessage("Your recently watched movies. ");
-                textUI.mediaMenu(options, currentUser);
+                textUI.mediaMenu(options, currentUser, true);
             }
 
             // search for media
@@ -108,14 +108,14 @@ public class MainMenu
             {
                 input = textUI.getUserInput("Search media: ");
                 ArrayList<IMedia> options = searchFunction.searchMedia(input);
-                textUI.mediaMenu(options, currentUser);
+                textUI.mediaMenu(options, currentUser, false);
             }
 
             // choose Category
             if(input.equals("7"))
             {
                 ArrayList<IMedia> options = searchFunction.viewAllCategory();
-                textUI.mediaMenu(options, currentUser);
+                textUI.mediaMenu(options, currentUser, false);
             }
 
             if (input.equals("8"))
