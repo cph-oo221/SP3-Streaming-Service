@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class FileIO
 {
-    File file = new File("Data/userData.csv");
+    private File file = new File("Data/userData.csv");
 
     protected ArrayList<String> readMovieData()
     {

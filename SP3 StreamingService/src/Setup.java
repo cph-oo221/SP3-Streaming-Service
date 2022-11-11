@@ -6,7 +6,7 @@ public class Setup
     private TextUI textUI = new TextUI();
     private FileIO fileIO = new FileIO();
 
-    ArrayList<User> users = new ArrayList<>();
+    private ArrayList<User> users = new ArrayList<>();
 
     protected User runSetUp()
     {
