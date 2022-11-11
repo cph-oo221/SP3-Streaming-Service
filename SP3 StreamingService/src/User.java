@@ -15,35 +15,14 @@ public class User
     private String password;
 
 
-    // constructor for a new user where there is no showsSeen and favouriteShows.
+    // constructor for a new user.
     public User(String username, String password)
     {
         this.username = username;
         this.password = password;
     }
 
-    // constructor for register user with showsSeen and favouriteShows
-//    public User(String username, String password, ArrayList<String> showsSeen, ArrayList<String> favouriteShows)
-//    {
-//        this.username = username;
-//        this.password = password;
-//        this.showsSeen = showsSeen;
-//        this.favouriteShows = favouriteShows;
-//    }
-//
-//    public User(String username, String password, ArrayList<String> showsSeen)
-//    {
-//        this.username = username;
-//        this.password = password;
-//        this.showsSeen = showsSeen;
-//    }
-//
-//    public User(String username, String password, ArrayList<String> favouriteShows)
-//    {
-//        this.username = username;
-//        this.password = password;
-//        this.favouriteShows = favouriteShows;
-//    }
+
 
     // getters
     public String getUsername()
@@ -100,12 +79,10 @@ public class User
         this.showsSeen.add(show);
     }
 
-    // Make a function that saves showsSeen and favouriteShows to a file
-    /* public void saveUserData(User user)
+    public void removeFavouriteShow(String showName)
     {
-        fileIO.writeUserData(user, showsSeen, favouriteShows);
+        favouriteShows.remove(showName);
     }
-*/
 
     @Override
     public String toString()
