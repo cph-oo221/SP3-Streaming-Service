@@ -79,7 +79,7 @@ public class FileIO
 
             for (User user: users)
             {
-                writer.write(user.getUsername() + ", ");
+                writer.write(user.getUsername() + ",");
                 writer.write(user.getPassword() + ";");
 
                 if (user.getShowsSeen().size() > 0)
