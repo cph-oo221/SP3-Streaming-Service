@@ -26,6 +26,7 @@ public class Setup
         boolean running;
         running = true;
         ArrayList<User> users = createUsers();
+        System.out.println(users);
         while(running)
         {
         String name = textUI.getUserInput("Please enter your Username");
@@ -51,7 +52,6 @@ public class Setup
         ArrayList<String> userData = fileIO.readUserData();
 
         int entries = fileIO.userCounter();
-        textUI.displayMessage("entries talt uden fejl :" +entries);
 
         for (int i = 0; i < entries; i++) {
 
@@ -65,15 +65,12 @@ public class Setup
             if (allTheData.length >= 2)
             {
                 String[] showsSeenArr = allTheData[1].split(",");
-
                 showsSeen.addAll(Arrays.asList(showsSeenArr));
-
             }
 
 
             if (allTheData.length >= 3)
             {
-                textUI.displayMessage(allTheData[2]);
                 String[] watchListArr = allTheData[2].split(",");
                 watchList.addAll(Arrays.asList(watchListArr));
             }
@@ -81,19 +78,24 @@ public class Setup
 
             if(allTheData.length == 1)
             {
+                User user = new User(ID[0], ID[1]);
+                users.add(user);
+            }
+            if(allTheData.length == 2)
+            {
                 User user = new User(ID[0],ID[1],showsSeen);
                 users.add(user);
             }
-            if(allTheData.length == 2 )
+            if(allTheData.length == 3)
             {
                 User user = new User(ID[0], ID[1], showsSeen, watchList);
                 users.add(user);
             }
-            else
+            if(allTheData.length >= 4 || allTheData.length <= 0)
             {
-                User user = new User(ID[0], ID[1]);
-                users.add(user);
+                textUI.displayMessage("Noget gik galt, upsi");
             }
+
         }
         return users;
     }
