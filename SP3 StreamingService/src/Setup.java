@@ -42,7 +42,6 @@ public class Setup
         boolean running;
         running = true;
         ArrayList<User> users = createUsers();
-        System.out.println(users);
         while(running)
         {
         String name = textUI.getUserInput("Please enter your Username");
@@ -74,12 +73,8 @@ public class Setup
 
             String[] allTheData = userData.get(i).split(";");
 
-
-            System.out.println("høp");
             ArrayList<String> showsSeen = new ArrayList<>();
             ArrayList<String> watchList = new ArrayList<>();
-
-
 
 
             String[] ID = allTheData[0].replaceAll(" ","").split(",");
