@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class FedFlix
 {
-    Setup setUp = new Setup();
+    private Setup setUp = new Setup();
     public void runFedFlix()
     {
         User currentUser = setUp();
