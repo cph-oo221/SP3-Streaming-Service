@@ -78,7 +78,7 @@ public class Setup
             ArrayList<String> watchList = new ArrayList<>();
 
 
-            String[] ID = allTheData[0].replaceAll(" ","").split(",");
+            String[] ID = allTheData[0].split(",");
 
             User user = new User(ID[0], ID[1]);
 
