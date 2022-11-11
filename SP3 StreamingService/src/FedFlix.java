@@ -1,18 +1,23 @@
+import java.util.ArrayList;
+
 public class FedFlix
 {
-    Setup setUp = new Setup();
+    private Setup setUp = new Setup();
     public void runFedFlix()
     {
-        setUp();
-        //mainMenu(setUp.login());
-
+        User currentUser = setUp();
+        mainMenu(currentUser);
     }
 
     private User setUp()
     {
-        Setup setUp = new Setup();
-        setUp.runSetUp();
-        User user = new User("temp", "temp");
-        return user;
+        return setUp.runSetUp();
+    }
+
+    private void mainMenu(User currentUser)
+    {
+        ArrayList<User> users = setUp.getUsers();
+        MainMenu mainMenu = new MainMenu(currentUser, users);
+        mainMenu.runMainMenu();
     }
 }

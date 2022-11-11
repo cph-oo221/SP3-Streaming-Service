@@ -1,83 +1,167 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Setup
 {
-    static ArrayList<String> userNames;
-    static ArrayList<String> passWords;
+    private TextUI textUI = new TextUI();
+    private FileIO fileIO = new FileIO();
 
-    TextUI textUI = new TextUI();
-    FileIO fileIO = new FileIO();
+    private ArrayList<User> users = new ArrayList<>();
 
     protected User runSetUp()
     {
-        textUI.displayMessage("Welcome to fedFlix! Press 1 to register new user, or press 2 for login");
-        String choice = textUI.getUserInput();
+        textUI.displayMessage("""
+                    Welcome to fedFlix!
+                    
+                    ********************
+                    Press 1 to register
+                    Press 2 to login
+                    Press 3 to exit
+                    ********************""");
 
-        if(choice.equals("1"))
+        String choice = textUI.getUserInput();
+        if (choice.equals("1"))
         {
-            register();
+            return register();
+        }
+        else if (choice.equals("2"))
+        {
+            return login();
+        }
+        else if (choice.equals("3"))
+        {
+            return exit();
         }
         else
         {
-            login();
+            textUI.displayMessage("Invalid input, please try again");
+            return runSetUp();
         }
-
-        User user = new User("temp","temp");
-        return user;
     }
 
-    protected User login() {
-        String name;
-        String pass;
-        name = textUI.getUserInput("Please enter your Username");
-        pass = textUI.getUserInput("Please enter your Password");
+    protected User login()
+    {
+        boolean running;
+        running = true;
         ArrayList<User> users = createUsers();
-        for (User i : users)
+        while(running)
         {
-            if(name == i.getUsername() && pass == i.getPassword())
+        String name = textUI.getUserInput("Please enter your Username");
+        String pass = textUI.getUserInput("Please enter your Password");
+            for (User i : users)
             {
-                textUI.displayMessage("Login successful");
-                return i;
+                if (name.equalsIgnoreCase(i.getUsername()) && pass.equals(i.getPassword())) {
+                    textUI.displayMessage("****************");
+                    textUI.displayMessage("Login successful");
+                    textUI.displayMessage("****************");
+                    return i;
+                }
             }
-            else
-            {
                 textUI.displayMessage("Username or Password does not exist. Please try again.");
-                login();
-            }
-
+                break;
         }
         return null;
+
     }
 
-    private ArrayList<User> createUsers()
-    {
+    private ArrayList<User> createUsers() {
         ArrayList<String> userData = fileIO.readUserData();
-        ArrayList<User> users = new ArrayList<>();
-        for (int i = 0; i < userData.size(); i++) {
-            String[] s = userData.get(i).split(",");
-            User user = new User(s[0], s[1]);
+
+        int entries = fileIO.userCounter();
+
+        for (int i = 0; i < entries; i++) {
+
+            String[] allTheData = userData.get(i).split(";");
+
+
+            ArrayList<String> showsSeen = new ArrayList<>();
+            ArrayList<String> watchList = new ArrayList<>();
+
+
+            String[] ID = allTheData[0].replaceAll(" ","").split(",");
+
+            User user = new User(ID[0], ID[1]);
+
+            if (!allTheData[1].equals("null"))
+            {
+                String[] showsSeenArr = allTheData[1].split(",");
+                showsSeen.addAll(Arrays.asList(showsSeenArr));
+                user.setShowsSeen(showsSeen);
+            }
+
+
+            if (!allTheData[2].equals("null"))
+            {
+                String[] watchListArr = allTheData[2].split(",");
+                watchList.addAll(Arrays.asList(watchListArr));
+                user.setFavouriteShows(watchList);
+            }
+
             users.add(user);
+
+
+            if(allTheData.length != 3)
+            {
+                textUI.displayMessage("User data error!");
+            }
+
         }
         return users;
     }
+
     private User register()
     {
-        textUI.displayMessage("Register new user:");
-        String name = textUI.getUserInput("Username: ");
-        // userNames.add(name);
-        String pass = textUI.getUserInput("Password: ");
-        if(!name.contains(",") && !pass.contains(","))
-        {
-            User user = new User(name, pass);
-            fileIO.writeUserData(user);
-            return user;
+        users = createUsers();
 
-        }
-        else
+        while (true)
         {
-            textUI.displayMessage("Please only use letters and numbers");
-            register();
+            boolean exists = false;
+            textUI.displayMessage("Register new user:");
+            String name = textUI.getUserInput("Username: ");
+            // userNames.add(name);
+            String pass = textUI.getUserInput("Password: ");
+
+            for (User u : users)
+            {
+                if (u.getUsername().equalsIgnoreCase(name))
+                {
+                    exists = true;
+
+                }
+
+            }
+
+
+
+            if (!name.contains(",") && !pass.contains(","))
+            {
+                if (!exists)
+                {
+                    User user = new User(name, pass);
+                    users.add(user);
+                    return user;
+                }
+                else textUI.displayMessage("User already exists");
+            }
+            else
+            {
+                textUI.displayMessage("Please only use letters and numbers");
+            }
         }
+    }
+
+    private User exit()
+    {
+        // Display a goodbye message to the user
+        textUI.displayMessage("Goodbye! have a nice day, and hope to see you again soon!");
+        // Make the program exit (aka just terminates the program because it's a console app)
+        System.exit(0);
+        // Return null because the method is supposed to return a User object
         return null;
+    }
+
+    public ArrayList<User> getUsers()
+    {
+        return users;
     }
 }

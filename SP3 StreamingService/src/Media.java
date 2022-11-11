@@ -1,3 +1,7 @@
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Arrays;
 
 abstract public class Media implements IMedia
@@ -17,16 +21,24 @@ abstract public class Media implements IMedia
         this.genre = genre;
         this.rating = rating;
     }
-    public void play()
+    public void play() throws URISyntaxException, IOException
     {
-        System.out.println("Now Playing " + name +"...");
+
+        TextUI text = new TextUI();
+
+        text.displayMessage("You are now watching " + name +" and you are having a jolly good time!");
+        text.displayMessage("Press any key to return to menu.");
+
+
+        //RickRoll happens to user
+        Desktop d = Desktop.getDesktop();
+        d.browse(new URI("https://shattereddisk.github.io/rickroll/rickroll.mp4"));
     }
 
     @Override
     public String toString()
     {
-        return "Media | " +
-                "Name: " + name +
+        return "Name: " + name +
                 ", Year: " + year +
                 ", Genre: " + Arrays.toString(genre) +
                 ", Rating: " + rating;

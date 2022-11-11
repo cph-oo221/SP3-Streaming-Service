@@ -23,13 +23,27 @@ public class User
     }
 
     // constructor for register user with showsSeen and favouriteShows
-    public User(String username, String password, ArrayList<String> showsSeen, ArrayList<String> favouriteShows)
-    {
-        this.username = username;
-        this.password = password;
-        this.showsSeen = showsSeen;
-        this.favouriteShows = favouriteShows;
-    }
+//    public User(String username, String password, ArrayList<String> showsSeen, ArrayList<String> favouriteShows)
+//    {
+//        this.username = username;
+//        this.password = password;
+//        this.showsSeen = showsSeen;
+//        this.favouriteShows = favouriteShows;
+//    }
+//
+//    public User(String username, String password, ArrayList<String> showsSeen)
+//    {
+//        this.username = username;
+//        this.password = password;
+//        this.showsSeen = showsSeen;
+//    }
+//
+//    public User(String username, String password, ArrayList<String> favouriteShows)
+//    {
+//        this.username = username;
+//        this.password = password;
+//        this.favouriteShows = favouriteShows;
+//    }
 
     // getters
     public String getUsername()
@@ -73,11 +87,30 @@ public class User
         this.favouriteShows = favouriteShows;
     }
 
+    // make a function to add a show to the favouriteShows arraylist
 
-    // toString
+    public void addFavouriteShows(String show)
+    {
+        favouriteShows.add(show);
+    }
+
+    // make a function to add a show to the showsSeen arraylist
+    public void addShowsSeen(String show)
+    {
+        this.showsSeen.add(show);
+    }
+
+    // Make a function that saves showsSeen and favouriteShows to a file
+    /* public void saveUserData(User user)
+    {
+        fileIO.writeUserData(user, showsSeen, favouriteShows);
+    }
+*/
+
     @Override
     public String toString()
     {
-        return "Username: " + username + ", Password: " + password + ", Shows seen: " + showsSeen + ", Favourite shows: " + favouriteShows;
+        return "| Username: " + username + " |Password: " + password +" | Shows seen: " + showsSeen +
+                " | Favourite shows: " + favouriteShows + '|';
     }
 }

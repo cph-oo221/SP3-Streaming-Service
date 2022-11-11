@@ -1,11 +1,11 @@
-import java.sql.Array;
 import java.util.Arrays;
 
 public class Series extends Media
 {
-    String[] seasons;
+    private String[] seasons;
 
-    String type = "Series";
+    private final String type = "Series";
+
 
     public Series(String name, String year, String[] genre, String rating, String[] seasons)
     {

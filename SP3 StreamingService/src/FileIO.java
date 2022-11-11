@@ -7,10 +7,11 @@ import java.util.Scanner;
 
 public class FileIO
 {
+    private File file = new File("Data/userData.csv");
 
-    public ArrayList<String> readMovieData()
+    protected ArrayList<String> readMovieData()
     {
-        File file = new File("Data/movieList.txt");
+        File file = new File("Data/movieList.csv");
         ArrayList<String> data = new ArrayList<>();
         try {
             Scanner input = new Scanner(file);
@@ -27,9 +28,9 @@ public class FileIO
         return data;
     }
 
-    public ArrayList<String> readSeriesData()
+    protected ArrayList<String> readSeriesData()
     {
-        File file = new File("Data/seriesList.txt");
+        File file = new File("Data/seriesList.csv");
         ArrayList<String> data = new ArrayList<>();
         try {
             Scanner input = new Scanner(file);
@@ -48,16 +49,17 @@ public class FileIO
 
 
 
-    public ArrayList<String> readUserData()
+    protected ArrayList<String> readUserData()
     {
         File file = new File("Data/userData.csv");
+
         ArrayList<String> data = new ArrayList<>();
         try {
             Scanner input = new Scanner(file);
 
             while (input.hasNextLine())
             {
-                data.add(input.nextLine() + "\n");
+                data.add(input.nextLine());
             }
         }
         catch (FileNotFoundException e)
@@ -67,22 +69,71 @@ public class FileIO
         return data;
     }
 
-    public void writeUserData(User user)
+
+
+    protected void writeUserData(ArrayList<User> users)
     {
         try
         {
-            Scanner input = new Scanner(System.in);
-            FileWriter writer = new FileWriter("Data/userData.csv", true);
+            FileWriter writer = new FileWriter("Data/userData.csv");
 
-            writer.write(user.getUsername() + ", ");
-            writer.write(user.getPassword() + ", \n");
+            for (User user: users)
+            {
+                writer.write(user.getUsername() + ", ");
+                writer.write(user.getPassword() + ";");
 
-            writer.close();
+                if (user.getShowsSeen().size() > 0)
+                {
+                    for (String s : user.getShowsSeen())
+                    {
+                        writer.write(s + ",");
+                    }
+                    writer.write(";");
+                } else writer.write("null;");
+
+                if (user.getFavouriteShows().size() > 0)
+                {
+
+                    for (String s : user.getFavouriteShows())
+                    {
+                        writer.write(s + ",");
+                    }
+                    writer.write(";");
+                } else writer.write("null;");
+
+                writer.write('\n');
+            }
+                writer.close();
+
 
         }
         catch (IOException e)
         {
             System.out.println(e + "You fucked up mate");
         }
+    }
+    protected int userCounter()
+    {
+        try
+        {
+            int count = 0;
+            File file = new File("Data/userData.csv");
+            Scanner input = new Scanner(file);
+            while (input.hasNextLine())
+            {
+                count++;
+                input.nextLine();
+            }
+            return count;
+        }
+        catch (FileNotFoundException e)
+        {
+            return -1;
+        }
+    }
+
+    protected boolean deleteFile() throws FileNotFoundException
+    {
+        return file.delete();
     }
 }

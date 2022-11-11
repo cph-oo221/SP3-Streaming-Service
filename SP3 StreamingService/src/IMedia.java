@@ -1,6 +1,19 @@
+import java.io.IOException;
+import java.net.URISyntaxException;
+
 public interface IMedia
 {
-    public void play();
+    void play() throws URISyntaxException, IOException;
 
-    public String toString();
+    String toString();
+
+    String getName();
+
+    String getYear();
+
+
+    String[] getGenre();
+
+    String getRating();
+
 }
