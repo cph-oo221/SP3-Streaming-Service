@@ -67,6 +67,7 @@ public class FileIO
         return data;
     }
 
+    //    >>>>>>> Muligvis unødvendig <<<<<<<
     protected ArrayList<String> readUserData0()
     {
         File file = new File("Data/userData.csv");
@@ -96,6 +97,7 @@ public class FileIO
 
     }
 
+    //    >>>>>>> Muligvis unødvendig <<<<<<<
     protected ArrayList<String> readUserData1()
     {
         File file = new File("Data/userData.csv");
@@ -123,7 +125,8 @@ public class FileIO
 
         return data;
     }
-
+    
+    //    >>>>>>> Muligvis unødvendig <<<<<<<
     protected ArrayList<String> readUserData2()
     {
         File file = new File("Data/userData.csv");
