@@ -138,9 +138,11 @@ public class Setup
 
     private User exit()
     {
+        // Display a goodbye message to the user
         textUI.displayMessage("Goodbye! have a nice day, and hope to see you again soon!");
-        // make the program exit (terminate)
+        // Make the program exit (aka just terminates the program because it's a console app)
         System.exit(0);
+        // Return null because the method is supposed to return a User object
         return null;
     }
 }
