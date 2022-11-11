@@ -100,7 +100,7 @@ public class MainMenu
                     }
                 }
                 textUI.displayMessage("Your recently watched media. ");
-                textUI.mediaMenu(options, currentUser, true);
+                textUI.mediaMenu(options, currentUser, false);
             }
 
             // search for media

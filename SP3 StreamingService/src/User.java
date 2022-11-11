@@ -84,6 +84,7 @@ public class User
         favouriteShows.remove(showName);
     }
 
+
     @Override
     public String toString()
     {
