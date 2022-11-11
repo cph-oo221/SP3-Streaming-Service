@@ -8,16 +8,32 @@ public class Setup
 
     protected User runSetUp()
     {
-        textUI.displayMessage("Welcome to fedFlix! Press 1 to register new user, or press 2 for login");
-        String choice = textUI.getUserInput();
+        textUI.displayMessage("""
+                    Welcome to fedFlix!
+                    
+                    ********************
+                    Press 1 to register
+                    Press 2 to login
+                    Press 3 to exit
+                    ********************""");
 
-        if(choice.equals("1"))
+        String choice = textUI.getUserInput();
+        if (choice.equals("1"))
         {
             return register();
         }
-        else
+        else if (choice.equals("2"))
         {
             return login();
+        }
+        else if (choice.equals("3"))
+        {
+            return exit();
+        }
+        else
+        {
+            textUI.displayMessage("Invalid input, please try again");
+            return runSetUp();
         }
     }
 
@@ -114,6 +130,16 @@ public class Setup
             textUI.displayMessage("Please only use letters and numbers");
             register();
         }
+        return null;
+    }
+
+    private User exit()
+    {
+        // Display a goodbye message to the user
+        textUI.displayMessage("Goodbye! have a nice day, and hope to see you again soon!");
+        // Make the program exit (aka just terminates the program because it's a console app)
+        System.exit(0);
+        // Return null because the method is supposed to return a User object
         return null;
     }
 }
