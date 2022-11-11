@@ -10,8 +10,8 @@ public class Setup
     {
         textUI.displayMessage("Welcome to fedFlix! Press 1 to register new user, or press 2 for login");
         String choice = textUI.getUserInput();
-
-        if(choice.equals("1"))
+        
+        if (choice.equals("1"))
         {
             return register();
         }
