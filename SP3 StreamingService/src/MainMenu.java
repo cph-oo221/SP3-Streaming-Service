@@ -24,8 +24,15 @@ public class MainMenu
         while (running)
         {
 
-            textUI.displayMessage("Press 1 to view all media\npress 2 to view all series\npress 3 to view all movies\n" +
-                    "press 4 to view your watchlist\npress 5 to view your history\npress 6 to search for media\npress 7 to choose Category\npress 8 to logout");
+            textUI.displayMessage("""
+                    Press 1 to view all media
+                    press 2 to view all series
+                    press 3 to view all movies
+                    press 4 to view your watchlist
+                    press 5 to view your history
+                    press 6 to search for media
+                    press 7 to choose Category
+                    press 8 to logout""");
 
             String input = textUI.getUserInput();
 
@@ -119,11 +126,10 @@ public class MainMenu
     private void createMedia()
     {
         FileIO fileIO = new FileIO();
-        ArrayList<String> moviedata = new ArrayList<>();
-        ArrayList<String> seriesdata = new ArrayList<>();
+        ArrayList<String> moviedata = fileIO.readMovieData();
+        ArrayList<String> seriesdata = fileIO.readSeriesData();
 
-        seriesdata = fileIO.readSeriesData();
-        moviedata = fileIO.readMovieData();
+
 
         for (String s : moviedata)
         {

@@ -14,8 +14,6 @@ public class User
     // make a password
     private String password;
 
-    public FileIO fileIO = new FileIO();
-
 
     // constructor for a new user where there is no showsSeen and favouriteShows.
     public User(String username, String password)
@@ -31,6 +29,13 @@ public class User
         this.password = password;
         this.showsSeen = showsSeen;
         this.favouriteShows = favouriteShows;
+    }
+
+    public User(String username, String password, ArrayList<String> showsSeen)
+    {
+        this.username = username;
+        this.password = password;
+        this.showsSeen = showsSeen;
     }
 
     // getters
@@ -98,7 +103,7 @@ public class User
     @Override
     public String toString()
     {
-        return "| Username: " + username + " | Shows seen: " + showsSeen +
+        return "| Username: " + username + " |Password: " + password +" | Shows seen: " + showsSeen +
                 " | Favourite shows: " + favouriteShows + '|';
     }
 }

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Setup
 {
@@ -20,7 +21,8 @@ public class Setup
         }
     }
 
-    protected User login() {
+    protected User login()
+    {
         boolean running;
         running = true;
         ArrayList<User> users = createUsers();
@@ -31,34 +33,69 @@ public class Setup
             for (User i : users)
             {
                 if (name.equalsIgnoreCase(i.getUsername()) && pass.equals(i.getPassword())) {
-                    textUI.displayMessage("****************");
                     textUI.displayMessage("Login successful");
                     textUI.displayMessage("****************");
+                    textUI.displayMessage("****************");
                     return i;
-                } else
-                {
-                    textUI.displayMessage("Username or Password does not exist. Please try again.");
-                    break;
                 }
             }
+                textUI.displayMessage("Username or Password does not exist. Please try again.");
+                break;
         }
         return null;
+
     }
 
-    private ArrayList<User> createUsers()
-    {
-        ArrayList<String> userData = fileIO.readUserData();
+    private ArrayList<User> createUsers() {
         ArrayList<User> users = new ArrayList<>();
+        ArrayList<String> userData = fileIO.readUserData();
 
-        for (String s : userData)
-        {
-            String trimmed = s.replaceAll("[\\\\{}]","").replaceAll(";","").replaceAll(" ","");
-            String[] arr = trimmed.split(",");
-            User user = new User (arr[0], arr[1]);
-            users.add(user);
+        int entries = fileIO.userCounter();
+        textUI.displayMessage("entries talt uden fejl :" +entries);
+
+        for (int i = 0; i < entries; i++) {
+
+            String[] allTheData = userData.get(i).split(";");
+            ArrayList<String> showsSeen = new ArrayList<>();
+            ArrayList<String> watchList = new ArrayList<>();
+
+
+            String[] ID = allTheData[0].replaceAll(" ","").split(",");
+
+            if (allTheData.length >= 2)
+            {
+                String[] showsSeenArr = allTheData[1].split(",");
+
+                showsSeen.addAll(Arrays.asList(showsSeenArr));
+
+            }
+
+
+            if (allTheData.length >= 3)
+            {
+                textUI.displayMessage(allTheData[2]);
+                String[] watchListArr = allTheData[2].split(",");
+                watchList.addAll(Arrays.asList(watchListArr));
+            }
+
+
+            if(allTheData.length == 1)
+            {
+                User user = new User(ID[0],ID[1],showsSeen);
+                users.add(user);
+            }
+            if(allTheData.length == 2 )
+            {
+                User user = new User(ID[0], ID[1], showsSeen, watchList);
+                users.add(user);
+            }
+            else
+            {
+                User user = new User(ID[0], ID[1]);
+                users.add(user);
+            }
         }
         return users;
-        //return null;
     }
     private User register()
     {
