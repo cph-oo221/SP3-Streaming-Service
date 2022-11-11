@@ -163,8 +163,15 @@ public class FileIO
         {
             FileWriter writer = new FileWriter("Data/userData.csv", true);
 
-            writer.write(user.getUsername() + ", ");
-            writer.write(user.getPassword() + "; \n");
+            if (user.getShowsSeen().size() < 1 && user.getFavouriteShows().size() < 1)
+            {
+                writer.write(user.getUsername() + ", ");
+                writer.write(user.getPassword() + "; \n");
+            }
+
+           // else if ()
+
+
 
             writer.close();
 

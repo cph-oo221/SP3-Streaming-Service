@@ -6,6 +6,7 @@ public class MainMenu
     ArrayList<IMedia> media = new ArrayList<>();
     public TextUI textUI = new TextUI();
 
+    FileIO fileIO = new FileIO();
     public SearchFunction searchFunction =new SearchFunction(currentUser, media);
 
     public MainMenu(User currentUser)
@@ -154,6 +155,8 @@ public class MainMenu
     // logout method to return to login screen
     protected void logOut()
     {
+        fileIO.writeUserData(currentUser);
+
         FedFlix fedFlix = new FedFlix();
         fedFlix.runFedFlix();
     }
