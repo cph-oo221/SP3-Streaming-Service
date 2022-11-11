@@ -58,7 +58,6 @@ public class Setup
                 }
             }
                 textUI.displayMessage("Username or Password does not exist. Please try again.");
-                break;
         }
         return null;
 
