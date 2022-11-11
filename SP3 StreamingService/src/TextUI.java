@@ -38,13 +38,20 @@ public class TextUI
     }
 
     // Displays a menu of Media, and returns the selected. Returns null if user inputs 'Q'
-    public void mediaMenu(ArrayList<IMedia> options, User currentUser)
+    public void mediaMenu(ArrayList<IMedia> options, User currentUser, boolean personalList)
     {
         boolean showingChoice = true;
         boolean optionsActive = true;
         while(optionsActive)
         {
-            String choice  = getUserInput("Search results. Enter number to choose or 'Q' to return ", options);
+            String choice ="";
+
+            if (options.size() < 1)
+            {
+                choice = getUserInput("No results. Enter 'Q' to return");
+            }
+
+            else choice  = getUserInput("Search results. Enter number to choose or 'Q' to return ", options);
 
             if (choice.equalsIgnoreCase("Q")) { break; }
 
@@ -55,7 +62,7 @@ public class TextUI
                     int choiceInt = Integer.parseInt(choice);
                     choiceInt--;
 
-                    if (choiceInt >= 0 && choiceInt < options.size())
+                    if (choiceInt >= 0 && choiceInt < options.size() && !personalList)
                     {
                         IMedia show = options.get(choiceInt);
 
@@ -63,8 +70,49 @@ public class TextUI
 
                         if (playChoice.equalsIgnoreCase("F"))
                         {
-                            currentUser.addFavouriteShows(show.getName());
-                            displayMessage(show.getName() + " Added to watchlist.");
+                            boolean alreadyContains = false;
+
+                            for (String name: currentUser.getFavouriteShows())
+                            {
+                                if (show.getName().equals(name))
+                                {
+                                    alreadyContains = true;
+                                }
+                            }
+
+                            if (!alreadyContains)
+                            {
+                                currentUser.addFavouriteShows(show.getName());
+                                displayMessage(show.getName() + " Added to watchlist.");
+                            }
+
+                            else displayMessage(show.getName() + " is already on your watchlist.");
+                        }
+
+                        if (playChoice.equalsIgnoreCase("Y"))
+                        {
+                            currentUser.addShowsSeen(show.getName());
+
+                            show.play();
+
+                            getUserInput();
+                            break;
+                        }
+
+                        if (playChoice.equalsIgnoreCase("Q")) { break; }
+                    }
+
+                    else if (choiceInt >= 0 && choiceInt < options.size() && personalList)
+                    {
+                        IMedia show = options.get(choiceInt);
+
+                        String playChoice = getUserInput("Do you want to play " + show.getName() + "? (Y/Q).\nEnter 'R' to remove from list");
+
+                        if (playChoice.equalsIgnoreCase("R"))
+                        {
+                            currentUser.removeFavouriteShow(show.getName());
+                            options.remove(show);
+                            displayMessage(show.getName() + " Removed from list");
                         }
 
                         if (playChoice.equalsIgnoreCase("Y"))
