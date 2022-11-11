@@ -23,20 +23,27 @@ public class User
     }
 
     // constructor for register user with showsSeen and favouriteShows
-    public User(String username, String password, ArrayList<String> showsSeen, ArrayList<String> favouriteShows)
-    {
-        this.username = username;
-        this.password = password;
-        this.showsSeen = showsSeen;
-        this.favouriteShows = favouriteShows;
-    }
-
-    public User(String username, String password, ArrayList<String> showsSeen)
-    {
-        this.username = username;
-        this.password = password;
-        this.showsSeen = showsSeen;
-    }
+//    public User(String username, String password, ArrayList<String> showsSeen, ArrayList<String> favouriteShows)
+//    {
+//        this.username = username;
+//        this.password = password;
+//        this.showsSeen = showsSeen;
+//        this.favouriteShows = favouriteShows;
+//    }
+//
+//    public User(String username, String password, ArrayList<String> showsSeen)
+//    {
+//        this.username = username;
+//        this.password = password;
+//        this.showsSeen = showsSeen;
+//    }
+//
+//    public User(String username, String password, ArrayList<String> favouriteShows)
+//    {
+//        this.username = username;
+//        this.password = password;
+//        this.favouriteShows = favouriteShows;
+//    }
 
     // getters
     public String getUsername()
