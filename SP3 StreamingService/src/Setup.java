@@ -49,8 +49,8 @@ public class Setup
             for (User i : users)
             {
                 if (name.equalsIgnoreCase(i.getUsername()) && pass.equals(i.getPassword())) {
-                    textUI.displayMessage("Login successful");
                     textUI.displayMessage("****************");
+                    textUI.displayMessage("Login successful");
                     textUI.displayMessage("****************");
                     return i;
                 }
@@ -107,6 +107,7 @@ public class Setup
         }
         return users;
     }
+
     private User register()
     {
         textUI.displayMessage("Register new user:");
