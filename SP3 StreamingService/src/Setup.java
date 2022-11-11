@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Setup
 {
@@ -58,9 +59,6 @@ public class Setup
             ArrayList<String> showsSeen = new ArrayList<>();
             ArrayList<String> watchList = new ArrayList<>();
 
-            textUI.displayMessage(allTheData[0]);
-            textUI.displayMessage(allTheData[1]);
-
 
             String[] ID = allTheData[0].replaceAll(" ","").split(",");
 
@@ -68,10 +66,7 @@ public class Setup
             {
                 String[] showsSeenArr = allTheData[1].split(",");
 
-                for (int j = 0; j < showsSeenArr.length; j++)
-                {
-                    showsSeen.add(showsSeenArr[j]);
-                }
+                showsSeen.addAll(Arrays.asList(showsSeenArr));
 
             }
 
@@ -80,10 +75,7 @@ public class Setup
             {
                 textUI.displayMessage(allTheData[2]);
                 String[] watchListArr = allTheData[2].split(",");
-                for (int k = 0; k < watchListArr.length; k++)
-                {
-                    watchList.add(watchListArr[k]);
-                }
+                watchList.addAll(Arrays.asList(watchListArr));
             }
 
 

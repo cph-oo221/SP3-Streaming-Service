@@ -125,7 +125,7 @@ public class FileIO
 
         return data;
     }
-    
+
     //    >>>>>>> Muligvis unødvendig <<<<<<<
     protected ArrayList<String> readUserData2()
     {
@@ -161,7 +161,6 @@ public class FileIO
     {
         try
         {
-            Scanner input = new Scanner(System.in);
             FileWriter writer = new FileWriter("Data/userData.csv", true);
 
             writer.write(user.getUsername() + ", ");

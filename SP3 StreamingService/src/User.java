@@ -14,8 +14,6 @@ public class User
     // make a password
     private String password;
 
-    public FileIO fileIO = new FileIO();
-
 
     // constructor for a new user where there is no showsSeen and favouriteShows.
     public User(String username, String password)
