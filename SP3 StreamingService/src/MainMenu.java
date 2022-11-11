@@ -99,7 +99,7 @@ public class MainMenu
                         }
                     }
                 }
-                textUI.displayMessage("Your recently watched movies. ");
+                textUI.displayMessage("Your recently watched media. ");
                 textUI.mediaMenu(options, currentUser, true);
             }
 
