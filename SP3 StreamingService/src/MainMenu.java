@@ -122,8 +122,6 @@ public class MainMenu
             {
                 logOut();
             }
-
-            else { textUI.displayMessage("Invalid input. Try again"); }
         }
     }
 
@@ -151,8 +149,6 @@ public class MainMenu
             Series series = new Series(values[0], values[1], categories, values[3], seasons);
             media.add(series);
         }
-
-
     }
 
     // logout method to return to login screen

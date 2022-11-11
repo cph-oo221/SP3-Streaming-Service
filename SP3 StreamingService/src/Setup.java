@@ -44,7 +44,6 @@ public class Setup
         boolean running;
         running = true;
         ArrayList<User> users = createUsers();
-        System.out.println(users);
         while(running)
         {
         String name = textUI.getUserInput("Please enter your Username");
@@ -68,7 +67,6 @@ public class Setup
     private ArrayList<User> createUsers() {
         ArrayList<String> userData = fileIO.readUserData();
 
-
         int entries = fileIO.userCounter();
 
         for (int i = 0; i < entries; i++) {
@@ -76,7 +74,6 @@ public class Setup
             String[] allTheData = userData.get(i).split(";");
 
 
-            System.out.println("høp");
             ArrayList<String> showsSeen = new ArrayList<>();
             ArrayList<String> watchList = new ArrayList<>();
 
@@ -115,6 +112,7 @@ public class Setup
     }
     private User register()
     {
+        users = createUsers();
         textUI.displayMessage("Register new user:");
         String name = textUI.getUserInput("Username: ");
         // userNames.add(name);
@@ -122,6 +120,7 @@ public class Setup
         if(!name.contains(",") && !pass.contains(","))
         {
             User user = new User(name, pass);
+            users.add(user);
             return user;
 
         }
