@@ -7,7 +7,6 @@ public class Movie extends Media
         super(name, year, genre, rating);
     }
 
-    //TODO: Fix weird comma on newline
     @Override
     public String toString()
     {
