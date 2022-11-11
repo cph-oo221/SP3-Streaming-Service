@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class TextUI
 {
-    Scanner scan = new Scanner(System.in);
+    private Scanner scan = new Scanner(System.in);
 
     public void displayMessage(String msg)
     {

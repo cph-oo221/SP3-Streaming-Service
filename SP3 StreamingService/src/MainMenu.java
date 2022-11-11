@@ -9,7 +9,7 @@ public class MainMenu
     public TextUI textUI = new TextUI();
 
     FileIO fileIO = new FileIO();
-    public SearchFunction searchFunction =new SearchFunction(currentUser, media);
+    public SearchFunction searchFunction = new SearchFunction(currentUser, media);
 
     public MainMenu(User currentUser, ArrayList<User> users)
     {
