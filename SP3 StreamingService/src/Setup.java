@@ -60,7 +60,6 @@ public class Setup
                 textUI.displayMessage("Username or Password does not exist. Please try again.");
         }
         return null;
-
     }
 
     private ArrayList<User> createUsers() {
