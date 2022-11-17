@@ -45,11 +45,11 @@ public class IO
     {
         if (databaseIO.establishConnection())
         {
-            // return databaseIO.writeUserData();
+            databaseIO.writeUserData(null);
         }
         else
         {
-            // return fileIO.writeUserData(null);
+            fileIO.writeUserData(null);
         }
     }
 

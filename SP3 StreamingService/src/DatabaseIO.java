@@ -39,7 +39,8 @@ public class DatabaseIO
         return null;
     }
 
-    public void writeUserData()
+
+    public void writeUserData(ArrayList<User> users)
     {
 
     }
