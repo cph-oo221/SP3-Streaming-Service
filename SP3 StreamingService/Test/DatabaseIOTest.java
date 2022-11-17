@@ -14,7 +14,7 @@ public class DatabaseIOTest
 {
     Connection connection;
 
-    String url = "jdbc:mysql://localhost/fedFlixDB?" + "autoReconnect=true&useSSL=false";
+    String url = "jdbc:mysql://localhost/fedflixdb?" + "autoReconnect=true&useSSL=false";
     String username = "kotteletfisk";
     String password = "sovs";
 
@@ -35,11 +35,12 @@ public class DatabaseIOTest
     }
 
     @Test
-    public void retrieveDataFromDataBase()
+    public void readMovieData()
     {
         establishConnection();
 
-        String all_movies_query = "SELECT * FROM movieList;";
+        ArrayList<String> output = new ArrayList<>();
+        String all_movies_query = "SELECT * FROM movielist;";
 
         try
         { Statement statement = connection.createStatement();
@@ -54,9 +55,17 @@ public class DatabaseIOTest
                 String categories = result.getString("Categories");
                 String rating = result.getString("Rating");
 
-                System.out.println(name + " " + year + " " + categories + " " + rating);
+                // System.out.println(name + " " + year + " " + categories + " " + rating);
+
+                String concat = name.trim() + ";" + year.trim()  + ";" + categories.trim()  + ";" + rating.trim();
+
+                output.add(concat);
             }
 
+            for (String s: output)
+            {
+                System.out.println(s);
+            }
         }
 
         catch (SQLException e)
