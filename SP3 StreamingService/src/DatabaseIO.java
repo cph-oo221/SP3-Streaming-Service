@@ -1,6 +1,7 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class DatabaseIO
 {
@@ -9,13 +10,13 @@ public class DatabaseIO
     private String username ="root";
     private String password ="oo123";
 
-    public void establishConnection()
+    public boolean establishConnection()
     {
         // CONNECTION
         try
         {
             connection = DriverManager.getConnection(url, username, password);
-            // System.out.println(connection.isValid(1));
+            return connection.isValid(1);
         }
         catch (SQLException e)
         {
@@ -23,4 +24,23 @@ public class DatabaseIO
         }
     }
 
+    public ArrayList<String> readMovieData()
+    {
+        return null;
+    }
+
+    public ArrayList<String> readSeriesData()
+    {
+        return null;
+    }
+
+    public ArrayList<String> readUserData()
+    {
+        return null;
+    }
+
+    public void writeUserData()
+    {
+
+    }
 }

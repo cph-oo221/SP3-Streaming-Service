@@ -64,43 +64,4 @@ public class DatabaseIOTest
             e.printStackTrace();
         }
     }
-/*
-    public void run()
-    {
-
-        // statement
-        String city_query = "SELECT * FROM city WHERE Name = ? ORDER BY population DESC LIMIT 10;";
-
-        try
-        {
-            // Statement statement = this.connection.createStatement();
-            // statement.execute(query);
-            PreparedStatement query = connection.prepareStatement(city_query);
-
-            query.setString(2, Name);
-
-            ResultSet resultSet = query.executeQuery();
-
-            while (resultSet.next())
-            {
-                String cityName = resultSet.getString("Name");
-                int population = resultSet.getInt("Population");
-
-                City city = new City(cityName, population);
-
-
-                this.cities.add(city);
-            }
-
-            printCities();
-
-        }
-
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-    }
-*/
-
 }
