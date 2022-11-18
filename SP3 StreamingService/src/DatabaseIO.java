@@ -19,7 +19,7 @@ public class DatabaseIO
         }
         catch (SQLException e)
         {
-            throw new RuntimeException(e);
+            return false;
         }
     }
 

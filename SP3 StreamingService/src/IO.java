@@ -5,6 +5,8 @@ public class IO
     private DatabaseIO databaseIO = new DatabaseIO();
     private FileIO fileIO = new FileIO();
 
+    private TextUI textUI = new TextUI();
+
     protected ArrayList<String> readMovieData()
     {
         if (databaseIO.establishConnection())
@@ -13,6 +15,7 @@ public class IO
         }
         else
         {
+            textUI.displayMessage("There is no connection to database, using internal storage");
             return fileIO.readMovieData();
         }
     }
