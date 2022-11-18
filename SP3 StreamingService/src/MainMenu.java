@@ -127,11 +127,10 @@ public class MainMenu
 
     private void createMedia()
     {
-        FileIO fileIO = new FileIO();
-        ArrayList<String> moviedata = fileIO.readMovieData();
-        ArrayList<String> seriesdata = fileIO.readSeriesData();
+        IO io = new IO();
 
-
+        ArrayList<String> moviedata = io.readMovieData();
+        ArrayList<String> seriesdata = io.readSeriesData();
 
         for (String s : moviedata)
         {

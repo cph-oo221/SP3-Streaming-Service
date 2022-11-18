@@ -5,7 +5,7 @@ public class IO
     private DatabaseIO databaseIO = new DatabaseIO();
     private FileIO fileIO = new FileIO();
 
-    protected ArrayList<String> readMovieData() // protected
+    protected ArrayList<String> readMovieData()
     {
         if (databaseIO.establishConnection())
         {
@@ -29,7 +29,7 @@ public class IO
         }
     }
 
-    public ArrayList<String> readUserData()
+    protected ArrayList<String> readUserData()
     {
         if (databaseIO.establishConnection())
         {
