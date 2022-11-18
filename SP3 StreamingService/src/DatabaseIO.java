@@ -1,6 +1,4 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class DatabaseIO
@@ -8,7 +6,7 @@ public class DatabaseIO
     private Connection connection;
     private String url = "jdbc:mysql://localhost/fedflixdb?" + "autoReconnect=true&useSSL=false";
     private String username ="root";
-    private String password ="oo123";
+    private String password ="abc123";
 
     public void establishConnection()
     {
@@ -63,13 +61,16 @@ public class DatabaseIO
                     String name = userResult.getString("name");
                     String password = userResult.getString("password");
                     String watchlist = "";
+                    int user_id = userResult.getInt("user_id");
+                    int user_id_watchlist = watchlistResult.getInt("user_id");
+                    int user_id_showsseen = showsSeenResult.getInt("user_id");
 
-                    if(userResult.user_id == watchlistResult.user_id)
+                    if(user_id == user_id_watchlist)
                     {
                         watchlist = watchlistResult.getString("name"+",");
                     }
                     String showsSeen = "";
-                    if(userResult.user_id == showsSeenResult.user_id)
+                    if(user_id == user_id_showsseen)
                     {
                         showsSeen = showsSeenResult.getString("name"+",");
                     }
