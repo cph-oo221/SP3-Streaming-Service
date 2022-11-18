@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class FileIO
 {
     private File file = new File("Data/userData.csv");
