@@ -119,7 +119,40 @@ public class DatabaseIO
 
     public ArrayList<String> readUserData()
     {
-       return null;
+        // read users from database
+        String user_data_query = "SELECT * FROM userdata;";
+
+        try
+        {
+            Statement statement = connection.createStatement();
+
+            statement.executeQuery(user_data_query);
+
+            ResultSet user_result = statement.getResultSet();
+
+            while (user_result.next())
+            {
+                int id = user_result.getInt("user_id");
+                String name = user_result.getString("Name");
+                String pass = user_result.getString("Passsword");
+
+
+            }
+        }
+
+        catch (SQLException e)
+        {
+
+        }
+
+        // for every user id, get watchlist and showsseen refs
+
+        // get showseen / watchlist names
+
+        // concat username,password;showseen;watchlist to a string
+
+        // add string to string arraylist and return arraylist
+        return null;
     }
 
 
