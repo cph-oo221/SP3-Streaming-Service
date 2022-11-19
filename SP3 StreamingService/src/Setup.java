@@ -4,7 +4,7 @@ import java.util.Arrays;
 public class Setup
 {
     private TextUI textUI = new TextUI();
-    private FileIO fileIO = new FileIO();
+    private IO io = new IO();
 
     private ArrayList<User> users = new ArrayList<>();
 
@@ -63,11 +63,11 @@ public class Setup
     }
 
     private ArrayList<User> createUsers() {
-        ArrayList<String> userData = fileIO.readUserData();
+        ArrayList<String> userData = io.readUserData();
 
-        int entries = fileIO.userCounter();
+       // int entries = fileIO.userCounter();
 
-        for (int i = 0; i < entries; i++) {
+        for (int i = 0; i < userData.size(); i++) {
 
             String[] allTheData = userData.get(i).split(";");
 

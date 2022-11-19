@@ -82,6 +82,7 @@ public class DatabaseIOTest
         establishConnection();
 
         ArrayList<String> output = new ArrayList<>();
+
         // read users from database
         String user_data_query = "SELECT * FROM userdata;";
 
@@ -122,10 +123,9 @@ public class DatabaseIOTest
 
                 if (showsSeen_result.next())
                 {
-                    showsSeen_result.beforeFirst();
-                    while (showsSeen_result.next())
+                    //showsSeen_result.beforeFirst();
+                    do
                     {
-
                         if (showsSeen_result.getString("moviename") != null)
                         {
                             concat_string.append(showsSeen_result.getString("moviename") + ",");
@@ -135,7 +135,8 @@ public class DatabaseIOTest
                         {
                             concat_string.append(showsSeen_result.getString("seriesname") + ",");
                         }
-                    }
+
+                    }   while (showsSeen_result.next());
                 }
 
                 else concat_string.append("null");
@@ -156,10 +157,9 @@ public class DatabaseIOTest
 
                 if (watchlists_result.next())
                 {
-                    watchlists_result.beforeFirst();
-                    while (watchlists_result.next())
+                    //watchlists_result.beforeFirst();
+                    do
                     {
-                        System.out.println(watchlists_result.getString("moviename"));
                         if (watchlists_result.getString("moviename") != null) //TODO jumps directly out of loop if showsseen == null??
                         {
 
@@ -170,7 +170,7 @@ public class DatabaseIOTest
                         {
                             concat_string.append(watchlists_result.getString("seriesname") + ",");
                         }
-                    }
+                    } while (watchlists_result.next());
                 }
 
                 else concat_string.append("null");
@@ -195,14 +195,5 @@ public class DatabaseIOTest
         {
             e.printStackTrace();
         }
-
-        // for every user id, get watchlist and showsseen refs
-
-
-        // concat username,password;showseen;watchlist to a string
-
-        // add string to string arraylist and return arraylist
-
-
     }
 }

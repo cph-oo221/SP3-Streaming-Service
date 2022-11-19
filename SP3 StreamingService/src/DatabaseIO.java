@@ -5,8 +5,8 @@ public class DatabaseIO
 {
     private Connection connection;
     private String url = "jdbc:mysql://localhost/fedflixdb?" + "autoReconnect=true&useSSL=false";
-    private String username ="root";
-    private String password ="oo123";
+    private String username ="kotteletfisk";
+    private String password ="sovs";
 
     public boolean establishConnection()
     {
@@ -14,7 +14,6 @@ public class DatabaseIO
         try
         {
             connection = DriverManager.getConnection(url, username, password);
-            System.out.println("Connection established successfully"); // TODO <- remove this at some point
             return connection.isValid(1);
         }
         catch (SQLException e)
@@ -119,6 +118,10 @@ public class DatabaseIO
 
     public ArrayList<String> readUserData()
     {
+        establishConnection();
+
+        ArrayList<String> output = new ArrayList<>();
+
         // read users from database
         String user_data_query = "SELECT * FROM userdata;";
 
@@ -130,29 +133,101 @@ public class DatabaseIO
 
             ResultSet user_result = statement.getResultSet();
 
+            // get string for every user
             while (user_result.next())
             {
+                StringBuilder concat_string = new StringBuilder();
+
+                Statement inner_statement = connection.createStatement();
+
                 int id = user_result.getInt("user_id");
+
                 String name = user_result.getString("Name");
-                String pass = user_result.getString("Passsword");
+
+                String pass = user_result.getString("Password");
+
+                concat_string.append(name + "," + pass + ";");
 
 
+                // get showsseen list names. Concat to userstring
+                String showsseen_query = "SELECT movielist.Name moviename, serieslist.Name seriesname FROM showsseen\n" +
+                        "LEFT JOIN movielist ON movielist.movie_id = showsseen.movie_id\n" +
+                        "LEFT JOIN serieslist ON serieslist.series_id = showsseen.series_id \n" +
+                        "WHERE user_id = " + id + ";";
+
+
+                inner_statement.executeQuery(showsseen_query);
+
+                ResultSet showsSeen_result = inner_statement.getResultSet();
+
+
+                if (showsSeen_result.next())
+                {
+                    do
+                    {
+                        if (showsSeen_result.getString("moviename") != null)
+                        {
+                            concat_string.append(showsSeen_result.getString("moviename") + ",");
+                        }
+
+                        if (showsSeen_result.getString("seriesname") != null)
+                        {
+                            concat_string.append(showsSeen_result.getString("seriesname") + ",");
+                        }
+
+                    } while (showsSeen_result.next());
+                }
+
+                else concat_string.append("null");
+
+                concat_string.append(";");
+
+
+                // get watchlist names. Concat to userstring
+                String watchlists_query ="SELECT movielist.Name moviename, serieslist.Name seriesname FROM watchlists\n" +
+                        "LEFT JOIN movielist ON movielist.movie_id = watchlists.movie_id\n" +
+                        "LEFT JOIN serieslist ON serieslist.series_id = watchlists.series_id \n" +
+                        "WHERE user_id = " + id + ";";
+
+                inner_statement.executeQuery(watchlists_query);
+
+                ResultSet watchlists_result = inner_statement.getResultSet();
+
+
+                if (watchlists_result.next())
+                {
+                    do
+                    {
+                        if (watchlists_result.getString("moviename") != null)
+                        {
+                            concat_string.append(watchlists_result.getString("moviename") + ",");
+                        }
+
+                        if (watchlists_result.getString("seriesname") != null)
+                        {
+                            concat_string.append(watchlists_result.getString("seriesname") + ",");
+                        }
+
+                    } while (watchlists_result.next());
+                }
+
+                else concat_string.append("null");
+
+                concat_string.append(";");
+
+                inner_statement.close();
+
+                // add concatinated user string to arraylist
+                output.add(concat_string.toString());
             }
         }
 
         catch (SQLException e)
         {
-
+            e.printStackTrace();
         }
 
-        // for every user id, get watchlist and showsseen refs
-
-        // get showseen / watchlist names
-
-        // concat username,password;showseen;watchlist to a string
-
-        // add string to string arraylist and return arraylist
-        return null;
+        return output;
     }
 
 
