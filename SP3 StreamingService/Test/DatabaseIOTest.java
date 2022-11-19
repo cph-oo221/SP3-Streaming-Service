@@ -122,8 +122,10 @@ public class DatabaseIOTest
 
                 if (showsSeen_result.next())
                 {
+                    showsSeen_result.beforeFirst();
                     while (showsSeen_result.next())
                     {
+
                         if (showsSeen_result.getString("moviename") != null)
                         {
                             concat_string.append(showsSeen_result.getString("moviename") + ",");
@@ -140,7 +142,6 @@ public class DatabaseIOTest
 
                 concat_string.append(";");
 
-                showsSeen_result.close();
 
                 // get watchlist. concat to userstring
                 String watchlists_query ="SELECT movielist.Name moviename, serieslist.Name seriesname FROM watchlists\n" +
@@ -153,9 +154,9 @@ public class DatabaseIOTest
                 ResultSet watchlists_result = inner_statement.getResultSet();
 
 
-
                 if (watchlists_result.next())
                 {
+                    watchlists_result.beforeFirst();
                     while (watchlists_result.next())
                     {
                         System.out.println(watchlists_result.getString("moviename"));
@@ -176,7 +177,7 @@ public class DatabaseIOTest
 
                 concat_string.append(";");
 
-                watchlists_result.close();
+                inner_statement.close();
 
 
                 // add concatinated user string to arraylist
