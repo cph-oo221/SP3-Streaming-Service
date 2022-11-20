@@ -34,12 +34,15 @@ public class IO
 
     protected ArrayList<String> readUserData()
     {
+        textUI.displayMessage("Attempting to connect to database...");
         if (databaseIO.establishConnection())
         {
+            textUI.displayMessage("Connection succesful");
             return databaseIO.readUserData();
         }
         else
         {
+            textUI.displayMessage("Connection failed. using internal storage");
             return fileIO.readUserData();
         }
     }
