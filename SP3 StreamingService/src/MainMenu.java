@@ -153,6 +153,9 @@ public class MainMenu
     // logout method to return to login screen
     protected void logOut()
     {
+
+        IO io = new IO();
+
         try
         {
             fileIO.deleteFile();
@@ -163,7 +166,7 @@ public class MainMenu
             textUI.displayMessage(f.getMessage());
         }
 
-        fileIO.writeUserData(users);
+        io.writeUserData(users);
 
         FedFlix fedFlix = new FedFlix();
         fedFlix.runFedFlix();

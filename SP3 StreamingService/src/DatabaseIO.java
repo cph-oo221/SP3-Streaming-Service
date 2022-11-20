@@ -5,8 +5,8 @@ public class DatabaseIO
 {
     private Connection connection;
     private String url = "jdbc:mysql://localhost/fedflixdb?" + "autoReconnect=true&useSSL=false";
-    private String username ="kotteletfisk";
-    private String password ="sovs";
+    private String username ="root";
+    private String password ="oo123";
 
     public boolean establishConnection()
     {
@@ -233,6 +233,36 @@ public class DatabaseIO
 
     public void writeUserData(ArrayList<User> users)
     {
+        // establish connection
+        establishConnection();
+
+        // Statement writeUserDate
+        String wrtie_User_query = "INSERT INTO userdata (Name, Password) VALUES (?, ?)";
+
+        try
+        {
+            // create statement
+            PreparedStatement preparedStatement = connection.prepareStatement(wrtie_User_query);
+
+            // execute statement
+            for (User user : users)
+            {
+                // onlt write users that are not already in database
+                if (!readUserData().contains(user.getUsername() + "," + user.getPassword() + ";null;null;"))
+                {
+                    preparedStatement.setString(1, user.getUsername());
+                    preparedStatement.setString(2, user.getPassword());
+
+                    preparedStatement.execute();
+                }
+            }
+
+            preparedStatement.close();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
 
     }
 }

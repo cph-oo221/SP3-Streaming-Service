@@ -55,11 +55,11 @@ public class IO
     {
         if (databaseIO.establishConnection())
         {
-            databaseIO.writeUserData(null);
+            databaseIO.writeUserData(users);
         }
         else
         {
-            fileIO.writeUserData(null);
+            fileIO.writeUserData(users);
         }
     }
 
