@@ -14,7 +14,6 @@ public class DatabaseIO
         try
         {
             connection = DriverManager.getConnection(url, username, password);
-            System.out.println("Connection established successfully"); // TODO <- remove this at some point
             return connection.isValid(1);
         }
         catch (SQLException e)
