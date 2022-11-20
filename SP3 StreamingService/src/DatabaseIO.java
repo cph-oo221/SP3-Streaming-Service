@@ -244,19 +244,22 @@ public class DatabaseIO
             // create statement
             PreparedStatement preparedStatement = connection.prepareStatement(wrtie_User_query);
 
-            // execute statement
+            // for every user in users
             for (User user : users)
             {
-                // onlt write users that are not already in database
+                // only write users that are not already in database
                 if (!readUserData().contains(user.getUsername() + "," + user.getPassword() + ";null;null;"))
                 {
+                    // set values
                     preparedStatement.setString(1, user.getUsername());
                     preparedStatement.setString(2, user.getPassword());
 
+                    // execute statement
                     preparedStatement.execute();
                 }
             }
 
+            // close statement
             preparedStatement.close();
         }
         catch (SQLException e)
