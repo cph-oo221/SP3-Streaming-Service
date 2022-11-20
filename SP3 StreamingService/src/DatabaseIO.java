@@ -248,6 +248,7 @@ public class DatabaseIO
             for (User user : users)
             {
                 // only write users that are not already in database
+                //;null;null is the default value for a user that is not in the database yet and has no showsseen or watchlist
                 if (!readUserData().contains(user.getUsername() + "," + user.getPassword() + ";null;null;"))
                 {
                     // set values
