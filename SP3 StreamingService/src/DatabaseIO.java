@@ -237,7 +237,6 @@ public class DatabaseIO
         establishConnection();
 
         // Statement writeUserDate
-
         // join showsseen on showsseen.user_id = userdata.user_id join watchlists on watchlists.user_id = userdata.user_id;
         String wrtie_User_query = "INSERT INTO userdata (Name, Password) VALUES (?, ?)";
 
@@ -258,10 +257,9 @@ public class DatabaseIO
                 {
                     names.add(resultSet.getString("name"));
                 }
+                
                 // only write users that are not already in database
-                //;null;null is the default value for a user that is not in the database yet and has no showsseen or watchlist
-
-                if (!names.contains(user.getUsername())) //  || (!readUserData().contains(user.getUsername() + "," + user.getPassword() + user.getShowsSeen() + user.getFavouriteShows()))
+                if (!names.contains(user.getUsername()))
                 {
                     // set values
                     preparedStatement.setString(1, user.getUsername());
