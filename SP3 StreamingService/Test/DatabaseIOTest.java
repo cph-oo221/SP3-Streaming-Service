@@ -198,44 +198,44 @@ public class DatabaseIOTest
         }
     }
 
-    @Test
-    public void writeUserDataTest(ArrayList<User> users)
-    {
-        // establi---sh connection
-        establishConnection();
-
-        String get_usernames_query = "SELECT user_id, Name FROM userdata;";
-
-        try
-        {
-            Statement statement = connection.createStatement();
-
-            ResultSet usernames = statement.executeQuery(get_usernames_query);
-
-            while (usernames.next())
-            {
-                int id;
-
-                String write_user_query = "";
-
-                for (User u: users)
-                {
-                    if (u.getUsername().equals(usernames.getString("Name")))
-                    {
-                        // user already exists. update showsseen and watchlist.
-
-                        id = usernames.getInt("user_id");
-
-                        //
-
-                        //
-                    }
-                }
-            }
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-    }
+//    @Test
+//    public void writeUserDataTest(ArrayList<User> users)
+//    {
+//        // establi---sh connection
+//        establishConnection();
+//
+//        String get_usernames_query = "SELECT user_id, Name FROM userdata;";
+//
+//        try
+//        {
+//            Statement statement = connection.createStatement();
+//
+//            ResultSet usernames = statement.executeQuery(get_usernames_query);
+//
+//            while (usernames.next())
+//            {
+//                int id;
+//
+//                String write_user_query = "";
+//
+//                for (User u: users)
+//                {
+//                    if (u.getUsername().equals(usernames.getString("Name")))
+//                    {
+//                        // user already exists. update showsseen and watchlist.
+//
+//                        id = usernames.getInt("user_id");
+//
+//                        // search for showseen media id's for user.
+//
+//                        //
+//                    }
+//                }
+//            }
+//        }
+//        catch (SQLException e)
+//        {
+//            e.printStackTrace();
+//        }
+//    }
 }
