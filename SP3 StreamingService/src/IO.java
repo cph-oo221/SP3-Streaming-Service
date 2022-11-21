@@ -4,6 +4,7 @@ public class IO
 {
     private DatabaseIO databaseIO = new DatabaseIO();
     private FileIO fileIO = new FileIO();
+
     private TextUI textUI = new TextUI();
 
     protected ArrayList<String> readMovieData()

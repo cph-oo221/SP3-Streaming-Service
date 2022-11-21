@@ -1,9 +1,4 @@
-
-
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -16,8 +11,8 @@ public class DatabaseIOTest
     Connection connection;
 
     String url = "jdbc:mysql://localhost/fedflixdb?" + "autoReconnect=true&useSSL=false";
-    String username = "kotteletfisk";
-    String password = "sovs";
+    String username = "root";
+    String password = "abc123";
 
     @Test
     public void establishConnection()
@@ -44,7 +39,8 @@ public class DatabaseIOTest
         String all_movies_query = "SELECT * FROM movielist;";
 
         try
-        { Statement statement = connection.createStatement();
+        {
+            Statement statement = connection.createStatement();
 
             ResultSet result = statement.executeQuery(all_movies_query);
 

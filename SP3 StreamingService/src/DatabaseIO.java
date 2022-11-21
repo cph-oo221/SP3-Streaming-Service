@@ -249,10 +249,19 @@ public class DatabaseIO
             // for every user in users
             for (User user : users)
             {
+                String username_exists_query = "SELECT name FROM userdata;";
+                Statement inner_statement = connection.createStatement();
+                inner_statement.executeQuery(username_exists_query);
+                ResultSet resultSet = inner_statement.getResultSet();
+                ArrayList<String> names = new ArrayList<>();
+                while(resultSet.next())
+                {
+                    names.add(resultSet.getString("name"));
+                }
                 // only write users that are not already in database
                 //;null;null is the default value for a user that is not in the database yet and has no showsseen or watchlist
 
-                if (!readUserData().contains(user.getUsername() + "," + user.getPassword() + ";null;null;")) //  || (!readUserData().contains(user.getUsername() + "," + user.getPassword() + user.getShowsSeen() + user.getFavouriteShows()))
+                if (!names.contains(user.getUsername())) //  || (!readUserData().contains(user.getUsername() + "," + user.getPassword() + user.getShowsSeen() + user.getFavouriteShows()))
                 {
                     // set values
                     preparedStatement.setString(1, user.getUsername());
