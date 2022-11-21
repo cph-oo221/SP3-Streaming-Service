@@ -8,18 +8,21 @@ abstract public class Media implements IMedia
 {
     private String name;
 
-    private String year; //Proper datatypes, or just strings???
+    private String year;
 
     private String[] genre;
 
     private String rating;
 
-    public Media(String name, String year, String[] genre, String rating)
+    private int id;
+
+    public Media(String name, String year, String[] genre, String rating, int id)
     {
         this.name = name;
         this.year = year;
         this.genre = genre;
         this.rating = rating;
+        this.id = id;
     }
     public void play() throws URISyntaxException, IOException
     {
@@ -62,5 +65,10 @@ abstract public class Media implements IMedia
     public String getRating()
     {
         return rating;
+    }
+
+    public int getId()
+    {
+        return id;
     }
 }

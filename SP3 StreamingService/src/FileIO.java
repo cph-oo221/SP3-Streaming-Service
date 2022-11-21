@@ -17,9 +17,11 @@ public class FileIO
         try {
             Scanner input = new Scanner(file);
 
+            int i = 1;
             while (input.hasNextLine())
             {
-                data.add(input.nextLine() + "\n");
+                data.add(input.nextLine() + ";" + i + ";" + "\n");
+                i++;
             }
         }
         catch (FileNotFoundException e)
@@ -36,9 +38,11 @@ public class FileIO
         try {
             Scanner input = new Scanner(file);
 
+            int i = 1;
             while (input.hasNextLine())
             {
-                data.add(input.nextLine() + "\n");
+                data.add(input.nextLine() + ";" + i + ";" + "\n");
+                i++;
             }
         }
         catch (FileNotFoundException e)
