@@ -10,6 +10,7 @@ public class Setup
 
     protected User runSetUp()
     {
+        io.isConnected();
         textUI.displayMessage("""
                     Welcome to fedFlix!
                     
