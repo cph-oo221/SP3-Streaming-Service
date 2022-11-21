@@ -53,12 +53,15 @@ public class IO
 
     protected void writeUserData(ArrayList<User> users)
     {
+        textUI.displayMessage("Attempting to connect to database...");
         if (databaseIO.establishConnection())
         {
+            textUI.displayMessage("Connection succesful");
             databaseIO.writeUserData(users);
         }
         else
         {
+            textUI.displayMessage("Connection failed. using internal storage");
             fileIO.writeUserData(users);
         }
     }
