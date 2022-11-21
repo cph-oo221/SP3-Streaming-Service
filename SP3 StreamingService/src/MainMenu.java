@@ -7,8 +7,6 @@ public class MainMenu
     private User currentUser;
     private ArrayList<IMedia> media = new ArrayList<>();
     public TextUI textUI = new TextUI();
-
-    private FileIO fileIO = new FileIO();
     public SearchFunction searchFunction = new SearchFunction(currentUser, media);
 
     public MainMenu(User currentUser, ArrayList<User> users)
@@ -153,17 +151,20 @@ public class MainMenu
     // logout method to return to login screen
     protected void logOut()
     {
-
         IO io = new IO();
+        DatabaseIO databaseIO = new DatabaseIO();
+        FileIO fileIO = new FileIO();
 
-        try
+        if(!databaseIO.establishConnection())
         {
-            fileIO.deleteFile();
-        }
-
-        catch (FileNotFoundException f)
-        {
-            textUI.displayMessage(f.getMessage());
+            try
+            {
+                fileIO.deleteFile();
+            }
+            catch (FileNotFoundException f)
+            {
+                textUI.displayMessage(f.getMessage());
+            }
         }
 
         io.writeUserData(users);
