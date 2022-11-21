@@ -1,3 +1,4 @@
+import javax.swing.plaf.nimbus.State;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -5,8 +6,8 @@ public class DatabaseIO
 {
     private Connection connection;
     private String url = "jdbc:mysql://localhost/fedflixdb?" + "autoReconnect=true&useSSL=false";
-    private String username ="root";
-    private String password ="abc123";
+    private String username = "root";
+    private String password = "abc123";
 
     public boolean establishConnection()
     {
@@ -15,8 +16,7 @@ public class DatabaseIO
         {
             connection = DriverManager.getConnection(url, username, password);
             return connection.isValid(1);
-        }
-        catch (SQLException e)
+        } catch (SQLException e)
         {
             return false;
         }
@@ -60,8 +60,7 @@ public class DatabaseIO
                 // add k to arraylist
                 movieData.add(k);
             }
-        }
-        catch (SQLException e)
+        } catch (SQLException e)
         {
             throw new RuntimeException(e);
         }
@@ -107,8 +106,7 @@ public class DatabaseIO
                 // add k to arraylist
                 seriesData.add(k);
             }
-        }
-        catch (SQLException e)
+        } catch (SQLException e)
         {
             throw new RuntimeException(e);
         }
@@ -176,15 +174,13 @@ public class DatabaseIO
                         }
 
                     } while (showsSeen_result.next());
-                }
-
-                else concat_string.append("null");
+                } else concat_string.append("null");
 
                 concat_string.append(";");
 
 
                 // get watchlist names. Concat to userstring
-                String watchlists_query ="SELECT movielist.Name moviename, serieslist.Name seriesname FROM watchlists\n" +
+                String watchlists_query = "SELECT movielist.Name moviename, serieslist.Name seriesname FROM watchlists\n" +
                         "LEFT JOIN movielist ON movielist.movie_id = watchlists.movie_id\n" +
                         "LEFT JOIN serieslist ON serieslist.series_id = watchlists.series_id \n" +
                         "WHERE user_id = " + id + ";";
@@ -209,9 +205,7 @@ public class DatabaseIO
                         }
 
                     } while (watchlists_result.next());
-                }
-
-                else concat_string.append("null");
+                } else concat_string.append("null");
 
                 concat_string.append(";");
 
@@ -220,9 +214,7 @@ public class DatabaseIO
                 // add concatinated user string to arraylist
                 output.add(concat_string.toString());
             }
-        }
-
-        catch (SQLException e)
+        } catch (SQLException e)
         {
             e.printStackTrace();
         }
@@ -254,7 +246,7 @@ public class DatabaseIO
                 inner_statement.executeQuery(username_exists_query);
                 ResultSet resultSet = inner_statement.getResultSet();
                 ArrayList<String> names = new ArrayList<>();
-                while(resultSet.next())
+                while (resultSet.next())
                 {
                     names.add(resultSet.getString("name"));
                 }
@@ -274,10 +266,113 @@ public class DatabaseIO
 
             // close statement
             preparedStatement.close();
-        }
-        catch (SQLException e)
+        } catch (SQLException e)
         {
             e.printStackTrace();
+        }
+    }
+
+
+    public void deleteMediaFromShowsSeen(User currentUser)
+    {
+        establishConnection();
+        String getUserdata_query = "SELECT * FROM userdata;";
+        Statement statement = null;
+        int id = 0;
+        try
+        {
+            statement = connection.createStatement();
+            statement.executeQuery(getUserdata_query);
+
+            ResultSet userdata = statement.getResultSet();
+            while (userdata.next())
+            {
+                if (currentUser.getUsername() == userdata.getString("name"))
+                {
+                    id = userdata.getInt("user_id");
+                    break;
+                }
+            }
+            statement.close();
+        } catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+
+        ArrayList<String> showsSeen = currentUser.getShowsSeen();
+        ArrayList<String> showsSeenMatch = new ArrayList<>();
+        String mediaList_query = "SELECT movielist.Name moviename, serieslist.Name seriesname FROM showsseen\n" +
+                "LEFT JOIN movielist ON movielist.movie_id = showsseen.movie_id\n" +
+                "LEFT JOIN serieslist ON serieslist.series_id = showsseen.series_id \n";
+        try
+        {
+            statement = connection.createStatement();
+
+            statement.executeQuery(mediaList_query);
+
+            ResultSet allMedia_result = statement.getResultSet();
+
+            ArrayList<String> allMedia = new ArrayList<>();
+
+            while (allMedia_result.next())
+            {
+                for (String s : showsSeen)
+                {
+                    if(s.equals(allMedia_result.getString("Name")))
+                    {
+                        showsSeenMatch.add(allMedia_result.getString("series_id"));
+                    }
+                }
+            }
+        } catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+
+
+        String showsseen_query = "SELECT movielist.Name moviename, serieslist.Name seriesname FROM showsseen\n" +
+                "LEFT JOIN movielist ON movielist.movie_id = showsseen.movie_id\n" +
+                "LEFT JOIN serieslist ON serieslist.series_id = showsseen.series_id \n" +
+                "WHERE user_id = " + id + ";";
+        for (String s : showsSeen)
+        {
+            String [] mediaData = s.split(";");
+            try
+            {
+                statement = connection.createStatement();
+
+                statement.executeQuery(showsseen_query);
+
+                ResultSet showsSeen_result = statement.getResultSet();
+
+
+                while (showsSeen_result.next())
+                {
+                    if (!currentUser.getShowsSeen().contains(showsSeen_result.getString("name")))
+                    {
+                        int mediaID = Integer.parseInt(mediaData[0]);
+                        if(mediaID <= 100)
+                        {
+                            String addToSeen_Query = "INSERT INTO fedflixdb.showsseen (movie_id, user_id) VALUES (?, ?)";
+                            PreparedStatement preparedStatement = connection.prepareStatement(addToSeen_Query);
+                            preparedStatement.setInt(1, (mediaID));
+                            preparedStatement.setInt(2, (id));
+                            preparedStatement.execute();
+                        }
+                        else
+                        {
+                            String addToSeen_Query = "INSERT INTO fedflixdb.showsseen (series_id, user_id) VALUES (?, ?)";
+                            PreparedStatement preparedStatement = connection.prepareStatement(addToSeen_Query);
+                            preparedStatement.setInt(1, (mediaID));
+                            preparedStatement.setInt(2, (id));
+                            preparedStatement.execute();
+                        }
+                    }
+                }
+            } catch (SQLException e)
+            {
+                throw new RuntimeException(e);
+            }
         }
     }
 }

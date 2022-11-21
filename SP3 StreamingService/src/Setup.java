@@ -121,6 +121,7 @@ public class Setup
                 if (u.getUsername().equalsIgnoreCase(name))
                 {
                     exists = true;
+                    break;
                 }
 
             }
