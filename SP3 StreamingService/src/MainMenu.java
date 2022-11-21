@@ -155,6 +155,8 @@ public class MainMenu
         DatabaseIO databaseIO = new DatabaseIO();
         FileIO fileIO = new FileIO();
 
+        // TODO MABYE DELETE THIS IF STATEMENT, BUT IDK IF IT WILL BREAK ANYTHING
+
         if(!databaseIO.establishConnection())
         {
             try
