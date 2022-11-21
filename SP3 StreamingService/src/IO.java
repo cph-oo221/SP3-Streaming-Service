@@ -9,7 +9,7 @@ public class IO
     protected ArrayList<String> readMovieData()
     {
         textUI.displayMessage("Attempting to connect to database...");
-        if (databaseIO.establishConnection())
+        if (isConnected())
         {
             textUI.displayMessage("Connection succesful");
             return databaseIO.readMovieData();
@@ -20,11 +20,15 @@ public class IO
             return fileIO.readMovieData();
         }
     }
+    public boolean isConnected ()
+    {
+        return databaseIO.establishConnection();
+    }
 
     protected ArrayList<String> readSeriesData()
     {
         textUI.displayMessage("Attempting to connect to database...");
-        if (databaseIO.establishConnection())
+        if (isConnected())
         {
             textUI.displayMessage("Connection succesful");
             return databaseIO.readSeriesData();
@@ -39,7 +43,7 @@ public class IO
     protected ArrayList<String> readUserData()
     {
         textUI.displayMessage("Attempting to connect to database...");
-        if (databaseIO.establishConnection())
+        if (isConnected())
         {
             textUI.displayMessage("Connection succesful");
             return databaseIO.readUserData();
@@ -54,7 +58,7 @@ public class IO
     protected void writeUserData(ArrayList<User> users)
     {
         textUI.displayMessage("Attempting to connect to database...");
-        if (databaseIO.establishConnection())
+        if (isConnected())
         {
             textUI.displayMessage("Connection succesful");
             databaseIO.writeUserData(users);

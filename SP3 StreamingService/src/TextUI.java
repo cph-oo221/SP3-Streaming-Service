@@ -44,7 +44,7 @@ public class TextUI
         boolean optionsActive = true;
         while(optionsActive)
         {
-            String choice ="";
+            String choice;
 
             if (options.size() < 1)
             {
