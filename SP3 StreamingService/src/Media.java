@@ -35,7 +35,10 @@ abstract public class Media implements IMedia
 
         //RickRoll happens to user
         Desktop d = Desktop.getDesktop();
-        d.browse(new URI("https://shattereddisk.github.io/rickroll/rickroll.mp4"));
+        
+        // new version https://streamja.com/lemyz
+        // old version https://shattereddisk.github.io/rickroll/rickroll.mp4
+        d.browse(new URI("https://streamja.com/lemyz"));
     }
 
     @Override
