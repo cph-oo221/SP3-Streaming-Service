@@ -257,7 +257,7 @@ public class DatabaseIO
                 {
                     names.add(resultSet.getString("name"));
                 }
-                
+
                 // only write users that are not already in database
                 if (!names.contains(user.getUsername()))
                 {

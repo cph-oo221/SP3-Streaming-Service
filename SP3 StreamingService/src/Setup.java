@@ -57,7 +57,8 @@ public class Setup
         return null;
     }
 
-    private ArrayList<User> createUsers() {
+    private ArrayList<User> createUsers()
+    {
         ArrayList<String> userData = io.readUserData();
 
        // int entries = fileIO.userCounter();
