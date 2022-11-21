@@ -38,7 +38,7 @@ public class FileIO
         try {
             Scanner input = new Scanner(file);
 
-            int i = 1;
+            int i = 101;
             while (input.hasNextLine())
             {
                 data.add(input.nextLine() + ";" + i + ";" + "\n");
