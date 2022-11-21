@@ -5,8 +5,8 @@ public class DatabaseIO
 {
     private Connection connection;
     private String url = "jdbc:mysql://localhost/fedflixdb?" + "autoReconnect=true&useSSL=false";
-    private String username ="kotteletfisk";
-    private String password ="joe";
+    private String username ="root";
+    private String password ="oo123";
 
     public boolean establishConnection()
     {
@@ -52,10 +52,10 @@ public class DatabaseIO
                 String movieYear = resultSet.getString("Year");
                 String movieCategories = resultSet.getString("Categories");
                 String movieRating = resultSet.getString("Rating");
-                int id = resultSet.getInt("movie_id");
+
 
                 // make string k that takes the data from the row
-                String k = movieName + ";" + movieYear + ";" + movieCategories + ";" + movieRating + ";" + id + ";";
+                String k = movieName + ";" + movieYear + ";" + movieCategories + ";" + movieRating;
 
                 // add k to arraylist
                 movieData.add(k);
@@ -100,9 +100,9 @@ public class DatabaseIO
                 String seriesCategories = resultSet.getString("Categories");
                 String seriesRating = resultSet.getString("Rating");
                 String seriesSeasons = resultSet.getString("Seasons");
-                int id = resultSet.getInt("series_id");
 
-                String k = seriesName + ";" + seriesYear + ";" + seriesCategories + ";" + seriesRating + ";" + seriesSeasons + ";" + id + ";";
+
+                String k = seriesName + ";" + seriesYear + ";" + seriesCategories + ";" + seriesRating + ";" + seriesSeasons;
 
                 // add k to arraylist
                 seriesData.add(k);
@@ -233,17 +233,17 @@ public class DatabaseIO
 
     public void writeUserData(ArrayList<User> users)
     {
-        // establi---sh connection
+        // establish connection
         establishConnection();
 
         // Statement writeUserDate
         // join showsseen on showsseen.user_id = userdata.user_id join watchlists on watchlists.user_id = userdata.user_id;
-        String write_User_query = "INSERT INTO userdata (Name, Password) VALUES (?, ?)";
+        String wrtie_User_query = "INSERT INTO userdata (Name, Password) VALUES (?, ?)";
 
         try
         {
             // create statement
-            PreparedStatement preparedStatement = connection.prepareStatement(write_User_query);
+            PreparedStatement preparedStatement = connection.prepareStatement(wrtie_User_query);
 
             // for every user in users
             for (User user : users)
@@ -257,8 +257,8 @@ public class DatabaseIO
                 {
                     names.add(resultSet.getString("name"));
                 }
-
                 // only write users that are not already in database
+
                 if (!names.contains(user.getUsername()))
                 {
                     // set values
