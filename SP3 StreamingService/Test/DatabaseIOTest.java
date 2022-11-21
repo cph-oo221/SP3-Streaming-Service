@@ -160,7 +160,7 @@ public class DatabaseIOTest
                     //watchlists_result.beforeFirst();
                     do
                     {
-                        if (watchlists_result.getString("moviename") != null) //TODO jumps directly out of loop if showsseen == null??
+                        if (watchlists_result.getString("moviename") != null)
                         {
 
                             concat_string.append(watchlists_result.getString("moviename") + ",");
