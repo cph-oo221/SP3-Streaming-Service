@@ -112,8 +112,8 @@ public class DatabaseIOTest
 
                 // get showseen names list. concat to userstring
                 String showsseen_query = "SELECT movielist.Name moviename, serieslist.Name seriesname FROM showsseen\n" +
-                        "LEFT JOIN movielist ON movielist.movie_id = showsseen.movie_id\n" +
-                        "LEFT JOIN serieslist ON serieslist.series_id = showsseen.series_id \n" +
+                        "LEFT JOIN movielist ON movielist.movie_id = showsseen.media_id\n" +
+                        "LEFT JOIN serieslist ON serieslist.series_id = showsseen.media_id\n" +
                         "WHERE user_id = " + id + ";";
 
 
@@ -147,8 +147,8 @@ public class DatabaseIOTest
 
                 // get watchlist. concat to userstring
                 String watchlists_query ="SELECT movielist.Name moviename, serieslist.Name seriesname FROM watchlists\n" +
-                        "LEFT JOIN movielist ON movielist.movie_id = watchlists.movie_id\n" +
-                        "LEFT JOIN serieslist ON serieslist.series_id = watchlists.series_id \n" +
+                        "LEFT JOIN movielist ON movielist.movie_id = watchlists.media_id\n" +
+                        "LEFT JOIN serieslist ON serieslist.series_id = watchlists.media_id\n" +
                         "WHERE user_id = " + id + ";";
 
                 inner_statement.executeQuery(watchlists_query);
@@ -199,8 +199,10 @@ public class DatabaseIOTest
     }
 
     @Test
-    public void writeUserDataTest(ArrayList<User> users)
+    public void writeUserDataTest() // users arraylist parameter
     {
+        ArrayList<User> users = new ArrayList<>();
+
         // establi---sh connection
         establishConnection();
 
