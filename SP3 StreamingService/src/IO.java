@@ -65,12 +65,6 @@ public class IO
             fileIO.writeUserData(users);
         }
     }
-
-    protected int userCounter()
-    {
-        return 1;
-    }
-
 }
 
 
