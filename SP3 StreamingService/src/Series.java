@@ -7,9 +7,9 @@ public class Series extends Media
     private final String type = "Series";
 
 
-    public Series(String name, String year, String[] genre, String rating, String[] seasons)
+    public Series(String name, String year, String[] genre, String rating, String[] seasons, int id)
     {
-        super(name, year, genre, rating);
+        super(name, year, genre, rating, id);
         this.seasons = seasons;
     }
 

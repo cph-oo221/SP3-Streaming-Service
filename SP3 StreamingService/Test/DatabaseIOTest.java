@@ -1,4 +1,9 @@
+
+
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -11,8 +16,8 @@ public class DatabaseIOTest
     Connection connection;
 
     String url = "jdbc:mysql://localhost/fedflixdb?" + "autoReconnect=true&useSSL=false";
-    String username = "root";
-    String password = "abc123";
+    String username = "kotteletfisk";
+    String password = "sovs";
 
     @Test
     public void establishConnection()
@@ -31,7 +36,7 @@ public class DatabaseIOTest
     }
 
     @Test
-    public void readMovieData()
+    public void readMovieDataTest()
     {
         establishConnection();
 
@@ -39,8 +44,7 @@ public class DatabaseIOTest
         String all_movies_query = "SELECT * FROM movielist;";
 
         try
-        {
-            Statement statement = connection.createStatement();
+        { Statement statement = connection.createStatement();
 
             ResultSet result = statement.executeQuery(all_movies_query);
 
@@ -51,10 +55,11 @@ public class DatabaseIOTest
                 String year = result.getString("Year");
                 String categories = result.getString("Categories");
                 String rating = result.getString("Rating");
+                int id = result.getInt("movie_id");
 
                 // System.out.println(name + " " + year + " " + categories + " " + rating);
 
-                String concat = name.trim() + ";" + year.trim()  + ";" + categories.trim()  + ";" + rating.trim();
+                String concat = name.trim() + ";" + year.trim()  + ";" + categories.trim()  + ";" + rating.trim() + ";" + id + ";";
 
                 output.add(concat);
             }
@@ -192,4 +197,45 @@ public class DatabaseIOTest
             e.printStackTrace();
         }
     }
+
+//    @Test
+//    public void writeUserDataTest(ArrayList<User> users)
+//    {
+//        // establi---sh connection
+//        establishConnection();
+//
+//        String get_usernames_query = "SELECT user_id, Name FROM userdata;";
+//
+//        try
+//        {
+//            Statement statement = connection.createStatement();
+//
+//            ResultSet usernames = statement.executeQuery(get_usernames_query);
+//
+//            while (usernames.next())
+//            {
+//                int id;
+//
+//                String write_user_query = "";
+//
+//                for (User u: users)
+//                {
+//                    if (u.getUsername().equals(usernames.getString("Name")))
+//                    {
+//                        // user already exists. update showsseen and watchlist.
+//
+//                        id = usernames.getInt("user_id");
+//
+//                        // search for showseen media id's for user.
+//
+//                        //
+//                    }
+//                }
+//            }
+//        }
+//        catch (SQLException e)
+//        {
+//            e.printStackTrace();
+//        }
+//    }
 }
