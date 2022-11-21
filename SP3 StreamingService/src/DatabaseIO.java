@@ -237,6 +237,8 @@ public class DatabaseIO
         establishConnection();
 
         // Statement writeUserDate
+
+        // join showsseen on showsseen.user_id = userdata.user_id join watchlists on watchlists.user_id = userdata.user_id;
         String wrtie_User_query = "INSERT INTO userdata (Name, Password) VALUES (?, ?)";
 
         try
