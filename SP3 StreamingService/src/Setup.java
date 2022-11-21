@@ -4,7 +4,7 @@ import java.util.Arrays;
 public class Setup
 {
     private TextUI textUI = new TextUI();
-    private FileIO fileIO = new FileIO();
+    private IO io = new IO();
 
     private ArrayList<User> users = new ArrayList<>();
 
@@ -20,22 +20,17 @@ public class Setup
                     ********************""");
 
         String choice = textUI.getUserInput();
-        if (choice.equals("1"))
+        switch (choice)
         {
-            return register();
-        }
-        else if (choice.equals("2"))
-        {
-            return login();
-        }
-        else if (choice.equals("3"))
-        {
-            return exit();
-        }
-        else
-        {
-            textUI.displayMessage("Invalid input, please try again");
-            return runSetUp();
+            case "1":
+                return register();
+            case "2":
+                return login();
+            case "3":
+                return exit();
+            default:
+                textUI.displayMessage("Invalid input, please try again");
+                return runSetUp();
         }
     }
 
@@ -63,13 +58,14 @@ public class Setup
     }
 
     private ArrayList<User> createUsers() {
-        ArrayList<String> userData = fileIO.readUserData();
+        ArrayList<String> userData = io.readUserData();
 
-        int entries = fileIO.userCounter();
+       // int entries = fileIO.userCounter();
 
-        for (int i = 0; i < entries; i++) {
+        for (String userDatum : userData)
+        {
 
-            String[] allTheData = userData.get(i).split(";");
+            String[] allTheData = userDatum.split(";");
 
 
             ArrayList<String> showsSeen = new ArrayList<>();
@@ -98,7 +94,7 @@ public class Setup
             users.add(user);
 
 
-            if(allTheData.length != 3)
+            if (allTheData.length != 3)
             {
                 textUI.displayMessage("User data error!");
             }
@@ -124,7 +120,6 @@ public class Setup
                 if (u.getUsername().equalsIgnoreCase(name))
                 {
                     exists = true;
-
                 }
 
             }
