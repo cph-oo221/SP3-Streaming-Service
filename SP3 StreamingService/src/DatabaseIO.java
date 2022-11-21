@@ -233,6 +233,51 @@ public class DatabaseIO
 
     public void writeUserData(ArrayList<User> users)
     {
+        // establish connection
+        establishConnection();
 
+        // Statement writeUserDate
+
+        // join showsseen on showsseen.user_id = userdata.user_id join watchlists on watchlists.user_id = userdata.user_id;
+        String wrtie_User_query = "INSERT INTO userdata (Name, Password) VALUES (?, ?)";
+
+        try
+        {
+            // create statement
+            PreparedStatement preparedStatement = connection.prepareStatement(wrtie_User_query);
+
+            // for every user in users
+            for (User user : users)
+            {
+                String username_exists_query = "SELECT name FROM userdata;";
+                Statement inner_statement = connection.createStatement();
+                inner_statement.executeQuery(username_exists_query);
+                ResultSet resultSet = inner_statement.getResultSet();
+                ArrayList<String> names = new ArrayList<>();
+                while(resultSet.next())
+                {
+                    names.add(resultSet.getString("name"));
+                }
+                // only write users that are not already in database
+                //;null;null is the default value for a user that is not in the database yet and has no showsseen or watchlist
+
+                if (!names.contains(user.getUsername())) //  || (!readUserData().contains(user.getUsername() + "," + user.getPassword() + user.getShowsSeen() + user.getFavouriteShows()))
+                {
+                    // set values
+                    preparedStatement.setString(1, user.getUsername());
+                    preparedStatement.setString(2, user.getPassword());
+
+                    // execute statement
+                    preparedStatement.execute();
+                }
+            }
+
+            // close statement
+            preparedStatement.close();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
     }
 }
