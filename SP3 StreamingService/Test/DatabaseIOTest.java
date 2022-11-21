@@ -31,7 +31,7 @@ public class DatabaseIOTest
     }
 
     @Test
-    public void readMovieData()
+    public void readMovieDataTest()
     {
         establishConnection();
 
@@ -51,10 +51,11 @@ public class DatabaseIOTest
                 String year = result.getString("Year");
                 String categories = result.getString("Categories");
                 String rating = result.getString("Rating");
+                int id = result.getInt("movie_id");
 
                 // System.out.println(name + " " + year + " " + categories + " " + rating);
 
-                String concat = name.trim() + ";" + year.trim()  + ";" + categories.trim()  + ";" + rating.trim();
+                String concat = name.trim() + ";" + year.trim()  + ";" + categories.trim()  + ";" + rating.trim() + ";" + id + ";";
 
                 output.add(concat);
             }
