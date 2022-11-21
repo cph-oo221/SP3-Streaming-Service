@@ -4,30 +4,34 @@ public class IO
 {
     private DatabaseIO databaseIO = new DatabaseIO();
     private FileIO fileIO = new FileIO();
-
     private TextUI textUI = new TextUI();
 
     protected ArrayList<String> readMovieData()
     {
+        textUI.displayMessage("Attempting to connect to database...");
         if (databaseIO.establishConnection())
         {
+            textUI.displayMessage("Connection succesful");
             return databaseIO.readMovieData();
         }
         else
         {
-            textUI.displayMessage("There is no connection to database, using internal storage");
+            textUI.displayMessage("Connection failed. using internal storage");
             return fileIO.readMovieData();
         }
     }
 
     protected ArrayList<String> readSeriesData()
     {
+        textUI.displayMessage("Attempting to connect to database...");
         if (databaseIO.establishConnection())
         {
+            textUI.displayMessage("Connection succesful");
             return databaseIO.readSeriesData();
         }
         else
         {
+            textUI.displayMessage("Connection failed. using internal storage");
             return fileIO.readSeriesData();
         }
     }
@@ -49,19 +53,17 @@ public class IO
 
     protected void writeUserData(ArrayList<User> users)
     {
+        textUI.displayMessage("Attempting to connect to database...");
         if (databaseIO.establishConnection())
         {
+            textUI.displayMessage("Connection succesful");
             databaseIO.writeUserData(users);
         }
         else
         {
+            textUI.displayMessage("Connection failed. using internal storage");
             fileIO.writeUserData(users);
         }
-    }
-
-    protected int userCounter()
-    {
-        return 1;
     }
 }
 

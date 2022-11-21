@@ -7,8 +7,6 @@ public class MainMenu
     private User currentUser;
     private ArrayList<IMedia> media = new ArrayList<>();
     public TextUI textUI = new TextUI();
-
-    private FileIO fileIO = new FileIO();
     public SearchFunction searchFunction = new SearchFunction(currentUser, media);
 
     public MainMenu(User currentUser, ArrayList<User> users)
@@ -153,17 +151,25 @@ public class MainMenu
     // logout method to return to login screen
     protected void logOut()
     {
-        try
+        IO io = new IO();
+        DatabaseIO databaseIO = new DatabaseIO();
+        FileIO fileIO = new FileIO();
+
+        // TODO MABYE DELETE THIS IF STATEMENT, BUT IDK IF IT WILL BREAK ANYTHING
+
+        if(!databaseIO.establishConnection())
         {
-            fileIO.deleteFile();
+            try
+            {
+                fileIO.deleteFile();
+            }
+            catch (FileNotFoundException f)
+            {
+                textUI.displayMessage(f.getMessage());
+            }
         }
 
-        catch (FileNotFoundException f)
-        {
-            textUI.displayMessage(f.getMessage());
-        }
-
-        fileIO.writeUserData(users);
+        io.writeUserData(users);
 
         FedFlix fedFlix = new FedFlix();
         fedFlix.runFedFlix();
