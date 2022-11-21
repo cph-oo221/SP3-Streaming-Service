@@ -63,12 +63,6 @@ public class IO
     {
         return 1;
     }
-
-    public ArrayList<String> readUserData()
-    {
-        ArrayList<String> userData = new ArrayList<>();
-        return userData;
-    }
 }
 
 
