@@ -7,32 +7,34 @@ public class IO
 
     private TextUI textUI = new TextUI();
 
+    private boolean isConnected;
+
     protected ArrayList<String> readMovieData()
     {
-        textUI.displayMessage("Attempting to connect to database...");
-        if (databaseIO.establishConnection())
+
+        if (isConnected)
         {
-            textUI.displayMessage("Connection succesful");
+
             return databaseIO.readMovieData();
         }
         else
         {
-            textUI.displayMessage("Connection failed. using internal storage");
+
             return fileIO.readMovieData();
         }
     }
 
     protected ArrayList<String> readSeriesData()
     {
-        textUI.displayMessage("Attempting to connect to database...");
-        if (databaseIO.establishConnection())
+
+        if (isConnected)
         {
-            textUI.displayMessage("Connection succesful");
+
             return databaseIO.readSeriesData();
         }
         else
         {
-            textUI.displayMessage("Connection failed. using internal storage");
+
             return fileIO.readSeriesData();
         }
     }
@@ -40,7 +42,10 @@ public class IO
     protected ArrayList<String> readUserData()
     {
         textUI.displayMessage("Attempting to connect to database...");
-        if (databaseIO.establishConnection())
+
+        isConnected = databaseIO.establishConnection();
+
+        if (isConnected)
         {
             textUI.displayMessage("Connection succesful");
             return databaseIO.readUserData();
@@ -54,15 +59,15 @@ public class IO
 
     protected void writeUserData(ArrayList<User> users, ArrayList<IMedia> media)
     {
-        textUI.displayMessage("Attempting to connect to database...");
-        if (databaseIO.establishConnection())
+
+        if (isConnected)
         {
-            textUI.displayMessage("Connection succesful");
+
             databaseIO.writeUserData(users, media);
         }
         else
         {
-            textUI.displayMessage("Connection failed. using internal storage");
+
             fileIO.writeUserData(users);
         }
     }
