@@ -5,7 +5,7 @@ public class MainMenu
 {
     private ArrayList<User> users;
     private User currentUser;
-    private ArrayList<IMedia> media = new ArrayList<>();
+    public ArrayList<IMedia> media = new ArrayList<>();
     public TextUI textUI = new TextUI();
     public SearchFunction searchFunction = new SearchFunction(currentUser, media);
 
@@ -130,12 +130,14 @@ public class MainMenu
         ArrayList<String> moviedata = io.readMovieData();
         ArrayList<String> seriesdata = io.readSeriesData();
 
+
         for (String s : moviedata)
         {
             String[] values = s.split(";");
             String[] categories = values[2].split(",");
-            Movie movie = new Movie(values[0], values[1], categories, values[3]);
+            Movie movie = new Movie(values[0], values[1], categories, values[3], Integer.parseInt(values[4]));
             media.add(movie);
+
         }
 
         for (String s : seriesdata)
@@ -143,7 +145,7 @@ public class MainMenu
             String[] values = s.split(";");
             String[] categories = values[2].split(",");
             String[] seasons = values[4].split(",");
-            Series series = new Series(values[0], values[1], categories, values[3], seasons);
+            Series series = new Series(values[0], values[1], categories, values[3], seasons, Integer.parseInt(values[5]));
             media.add(series);
         }
     }
@@ -169,9 +171,10 @@ public class MainMenu
             }
         }
 
-        io.writeUserData(users);
+        io.writeUserData(users, media);
 
         FedFlix fedFlix = new FedFlix();
         fedFlix.runFedFlix();
     }
+
 }

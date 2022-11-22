@@ -52,13 +52,13 @@ public class IO
         }
     }
 
-    protected void writeUserData(ArrayList<User> users)
+    protected void writeUserData(ArrayList<User> users, ArrayList<IMedia> media)
     {
         textUI.displayMessage("Attempting to connect to database...");
         if (databaseIO.establishConnection())
         {
             textUI.displayMessage("Connection succesful");
-            databaseIO.writeUserData(users);
+            databaseIO.writeUserData(users, media);
         }
         else
         {

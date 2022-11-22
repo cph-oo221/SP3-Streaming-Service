@@ -2,9 +2,9 @@ public class Movie extends Media
 {
     private final String type = "Movie";
 
-    public Movie(String name, String year, String[] genre, String rating)
+    public Movie(String name, String year, String[] genre, String rating, int id)
     {
-        super(name, year, genre, rating);
+        super(name, year, genre, rating, id);
     }
 
     @Override
