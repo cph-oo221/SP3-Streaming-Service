@@ -1,15 +1,11 @@
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.sql.*;
 import java.util.ArrayList;
 
 public class DatabaseIO
 {
-    IMedia media;
-
-    public IMedia getMedia()
-    {
-        return media;
-    }
-
+    SearchFunction searchFunction;
     private Connection connection;
     private String url = "jdbc:mysql://localhost/fedflixdb?" + "autoReconnect=true&useSSL=false";
     private String username ="root";
@@ -158,8 +154,8 @@ public class DatabaseIO
 
                 // get showsseen list names. Concat to userstring
                 String showsseen_query = "SELECT movielist.Name moviename, serieslist.Name seriesname FROM showsseen\n" +
-                        "LEFT JOIN movielist ON movielist.movie_id = showsseen.movie_id\n" +
-                        "LEFT JOIN serieslist ON serieslist.series_id = showsseen.series_id \n" +
+                        "LEFT JOIN movielist ON movielist.movie_id = showsseen.media_id\n" +
+                        "LEFT JOIN serieslist ON serieslist.series_id = showsseen.media_id \n" +
                         "WHERE user_id = " + id + ";";
 
 
@@ -192,8 +188,8 @@ public class DatabaseIO
 
                 // get watchlist names. Concat to userstring
                 String watchlists_query = "SELECT movielist.Name moviename, serieslist.Name seriesname FROM watchlists\n" +
-                        "LEFT JOIN movielist ON movielist.movie_id = watchlists.movie_id\n" +
-                        "LEFT JOIN serieslist ON serieslist.series_id = watchlists.series_id \n" +
+                        "LEFT JOIN movielist ON movielist.movie_id = watchlists.media_id\n" +
+                        "LEFT JOIN serieslist ON serieslist.series_id = watchlists.media_id \n" +
                         "WHERE user_id = " + id + ";";
 
                 inner_statement.executeQuery(watchlists_query);
@@ -276,7 +272,7 @@ public class DatabaseIO
                     // execute statement
                     preparedStatement.execute();
                 }
-
+                
 
 
 
@@ -289,6 +285,12 @@ public class DatabaseIO
             e.printStackTrace();
         }
     }
+
+
+
+
+
+
 
 
 
