@@ -5,8 +5,8 @@ public class DatabaseIO
 {
     private Connection connection;
     private String url = "jdbc:mysql://localhost/fedflixdb?" + "autoReconnect=true&useSSL=false";
-    private String username ="root";
-    private String password ="oo123";
+    private String username ="root1";
+    private String password ="Frederik1988";
 
     public boolean establishConnection()
     {

@@ -20,7 +20,7 @@ public class FileIO
             int i = 1;
             while (input.hasNextLine())
             {
-                data.add(input.nextLine() + ";" + i + ";" + "\n");
+                data.add(input.nextLine() + i + ";");
                 i++;
             }
         }
@@ -41,7 +41,7 @@ public class FileIO
             int i = 101;
             while (input.hasNextLine())
             {
-                data.add(input.nextLine() + ";" + i + ";" + "\n");
+                data.add(input.nextLine()+ i + ";");
                 i++;
             }
         }
