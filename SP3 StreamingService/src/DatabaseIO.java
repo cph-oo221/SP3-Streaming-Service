@@ -264,7 +264,7 @@ public class DatabaseIO
 
             try
             {
-                // establi---sh connection
+                // establish connection
                 establishConnection();
 
                 // get users from database

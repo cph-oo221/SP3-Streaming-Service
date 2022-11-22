@@ -5,7 +5,6 @@ public class Setup
 {
     private TextUI textUI = new TextUI();
     private IO io = new IO();
-
     private ArrayList<User> users = new ArrayList<>();
 
     protected User runSetUp()
