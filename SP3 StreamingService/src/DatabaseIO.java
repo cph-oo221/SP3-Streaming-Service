@@ -309,8 +309,8 @@ public class DatabaseIO
 
                 else
                 {
-                    inner_statement.execute("INSERT INTO userdata (Name, Password) VALUES (" + user.getUsername() + ", " + user.getPassword() + ");");
-                    ResultSet user_id = inner_statement.executeQuery("SELECT user_id FROM userdata WHERE Name = " + user.getUsername() + ";");
+                    inner_statement.execute("INSERT INTO userdata (Name, Password) VALUES ('" + user.getUsername() + "', '" + user.getPassword() + "');");
+                    ResultSet user_id = inner_statement.executeQuery("SELECT user_id FROM userdata WHERE Name = '" + user.getUsername() + "';");
 
                     if (showseen_id.size() > 0)
                     {
