@@ -6,7 +6,7 @@ public class DatabaseIO
     private Connection connection;
     private String url = "jdbc:mysql://localhost/fedflixdb?" + "autoReconnect=true&useSSL=false";
     private String username ="root";
-    private String password ="oo123";
+    private String password ="Frederik1988";
 
     public boolean establishConnection()
     {
@@ -233,6 +233,8 @@ public class DatabaseIO
 
     public void writeUserData(ArrayList<User> users, ArrayList<IMedia> media) // users arraylist parameter
     {
+//        ArrayList<Media> media = new ArrayList<>();
+//        ArrayList<User> users = new ArrayList<>();
 
         for (User user : users)
         {
@@ -264,7 +266,7 @@ public class DatabaseIO
 
             try
             {
-                // establish connection
+                // establi---sh connection
                 establishConnection();
 
                 // get users from database
@@ -307,10 +309,8 @@ public class DatabaseIO
 
                 else
                 {
-                    // Insert new user if user does not exist
-                    String insert_user_query = "INSERT INTO userdata (Name, Password) VALUES ('" + user.getUsername() + "', '" + user.getPassword() + "');";
 
-                    // get user id
+                    String insert_user_query = "INSERT INTO userdata (Name, Password) VALUES ('" + user.getUsername() + "', '" + user.getPassword() + "');";
                     inner_statement.execute(insert_user_query);
 
                     // Get user id from userdata table
@@ -318,7 +318,7 @@ public class DatabaseIO
                     user_id_result.next();
                     int user_id = user_id_result.getInt("user_id");
 
-                    // Insert showsseen
+
                     if (showseen_id.size() > 0)
                     {
                         for (int media_id : showseen_id)
@@ -327,7 +327,6 @@ public class DatabaseIO
                         }
                     }
 
-                    // Insert watchlists
                     if (watchlist_id.size() > 0)
                     {
                         for (int media_id : watchlist_id)
