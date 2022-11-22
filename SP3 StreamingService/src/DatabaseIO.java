@@ -274,6 +274,7 @@ public class DatabaseIO
 
                 ResultSet db_user = statement.executeQuery(get_user_query);
 
+
                 Statement inner_statement = connection.createStatement();
 
                 if (db_user.next())
