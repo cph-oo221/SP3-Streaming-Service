@@ -309,7 +309,6 @@ public class DatabaseIO
 
                 else
                 {
-
                     String insert_user_query = "INSERT INTO userdata (Name, Password) VALUES ('" + user.getUsername() + "', '" + user.getPassword() + "');";
                     inner_statement.execute(insert_user_query);
 
