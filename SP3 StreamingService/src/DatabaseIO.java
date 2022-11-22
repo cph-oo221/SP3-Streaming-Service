@@ -6,7 +6,7 @@ public class DatabaseIO
     private Connection connection;
     private String url = "jdbc:mysql://localhost/fedflixdb?" + "autoReconnect=true&useSSL=false";
     private String username ="root";
-    private String password ="Frederik1988";
+    private String password ="oo123";
 
     public boolean establishConnection()
     {
@@ -309,22 +309,29 @@ public class DatabaseIO
 
                 else
                 {
-                    inner_statement.execute("INSERT INTO userdata (Name, Password) VALUES (" + user.getUsername() + ", " + user.getPassword() + ");");
-                    ResultSet user_id = inner_statement.executeQuery("SELECT user_id FROM userdata WHERE Name = " + user.getUsername() + ";");
+
+                    String insert_user_query = "INSERT INTO userdata (Name, Password) VALUES ('" + user.getUsername() + "', '" + user.getPassword() + "');";
+                    inner_statement.execute(insert_user_query);
+
+                    // Get user id from userdata table
+                    ResultSet user_id_result = inner_statement.executeQuery(get_user_query);
+                    user_id_result.next();
+                    int user_id = user_id_result.getInt("user_id");
+
 
                     if (showseen_id.size() > 0)
                     {
-                        for (int media_id: showseen_id)
+                        for (int media_id : showseen_id)
                         {
-                            inner_statement.execute("INSERT INTO showsseen (" + user_id + ", " + media_id + ");");
+                            inner_statement.execute("INSERT INTO showsseen (user_id, media_id) VALUES (" + user_id + ", " + media_id + ");");
                         }
                     }
 
                     if (watchlist_id.size() > 0)
                     {
-                        for (int media_id: watchlist_id)
+                        for (int media_id : watchlist_id)
                         {
-                            inner_statement.execute("INSERT INTO watchlists (" + user_id + ", " + media_id + ");");
+                            inner_statement.execute("INSERT INTO watchlists (user_id, media_id) VALUES (" + user_id + ", " + media_id + ");");
                         }
                     }
                 }
