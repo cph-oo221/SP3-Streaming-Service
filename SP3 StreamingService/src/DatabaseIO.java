@@ -233,8 +233,6 @@ public class DatabaseIO
 
     public void writeUserData(ArrayList<User> users, ArrayList<IMedia> media) // users arraylist parameter
     {
-//        ArrayList<Media> media = new ArrayList<>();
-//        ArrayList<User> users = new ArrayList<>();
 
         for (User user : users)
         {
