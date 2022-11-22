@@ -274,6 +274,13 @@ public class DatabaseIO
 
                 ResultSet db_user = statement.executeQuery(get_user_query);
 
+                // rewrite line 271, 273, 275 to use prepared statements
+                /*String get_user_query = "SELECT user_id FROM userdata WHERE Name LIKE ?;";
+                PreparedStatement statement = connection.prepareStatement(get_user_query);
+                statement.setString(1, user.getUsername());
+                ResultSet db_user = statement.executeQuery();*/
+
+
 
                 Statement inner_statement = connection.createStatement();
 
@@ -319,11 +326,25 @@ public class DatabaseIO
                     user_id_result.next();
                     int user_id = user_id_result.getInt("user_id");
 
+                    // rewrite line 319, 322, 325, 326, 327 to use prepared statements
+                    /*String prepared_user_query = "INSERT INTO userdata (Name, Password) VALUES (?, ?);";
+                    PreparedStatement prepared_statement = connection.prepareStatement(prepared_user_query);
+                    prepared_statement.setString(1, user.getUsername());
+                    prepared_statement.setString(2, user.getPassword());
+                    prepared_statement.execute();
+
+                    // Get user id from userdata table
+                    ResultSet prepared_user_id_result = prepared_statement.executeQuery(get_user_query);
+                    prepared_user_id_result.next();
+                    int user_id = prepared_user_id_result.getInt("user_id");*/
+
+
                     // Insert showsseen
                     if (showseen_id.size() > 0)
                     {
                         for (int media_id : showseen_id)
                         {
+
                             inner_statement.execute("INSERT INTO showsseen (user_id, media_id) VALUES (" + user_id + ", " + media_id + ");");
                         }
                     }
