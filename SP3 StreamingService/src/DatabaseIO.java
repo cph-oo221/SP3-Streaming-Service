@@ -231,44 +231,108 @@ public class DatabaseIO
     }
 
 
-    public void writeUserData(ArrayList<User> users)
+    public void writeUserData(ArrayList<User> users, ArrayList<IMedia> media) // users arraylist parameter
     {
-        // establi---sh connection
-        establishConnection();
+//        ArrayList<Media> media = new ArrayList<>();
+//        ArrayList<User> users = new ArrayList<>();
 
-        // Statement writeUserDate
-
-        // join showsseen on showsseen.user_id = userdata.user_id join watchlists on watchlists.user_id = userdata.user_id;
-        String write_User_query = "INSERT INTO userdata (Name, Password) VALUES (?, ?)";
-
-        try
+        for (User user : users)
         {
-            // create statement
-            PreparedStatement preparedStatement = connection.prepareStatement(write_User_query);
+            ArrayList<Integer> showseen_id = new ArrayList<>();
+            ArrayList<Integer> watchlist_id = new ArrayList<>();
 
-            // for every user in users
-            for (User user : users)
+            // translate user showseen to media id
+            for (String showseen_media_name : user.getShowsSeen())
             {
-                // only write users that are not already in database
-                //;null;null is the default value for a user that is not in the database yet and has no showsseen or watchlist
-
-                if (!readUserData().contains(user.getUsername() + "," + user.getPassword() + ";null;null;")) //  || (!readUserData().contains(user.getUsername() + "," + user.getPassword() + user.getShowsSeen() + user.getFavouriteShows()))
+                for (IMedia m : media)
                 {
-                    // set values
-                    preparedStatement.setString(1, user.getUsername());
-                    preparedStatement.setString(2, user.getPassword());
-
-                    // execute statement
-                    preparedStatement.execute();
+                    if (m.getName().equals(showseen_media_name))
+                    {
+                        showseen_id.add(m.getId());
+                    }
+                }
+            }
+            // translate user watchlist to media id
+            for (String watchlist_media_name : user.getFavouriteShows())
+            {
+                for (IMedia m : media)
+                {
+                    if (m.getName().equals(watchlist_media_name))
+                    {
+                        watchlist_id.add(m.getId());
+                    }
                 }
             }
 
-            // close statement
-            preparedStatement.close();
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
+            try
+            {
+                // establi---sh connection
+                establishConnection();
+
+                // get users from database
+                String get_user_query = "SELECT user_id FROM userdata WHERE Name = " + user.getUsername() + ";";
+
+                Statement statement = connection.createStatement();
+
+                ResultSet db_user = statement.executeQuery(get_user_query);
+
+                Statement inner_statement = connection.createStatement();
+
+                if (db_user.next())
+                {
+                    // Update user lists if user exists
+
+                    int user_id = db_user.getInt("user_id");
+
+                    String delete_current_db_showsseen = "DELETE FROM showseen WHERE user_id = " + user_id + ";";
+
+                    inner_statement.execute(delete_current_db_showsseen);
+
+                    if (showseen_id.size() > 0)
+                    {
+                        for (int media_id : showseen_id)
+                        {
+                            inner_statement.execute("INSERT INTO showseen (user_id, media_id) VALUES (" + user_id + ", " + media_id + ");");
+                        }
+                    }
+
+                    if (watchlist_id.size() > 0)
+                    {
+                        for (int media_id : watchlist_id)
+                        {
+                            inner_statement.execute("INSER INTO watchlists (user_id, media_id) VALUES (" + user_id + ", " + media_id + ");");
+                        }
+                    }
+                }
+
+                else
+                {
+                    inner_statement.execute("INSERT INTO userdata (Name, Password) VALUES (" + user.getUsername() + ", " + user.getPassword() + ");");
+                    ResultSet user_id = inner_statement.executeQuery("SELECT user_id FROM userdata WHERE Name = " + user.getUsername() + ";");
+
+                    if (showseen_id.size() > 0)
+                    {
+                        for (int media_id: showseen_id)
+                        {
+                            inner_statement.execute("INSERT INTO showsseen (" + user_id + ", " + media_id + ");");
+                        }
+                    }
+
+                    if (watchlist_id.size() > 0)
+                    {
+                        for (int media_id: watchlist_id)
+                        {
+                            inner_statement.execute("INSERT INTO watchlists (" + user_id + ", " + media_id + ");");
+                        }
+                    }
+                }
+            }
+
+            catch (SQLException e)
+            {
+                e.printStackTrace();
+            }
+
         }
     }
 }

@@ -16,4 +16,6 @@ public interface IMedia
 
     String getRating();
 
+    int getId();
+
 }

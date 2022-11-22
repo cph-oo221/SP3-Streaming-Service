@@ -5,7 +5,7 @@ public class MainMenu
 {
     private ArrayList<User> users;
     private User currentUser;
-    private ArrayList<IMedia> media = new ArrayList<>();
+    public ArrayList<IMedia> media = new ArrayList<>();
     public TextUI textUI = new TextUI();
     public SearchFunction searchFunction = new SearchFunction(currentUser, media);
 
@@ -171,9 +171,10 @@ public class MainMenu
             }
         }
 
-        io.writeUserData(users);
+        io.writeUserData(users, media);
 
         FedFlix fedFlix = new FedFlix();
         fedFlix.runFedFlix();
     }
+
 }

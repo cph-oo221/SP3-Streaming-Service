@@ -201,43 +201,109 @@ public class DatabaseIOTest
     @Test
     public void writeUserDataTest() // users arraylist parameter
     {
+        ArrayList<Media> media = new ArrayList<>();
         ArrayList<User> users = new ArrayList<>();
 
-        // establi---sh connection
-        establishConnection();
-
-        String get_usernames_query = "SELECT user_id, Name FROM userdata;";
-
-        try
-        {
-            Statement statement = connection.createStatement();
-
-            ResultSet usernames = statement.executeQuery(get_usernames_query);
-
-            while (usernames.next())
+            for (User user : users)
             {
-                int id;
+                ArrayList<Integer> showseen_id = new ArrayList<>();
+                ArrayList<Integer> watchlist_id = new ArrayList<>();
 
-                String write_user_query = "";
-
-                for (User u: users)
+                // translate user showseen to media id
+                for (String showseen_media_name : user.getShowsSeen())
                 {
-                    if (u.getUsername().equals(usernames.getString("Name")))
+                    for (Media m : media)
                     {
-                        // user already exists. update showsseen and watchlist.
-
-                        id = usernames.getInt("user_id");
-
-                        //
-
-                        //
+                        if (m.getName().equals(showseen_media_name))
+                        {
+                            showseen_id.add(m.getId());
+                        }
                     }
                 }
+                // translate user watchlist to media id
+                for (String watchlist_media_name : user.getFavouriteShows())
+                {
+                    for (Media m : media)
+                    {
+                        if (m.getName().equals(watchlist_media_name))
+                        {
+                            watchlist_id.add(m.getId());
+                        }
+                    }
+                }
+
+                try
+                {
+                    // establi---sh connection
+                    establishConnection();
+
+                    // get users from database
+                    String get_user_query = "SELECT user_id FROM userdata WHERE Name = " + user.getUsername() + ";";
+
+                    Statement statement = connection.createStatement();
+
+                    ResultSet db_user = statement.executeQuery(get_user_query);
+
+                    Statement inner_statement = connection.createStatement();
+
+                    if (db_user.next())
+                    {
+                        // Update user lists if user exists
+
+                        int user_id = db_user.getInt("user_id");
+
+                        String delete_current_db_showsseen = "DELETE FROM showseen WHERE user_id = " + user_id + ";";
+
+                        inner_statement.execute(delete_current_db_showsseen);
+
+                        if (showseen_id.size() > 0)
+                        {
+                            for (int media_id : showseen_id)
+                            {
+                                inner_statement.execute("INSERT INTO showseen (user_id, media_id) VALUES (" + user_id + ", " + media_id + ");");
+                            }
+                        }
+
+                        if (watchlist_id.size() > 0)
+                        {
+                            for (int media_id : watchlist_id)
+                            {
+                                inner_statement.execute("INSER INTO watchlists (user_id, media_id) VALUES (" + user_id + ", " + media_id + ");");
+                            }
+                        }
+                    }
+
+                    else
+                    {
+                        inner_statement.execute("INSERT INTO userdata (Name, Password) VALUES (" + user.getUsername() + ", " + user.getPassword() + ");");
+                        ResultSet user_id = inner_statement.executeQuery("SELECT user_id FROM userdata WHERE Name = " + user.getUsername() + ";");
+
+                        if (showseen_id.size() > 0)
+                        {
+                            for (int media_id: showseen_id)
+                            {
+                                inner_statement.execute("INSERT INTO showsseen (" + user_id + ", " + media_id + ");");
+                            }
+
+                        }
+
+                        if (watchlist_id.size() > 0)
+                        {
+                            for (int media_id: watchlist_id)
+                            {
+                                inner_statement.execute("INSERT INTO watchlists (" + user_id + ", " + media_id + ");");
+                            }
+
+                        }
+                    }
+                }
+
+                catch (SQLException e)
+                {
+                    e.printStackTrace();
+                }
+
             }
         }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-    }
 }
+
