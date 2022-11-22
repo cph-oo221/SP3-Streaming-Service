@@ -135,7 +135,7 @@ public class MainMenu
         {
             String[] values = s.split(";");
             String[] categories = values[2].split(",");
-            Movie movie = new Movie(values[0], values[1], categories, values[3], Integer.parseInt(values[4]));
+            Movie movie = new Movie(values[0], values[1], categories, values[3], Integer.parseInt(values[4].trim()));
             media.add(movie);
 
         }
@@ -145,7 +145,7 @@ public class MainMenu
             String[] values = s.split(";");
             String[] categories = values[2].split(",");
             String[] seasons = values[4].split(",");
-            Series series = new Series(values[0], values[1], categories, values[3], seasons, Integer.parseInt(values[5]));
+            Series series = new Series(values[0], values[1], categories, values[3], seasons, Integer.parseInt(values[5].trim()));
             media.add(series);
         }
     }
