@@ -38,6 +38,7 @@ abstract public class Media implements IMedia
         
         // new version https://streamja.com/lemyz
         // old version https://shattereddisk.github.io/rickroll/rickroll.mp4
+        // TODO change back to old version
         d.browse(new URI("https://streamja.com/lemyz"));
     }
 

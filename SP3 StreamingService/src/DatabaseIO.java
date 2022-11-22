@@ -1,9 +1,15 @@
-import javax.swing.plaf.nimbus.State;
 import java.sql.*;
 import java.util.ArrayList;
 
 public class DatabaseIO
 {
+    IMedia media;
+
+    public IMedia getMedia()
+    {
+        return media;
+    }
+
     private Connection connection;
     private String url = "jdbc:mysql://localhost/fedflixdb?" + "autoReconnect=true&useSSL=false";
     private String username ="root";
@@ -259,10 +265,9 @@ public class DatabaseIO
                 {
                     names.add(resultSet.getString("name"));
                 }
-                // only write users that are not already in database
-                //;null;null is the default value for a user that is not in the database yet and has no showsseen or watchlist
 
-                if (!names.contains(user.getUsername())) //  || (!readUserData().contains(user.getUsername() + "," + user.getPassword() + user.getShowsSeen() + user.getFavouriteShows()))
+                // only write users that are not already in database
+                if (!names.contains(user.getUsername()))
                 {
                     // set values
                     preparedStatement.setString(1, user.getUsername());
@@ -271,6 +276,10 @@ public class DatabaseIO
                     // execute statement
                     preparedStatement.execute();
                 }
+
+
+
+
             }
 
             // close statement
@@ -280,6 +289,12 @@ public class DatabaseIO
             e.printStackTrace();
         }
     }
+
+
+
+
+
+
 
 
     public void deleteMediaFromShowsSeen(User currentUser)
