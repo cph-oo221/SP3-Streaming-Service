@@ -309,7 +309,10 @@ public class DatabaseIO
 
                 else
                 {
+                    // Insert new user if user does not exist
                     String insert_user_query = "INSERT INTO userdata (Name, Password) VALUES ('" + user.getUsername() + "', '" + user.getPassword() + "');";
+
+                    // get user id
                     inner_statement.execute(insert_user_query);
 
                     // Get user id from userdata table
@@ -317,7 +320,7 @@ public class DatabaseIO
                     user_id_result.next();
                     int user_id = user_id_result.getInt("user_id");
 
-
+                    // Insert showsseen
                     if (showseen_id.size() > 0)
                     {
                         for (int media_id : showseen_id)
@@ -326,6 +329,7 @@ public class DatabaseIO
                         }
                     }
 
+                    // Insert watchlists
                     if (watchlist_id.size() > 0)
                     {
                         for (int media_id : watchlist_id)
