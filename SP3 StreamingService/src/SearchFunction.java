@@ -5,8 +5,8 @@ public class SearchFunction
 {
     private User currentUser;
     private ArrayList<IMedia> media;
-
     private TextUI textUI = new TextUI();
+
     public SearchFunction(User currentUser, ArrayList<IMedia> media)
     {
         this.currentUser = currentUser;
