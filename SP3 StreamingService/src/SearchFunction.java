@@ -7,14 +7,13 @@ public class SearchFunction
     private ArrayList<IMedia> media;
     private TextUI textUI = new TextUI();
 
-    public SearchFunction(User currentUser, ArrayList<IMedia> media)
+    protected SearchFunction(User currentUser, ArrayList<IMedia> media)
     {
         this.currentUser = currentUser;
         this.media = media;
     }
 
-    //TODO Test searchfunction
-    public ArrayList<IMedia> searchMedia(String input)
+    protected ArrayList<IMedia> searchMedia(String input)
     {
         ArrayList<IMedia> output = new ArrayList<>();
 
@@ -29,9 +28,8 @@ public class SearchFunction
     }
 
 
-
     // Option 1 view all media
-    public ArrayList<IMedia> viewAllMedia()
+    protected ArrayList<IMedia> viewAllMedia()
     {
         ArrayList<IMedia> allMediaOutput = new ArrayList<>();
         for (IMedia i : media)
@@ -54,7 +52,7 @@ public class SearchFunction
     }
 
     // Option 2 view all series
-    public ArrayList<IMedia> viewAllSeries()
+    protected ArrayList<IMedia> viewAllSeries()
     {
         ArrayList<IMedia> seriesOutput = new ArrayList<>();
 
@@ -69,7 +67,7 @@ public class SearchFunction
     }
 
     // Option 3 view all movies
-    public ArrayList<IMedia> viewAllMovies()
+    protected ArrayList<IMedia> viewAllMovies()
     {
         ArrayList<IMedia> movieOutput = new ArrayList<>();
 
@@ -84,7 +82,7 @@ public class SearchFunction
     }
 
     // option viewAllCategory
-    public ArrayList<IMedia> viewAllCategory()
+    protected ArrayList<IMedia> viewAllCategory()
     {
         ArrayList<IMedia> categoryOutput = new ArrayList<>();
 
@@ -393,7 +391,6 @@ public class SearchFunction
                 }
             }
         }
-
 
         return categoryOutput;
     }

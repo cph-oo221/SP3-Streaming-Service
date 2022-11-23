@@ -117,25 +117,7 @@ public class FileIO
             System.out.println(e + "You fucked up mate");
         }
     }
-    protected int userCounter()
-    {
-        try
-        {
-            int count = 0;
-            File file = new File("Data/userData.csv");
-            Scanner input = new Scanner(file);
-            while (input.hasNextLine())
-            {
-                count++;
-                input.nextLine();
-            }
-            return count;
-        }
-        catch (FileNotFoundException e)
-        {
-            return -1;
-        }
-    }
+
 
     protected boolean deleteFile() throws FileNotFoundException
     {

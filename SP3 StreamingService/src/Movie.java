@@ -12,5 +12,4 @@ public class Movie extends Media
     {
         return super.toString() + ", " + "Type: " + type + '\n';
     }
-
 }

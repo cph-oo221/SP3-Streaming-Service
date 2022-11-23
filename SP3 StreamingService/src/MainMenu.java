@@ -1,31 +1,28 @@
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class MainMenu
 {
     private ArrayList<User> users;
     private User currentUser;
-    public ArrayList<IMedia> media = new ArrayList<>();
-    public TextUI textUI = new TextUI();
-    public SearchFunction searchFunction = new SearchFunction(currentUser, media);
-
+    private ArrayList<IMedia> media = new ArrayList<>();
+    private TextUI textUI = new TextUI();
+    private SearchFunction searchFunction = new SearchFunction(currentUser, media);
     private IO io = new IO();
 
-    public MainMenu(User currentUser, ArrayList<User> users)
+    protected MainMenu(User currentUser, ArrayList<User> users)
     {
         this.currentUser = currentUser;
         this.users = users;
     }
 
-    public void runMainMenu()
+    protected void runMainMenu()
     {
-
         createMedia();
 
-        textUI.displayMessage("Welcome to fedFlix, " + currentUser.getUsername() + "!");
+        textUI.displayMessage("Welcome to FedFlix, " + currentUser.getUsername() + "!");
 
         boolean running = true;
-        while (running)
+        while(running)
         {
 
             textUI.displayMessage("""
@@ -135,7 +132,7 @@ public class MainMenu
         ArrayList<String> seriesdata = io.readSeriesData();
 
 
-        for (String s : moviedata)
+        for(String s : moviedata)
         {
             String[] values = s.split(";");
             String[] categories = values[2].split(",");
@@ -144,7 +141,7 @@ public class MainMenu
 
         }
 
-        for (String s : seriesdata)
+        for(String s : seriesdata)
         {
             String[] values = s.split(";");
             String[] categories = values[2].split(",");

@@ -7,16 +7,12 @@ import java.util.Arrays;
 abstract public class Media implements IMedia
 {
     private String name;
-
     private String year;
-
     private String[] genre;
-
     private String rating;
-
     private int id;
 
-    public Media(String name, String year, String[] genre, String rating, int id)
+    protected Media(String name, String year, String[] genre, String rating, int id)
     {
         this.name = name;
         this.year = year;
@@ -26,12 +22,10 @@ abstract public class Media implements IMedia
     }
     public void play() throws URISyntaxException, IOException
     {
-
         TextUI text = new TextUI();
 
         text.displayMessage("You are now watching " + name +" and you are having a jolly good time!");
         text.displayMessage("Press any key to return to menu.");
-
 
         //RickRoll happens to user
         Desktop d = Desktop.getDesktop();

@@ -267,44 +267,6 @@ public class DatabaseIO
                 // establish connection
                 establishConnection();
 
-                /* // get users from database
-                String get_user_query = "SELECT user_id FROM userdata WHERE Name LIKE '" + user.getUsername() + "';";
-
-                Statement statement = connection.createStatement();
-
-                ResultSet db_user = statement.executeQuery(get_user_query);
-
-                Statement inner_statement = connection.createStatement();
-
-                if (db_user.next())
-                {
-                    // Update user lists if user exists
-
-                    int user_id = db_user.getInt("user_id");
-
-                    String delete_current_db_showsseen = "DELETE FROM showsseen WHERE user_id = " + user_id + ";";
-                    String delete_current_db_watchlist = "DELETE FROM watchlists WHERE user_id = " + user_id + ";";
-
-                    inner_statement.execute(delete_current_db_showsseen);
-                    inner_statement.execute(delete_current_db_watchlist);
-
-                    if (showseen_id.size() > 0)
-                    {
-                        for (int media_id : showseen_id)
-                        {
-                            inner_statement.execute("INSERT INTO showsseen (user_id, media_id) VALUES (" + user_id + ", " + media_id + ");");
-                        }
-                    }
-
-                    if (watchlist_id.size() > 0)
-                    {
-                        for (int media_id : watchlist_id)
-                        {
-                            inner_statement.execute("INSERT INTO watchlists (user_id, media_id) VALUES (" + user_id + ", " + media_id + ");");
-                        }
-                    }
-                }*/
-
                 // get users from database
                 // statement query
                 String get_user_query = "SELECT user_id FROM userdata WHERE Name LIKE ?;";
@@ -320,6 +282,7 @@ public class DatabaseIO
                 {
                     int user_id = db_user.getInt("user_id");
 
+                    // delete old showsseen and watchlist
                     String delete_current_db_showsseen = "DELETE FROM showsseen WHERE user_id = ?;";
                     String delete_current_db_watchlist = "DELETE FROM watchlists WHERE user_id = ?;";
 
@@ -360,32 +323,6 @@ public class DatabaseIO
 
                 else
                 {
-                    // not prepared statements
-                    /*String insert_user_query = "INSERT INTO userdata (Name, Password) VALUES ('" + user.getUsername() + "', '" + user.getPassword() + "');";
-                    inner_statement.execute(insert_user_query);
-
-                    // Get user id from userdata table
-                    ResultSet user_id_result = inner_statement.executeQuery(get_user_query);
-                    user_id_result.next();
-                    int user_id = user_id_result.getInt("user_id");
-
-
-                    if (showseen_id.size() > 0)
-                    {
-                        for (int media_id : showseen_id)
-                        {
-                            inner_statement.execute("INSERT INTO showsseen (user_id, media_id) VALUES (" + user_id + ", " + media_id + ");");
-                        }
-                    }
-
-                    if (watchlist_id.size() > 0)
-                    {
-                        for (int media_id : watchlist_id)
-                        {
-                            inner_statement.execute("INSERT INTO watchlists (user_id, media_id) VALUES (" + user_id + ", " + media_id + ");");
-                        }
-                    }*/
-
                     // prepare statements
                     String prepared_user_query = "INSERT INTO userdata (Name, Password) VALUES (?, ?);";
                     PreparedStatement prepared_statement = connection.prepareStatement(prepared_user_query);

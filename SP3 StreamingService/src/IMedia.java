@@ -11,7 +11,6 @@ public interface IMedia
 
     String getYear();
 
-
     String[] getGenre();
 
     String getRating();

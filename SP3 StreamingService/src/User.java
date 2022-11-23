@@ -16,12 +16,11 @@ public class User
 
 
     // constructor for a new user.
-    public User(String username, String password)
+    protected User(String username, String password)
     {
         this.username = username;
         this.password = password;
     }
-
 
 
     // getters
@@ -46,44 +45,33 @@ public class User
     }
 
     // setters
-    public void setUsername(String username)
-    {
-        this.username = username;
-    }
-
-    public void setPassword(String password)
-    {
-        this.password = password;
-    }
-
-    public void setShowsSeen(ArrayList<String> showsSeen)
+    protected void setShowsSeen(ArrayList<String> showsSeen)
     {
         this.showsSeen = showsSeen;
     }
 
-    public void setFavouriteShows(ArrayList<String> favouriteShows)
+    protected void setFavouriteShows(ArrayList<String> favouriteShows)
     {
         this.favouriteShows = favouriteShows;
     }
 
     // make a function to add a show to the favouriteShows arraylist
 
-    public void addFavouriteShows(String show)
+    protected void addFavouriteShows(String show)
     {
         favouriteShows.add(show);
     }
 
     // make a function to add a show to the showsSeen arraylist
-    public void addShowsSeen(String show)
+    protected void addShowsSeen(String show)
     {
         this.showsSeen.add(show);
     }
 
-    public void removeFavouriteShow(String showName)
+    protected void removeFavouriteShow(String showName)
     {
         favouriteShows.remove(showName);
     }
-
 
     @Override
     public String toString()

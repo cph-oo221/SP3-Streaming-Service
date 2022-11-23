@@ -59,8 +59,6 @@ public class Setup
     private ArrayList<User> createUsers() {
         ArrayList<String> userData = io.readUserData();
 
-       // int entries = fileIO.userCounter();
-
         for (String userDatum : userData)
         {
 
@@ -111,7 +109,6 @@ public class Setup
             boolean exists = false;
             textUI.displayMessage("Register new user:");
             String name = textUI.getUserInput("Username: ");
-            // userNames.add(name);
             String pass = textUI.getUserInput("Password: ");
 
             for (User u : users)
@@ -120,9 +117,7 @@ public class Setup
                 {
                     exists = true;
                 }
-
             }
-
 
 
             if (!name.contains(",") && !pass.contains(","))

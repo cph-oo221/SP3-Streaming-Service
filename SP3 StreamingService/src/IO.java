@@ -5,17 +5,13 @@ public class IO
 {
     private DatabaseIO databaseIO = new DatabaseIO();
     private FileIO fileIO = new FileIO();
-
     private TextUI textUI = new TextUI();
-
     private static boolean isConnected = true;
 
     protected ArrayList<String> readMovieData()
     {
-
-        if (isConnected)
+        if(isConnected)
         {
-
             return databaseIO.readMovieData();
         }
         else
@@ -27,10 +23,8 @@ public class IO
 
     protected ArrayList<String> readSeriesData()
     {
-
-        if (isConnected)
+        if(isConnected)
         {
-
             return databaseIO.readSeriesData();
         }
         else
@@ -46,7 +40,7 @@ public class IO
 
         isConnected = databaseIO.establishConnection();
 
-        if (isConnected)
+        if(isConnected)
         {
             textUI.displayMessage("Connection succesful");
             return databaseIO.readUserData();
@@ -60,10 +54,8 @@ public class IO
 
     protected void writeUserData(ArrayList<User> users, ArrayList<IMedia> media)
     {
-
-        if (isConnected)
+        if(isConnected)
         {
-
             databaseIO.writeUserData(users, media);
         }
         else
@@ -75,8 +67,6 @@ public class IO
 
     protected void logOut(ArrayList<User> users, ArrayList<IMedia> media)
     {
-        // TODO MABYE DELETE THIS IF STATEMENT, BUT IDK IF IT WILL BREAK ANYTHING
-
         if(!isConnected)
         {
             try

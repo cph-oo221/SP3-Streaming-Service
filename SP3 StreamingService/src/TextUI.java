@@ -7,24 +7,25 @@ public class TextUI
 {
     private Scanner scan = new Scanner(System.in);
 
-    public void displayMessage(String msg)
+    protected void displayMessage(String msg)
     {
         System.out.println(msg);
     }
 
-    public String getUserInput()
+    protected String getUserInput()
     {
         return scan.nextLine();
     }
+
     // Displays a message before taking the users input
-    public String getUserInput(String msg)
+    protected String getUserInput(String msg)
     {
         System.out.println(msg);
         return scan.nextLine();
     }
 
     // Displays a message, and a list of options. Take an input from the user afterwards
-    public String getUserInput(String msg, ArrayList<IMedia> options)
+    protected String getUserInput(String msg, ArrayList<IMedia> options)
     {
         displayMessage("*************************************************************");
         for(int i = 0; i<options.size(); i++)
@@ -38,7 +39,7 @@ public class TextUI
     }
 
     // Displays a menu of Media, and returns the selected. Returns null if user inputs 'Q'
-    public void mediaMenu(ArrayList<IMedia> options, User currentUser, boolean personalList)
+    protected void mediaMenu(ArrayList<IMedia> options, User currentUser, boolean personalList)
     {
         boolean showingChoice = true;
         boolean optionsActive = true;
