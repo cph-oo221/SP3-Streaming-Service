@@ -81,7 +81,7 @@ public class IO
 
         // TODO MABYE DELETE THIS IF STATEMENT, BUT IDK IF IT WILL BREAK ANYTHING
 
-        if(!databaseIO.establishConnection())
+        if(!isConnected)
         {
             try
             {
