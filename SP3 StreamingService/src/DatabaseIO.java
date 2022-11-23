@@ -356,7 +356,6 @@ public class DatabaseIO
                             insert_watchlist_statement.execute();
                         }
                     }
-
                 }
 
                 else
@@ -427,7 +426,6 @@ public class DatabaseIO
                     }
                 }
             }
-
             catch (SQLException e)
             {
                 e.printStackTrace();
