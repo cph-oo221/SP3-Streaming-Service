@@ -281,8 +281,6 @@ public class DatabaseIO
                 ResultSet db_user = statement.executeQuery();
 
 
-
-
                 /*Statement inner_statement = connection.createStatement();
 
                 if (db_user.next())
@@ -333,6 +331,7 @@ public class DatabaseIO
                     delete_watchlist.setInt(1, user_id);
                     delete_watchlist.execute();
 
+                    // insert showsseen into database prepared statement
                     if (showseen_id.size() > 0)
                     {
                         for (int media_id : showseen_id)
@@ -345,6 +344,7 @@ public class DatabaseIO
                         }
                     }
 
+                    // insert watchlist into database prepared statement
                     if (watchlist_id.size() > 0)
                     {
                         for (int media_id : watchlist_id)
