@@ -267,21 +267,14 @@ public class DatabaseIO
                 // establish connection
                 establishConnection();
 
-                // get users from database
-                /*String get_user_query = "SELECT user_id FROM userdata WHERE Name LIKE '" + user.getUsername() + "';";
+                /* // get users from database
+                String get_user_query = "SELECT user_id FROM userdata WHERE Name LIKE '" + user.getUsername() + "';";
 
                 Statement statement = connection.createStatement();
 
-                ResultSet db_user = statement.executeQuery(get_user_query);*/
+                ResultSet db_user = statement.executeQuery(get_user_query);
 
-                // rewrite line 271, 273, 275 to use prepared statements
-                String get_user_query = "SELECT user_id FROM userdata WHERE Name LIKE ?;";
-                PreparedStatement statement = connection.prepareStatement(get_user_query);
-                statement.setString(1, user.getUsername());
-                ResultSet db_user = statement.executeQuery();
-
-
-                /*Statement inner_statement = connection.createStatement();
+                Statement inner_statement = connection.createStatement();
 
                 if (db_user.next())
                 {
@@ -311,6 +304,15 @@ public class DatabaseIO
                         }
                     }
                 }*/
+
+                // get users from database
+                // statement query
+                String get_user_query = "SELECT user_id FROM userdata WHERE Name LIKE ?;";
+                PreparedStatement statement = connection.prepareStatement(get_user_query);
+                // set statement parameters
+                statement.setString(1, user.getUsername());
+                // execute statement
+                ResultSet db_user = statement.executeQuery();
 
 
                 Statement inner_statement = connection.createStatement();
