@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class IO
@@ -7,7 +8,7 @@ public class IO
 
     private TextUI textUI = new TextUI();
 
-    private boolean isConnected = true;
+    private static boolean isConnected = true;
 
     protected ArrayList<String> readMovieData()
     {
@@ -70,6 +71,32 @@ public class IO
 
             fileIO.writeUserData(users);
         }
+    }
+
+    protected void logOut(ArrayList<User> users, ArrayList<IMedia> media)
+    {
+
+        DatabaseIO databaseIO = new DatabaseIO();
+        FileIO fileIO = new FileIO();
+
+        // TODO MABYE DELETE THIS IF STATEMENT, BUT IDK IF IT WILL BREAK ANYTHING
+
+        if(!databaseIO.establishConnection())
+        {
+            try
+            {
+                fileIO.deleteFile();
+            }
+            catch (FileNotFoundException f)
+            {
+                textUI.displayMessage(f.getMessage());
+            }
+        }
+
+        writeUserData(users, media);
+
+        FedFlix fedFlix = new FedFlix();
+        fedFlix.runFedFlix();
     }
 }
 
