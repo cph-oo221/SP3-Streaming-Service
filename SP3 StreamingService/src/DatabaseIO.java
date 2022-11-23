@@ -268,21 +268,22 @@ public class DatabaseIO
                 establishConnection();
 
                 // get users from database
-                String get_user_query = "SELECT user_id FROM userdata WHERE Name LIKE '" + user.getUsername() + "';";
+                /*String get_user_query = "SELECT user_id FROM userdata WHERE Name LIKE '" + user.getUsername() + "';";
 
                 Statement statement = connection.createStatement();
 
-                ResultSet db_user = statement.executeQuery(get_user_query);
+                ResultSet db_user = statement.executeQuery(get_user_query);*/
 
                 // rewrite line 271, 273, 275 to use prepared statements
-                /*String get_user_query = "SELECT user_id FROM userdata WHERE Name LIKE ?;";
+                String get_user_query = "SELECT user_id FROM userdata WHERE Name LIKE ?;";
                 PreparedStatement statement = connection.prepareStatement(get_user_query);
                 statement.setString(1, user.getUsername());
-                ResultSet db_user = statement.executeQuery();*/
+                ResultSet db_user = statement.executeQuery();
 
 
 
-                Statement inner_statement = connection.createStatement();
+
+                /*Statement inner_statement = connection.createStatement();
 
                 if (db_user.next())
                 {
@@ -311,12 +312,57 @@ public class DatabaseIO
                             inner_statement.execute("INSERT INTO watchlists (user_id, media_id) VALUES (" + user_id + ", " + media_id + ");");
                         }
                     }
+                }*/
+
+
+                // make the above code use prepared statements
+
+                Statement inner_statement = connection.createStatement();
+                if (db_user.next())
+                {
+                    int user_id = db_user.getInt("user_id");
+
+                    String delete_current_db_showsseen = "DELETE FROM showsseen WHERE user_id = ?;";
+                    String delete_current_db_watchlist = "DELETE FROM watchlists WHERE user_id = ?;";
+
+                    PreparedStatement delete_showsseen = connection.prepareStatement(delete_current_db_showsseen);
+                    delete_showsseen.setInt(1, user_id);
+                    delete_showsseen.execute();
+
+                    PreparedStatement delete_watchlist = connection.prepareStatement(delete_current_db_watchlist);
+                    delete_watchlist.setInt(1, user_id);
+                    delete_watchlist.execute();
+
+                    if (showseen_id.size() > 0)
+                    {
+                        for (int media_id : showseen_id)
+                        {
+                            String insert_showsseen = "INSERT INTO showsseen (user_id, media_id) VALUES (?, ?);";
+                            PreparedStatement insert_showsseen_statement = connection.prepareStatement(insert_showsseen);
+                            insert_showsseen_statement.setInt(1, user_id);
+                            insert_showsseen_statement.setInt(2, media_id);
+                            insert_showsseen_statement.execute();
+                        }
+                    }
+
+                    if (watchlist_id.size() > 0)
+                    {
+                        for (int media_id : watchlist_id)
+                        {
+                            String insert_watchlist = "INSERT INTO watchlists (user_id, media_id) VALUES (?, ?);";
+                            PreparedStatement insert_watchlist_statement = connection.prepareStatement(insert_watchlist);
+                            insert_watchlist_statement.setInt(1, user_id);
+                            insert_watchlist_statement.setInt(2, media_id);
+                            insert_watchlist_statement.execute();
+                        }
+                    }
+
                 }
 
                 else
                 {
                     // Insert new user if user does not exist
-                    String insert_user_query = "INSERT INTO userdata (Name, Password) VALUES ('" + user.getUsername() + "', '" + user.getPassword() + "');";
+                    /*String insert_user_query = "INSERT INTO userdata (Name, Password) VALUES ('" + user.getUsername() + "', '" + user.getPassword() + "');";
 
                     // get user id
                     inner_statement.execute(insert_user_query);
@@ -324,22 +370,53 @@ public class DatabaseIO
                     // Get user id from userdata table
                     ResultSet user_id_result = inner_statement.executeQuery(get_user_query);
                     user_id_result.next();
-                    int user_id = user_id_result.getInt("user_id");
+                    int user_id = user_id_result.getInt("user_id");*/
 
-                    // rewrite line 319, 322, 325, 326, 327 to use prepared statements
-                    /*String prepared_user_query = "INSERT INTO userdata (Name, Password) VALUES (?, ?);";
+                    // prepare statements
+                    String prepared_user_query = "INSERT INTO userdata (Name, Password) VALUES (?, ?);";
                     PreparedStatement prepared_statement = connection.prepareStatement(prepared_user_query);
                     prepared_statement.setString(1, user.getUsername());
                     prepared_statement.setString(2, user.getPassword());
                     prepared_statement.execute();
 
                     // Get user id from userdata table
-                    ResultSet prepared_user_id_result = prepared_statement.executeQuery(get_user_query);
+                    /*ResultSet prepared_user_id_result = prepared_statement.executeQuery(get_user_query);
                     prepared_user_id_result.next();
                     int user_id = prepared_user_id_result.getInt("user_id");*/
 
 
-                    // Insert showsseen
+                    //get user id from userdata table prepared statements
+                    ResultSet prepared_user_id_result = statement.executeQuery();
+                    prepared_user_id_result.next();
+                    int user_id = prepared_user_id_result.getInt("user_id");
+
+
+                    // Insert showsseen and watchlists prepared statements
+                    if (showseen_id.size() > 0)
+                    {
+                        for (int media_id : showseen_id)
+                        {
+                            String insert_showsseen = "INSERT INTO showsseen (user_id, media_id) VALUES (?, ?);";
+                            PreparedStatement insert_showsseen_statement = connection.prepareStatement(insert_showsseen);
+                            insert_showsseen_statement.setInt(1, user_id);
+                            insert_showsseen_statement.setInt(2, media_id);
+                            insert_showsseen_statement.execute();
+                        }
+                    }
+
+                    if (watchlist_id.size() > 0)
+                    {
+                        for (int media_id : watchlist_id)
+                        {
+                            String insert_watchlist = "INSERT INTO watchlists (user_id, media_id) VALUES (?, ?);";
+                            PreparedStatement insert_watchlist_statement = connection.prepareStatement(insert_watchlist);
+                            insert_watchlist_statement.setInt(1, user_id);
+                            insert_watchlist_statement.setInt(2, media_id);
+                            insert_watchlist_statement.execute();
+                        }
+                    }
+
+                    /*// Insert showsseen not using prepared statements
                     if (showseen_id.size() > 0)
                     {
                         for (int media_id : showseen_id)
@@ -356,7 +433,7 @@ public class DatabaseIO
                         {
                             inner_statement.execute("INSERT INTO watchlists (user_id, media_id) VALUES (" + user_id + ", " + media_id + ");");
                         }
-                    }
+                    }*/
                 }
             }
 
