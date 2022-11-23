@@ -1,2 +1,2 @@
-# SP3-Streaming Service
+# SP3 & SP3+ - Streaming Service
  
