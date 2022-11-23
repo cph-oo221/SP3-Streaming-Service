@@ -6,7 +6,7 @@ public class IO
     private FileIO fileIO = new FileIO();
     private TextUI textUI = new TextUI();
 
-    private boolean isConnected;
+    private boolean isConnected = true;
 
     protected ArrayList<String> readMovieData()
     {
