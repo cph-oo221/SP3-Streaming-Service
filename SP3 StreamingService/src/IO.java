@@ -7,7 +7,7 @@ public class IO
 
     private TextUI textUI = new TextUI();
 
-    private boolean isConnected;
+    private boolean isConnected = true;
 
     protected ArrayList<String> readMovieData()
     {
