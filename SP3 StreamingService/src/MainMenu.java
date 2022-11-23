@@ -9,6 +9,8 @@ public class MainMenu
     public TextUI textUI = new TextUI();
     public SearchFunction searchFunction = new SearchFunction(currentUser, media);
 
+    private IO io = new IO();
+
     public MainMenu(User currentUser, ArrayList<User> users)
     {
         this.currentUser = currentUser;
@@ -118,7 +120,9 @@ public class MainMenu
 
             if (input.equals("8"))
             {
-                logOut();
+                io.logOut(users, media);
+                FedFlix fedFlix = new FedFlix();
+                fedFlix.runFedFlix();
             }
         }
     }
@@ -149,32 +153,4 @@ public class MainMenu
             media.add(series);
         }
     }
-
-    // logout method to return to login screen
-    protected void logOut()
-    {
-        IO io = new IO();
-        DatabaseIO databaseIO = new DatabaseIO();
-        FileIO fileIO = new FileIO();
-
-        // TODO MABYE DELETE THIS IF STATEMENT, BUT IDK IF IT WILL BREAK ANYTHING
-
-        if(!databaseIO.establishConnection())
-        {
-            try
-            {
-                fileIO.deleteFile();
-            }
-            catch (FileNotFoundException f)
-            {
-                textUI.displayMessage(f.getMessage());
-            }
-        }
-
-        io.writeUserData(users, media);
-
-        FedFlix fedFlix = new FedFlix();
-        fedFlix.runFedFlix();
-    }
-
 }
