@@ -313,8 +313,6 @@ public class DatabaseIO
                 }*/
 
 
-                // make the above code use prepared statements
-
                 Statement inner_statement = connection.createStatement();
                 if (db_user.next())
                 {
@@ -379,11 +377,10 @@ public class DatabaseIO
                     prepared_statement.setString(2, user.getPassword());
                     prepared_statement.execute();
 
-                    // Get user id from userdata table
+                    // Get user id from userdata table prepared statements
                     /*ResultSet prepared_user_id_result = prepared_statement.executeQuery(get_user_query);
                     prepared_user_id_result.next();
                     int user_id = prepared_user_id_result.getInt("user_id");*/
-
 
                     //get user id from userdata table prepared statements
                     ResultSet prepared_user_id_result = statement.executeQuery();
