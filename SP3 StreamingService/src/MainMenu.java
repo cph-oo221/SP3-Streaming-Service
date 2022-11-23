@@ -121,6 +121,8 @@ public class MainMenu
             if (input.equals("8"))
             {
                 io.logOut(users, media);
+                FedFlix fedFlix = new FedFlix();
+                fedFlix.runFedFlix();
             }
         }
     }
@@ -151,8 +153,4 @@ public class MainMenu
             media.add(series);
         }
     }
-
-    // logout method to return to login screen
-
-
 }

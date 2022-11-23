@@ -75,10 +75,6 @@ public class IO
 
     protected void logOut(ArrayList<User> users, ArrayList<IMedia> media)
     {
-
-        DatabaseIO databaseIO = new DatabaseIO();
-        FileIO fileIO = new FileIO();
-
         // TODO MABYE DELETE THIS IF STATEMENT, BUT IDK IF IT WILL BREAK ANYTHING
 
         if(!isConnected)
@@ -94,9 +90,6 @@ public class IO
         }
 
         writeUserData(users, media);
-
-        FedFlix fedFlix = new FedFlix();
-        fedFlix.runFedFlix();
     }
 }
 
