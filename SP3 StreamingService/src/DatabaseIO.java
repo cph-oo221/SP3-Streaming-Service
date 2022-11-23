@@ -359,16 +359,31 @@ public class DatabaseIO
 
                 else
                 {
-                    // Insert new user if user does not exist
+                    // not prepared statements
                     /*String insert_user_query = "INSERT INTO userdata (Name, Password) VALUES ('" + user.getUsername() + "', '" + user.getPassword() + "');";
-
-                    // get user id
                     inner_statement.execute(insert_user_query);
 
                     // Get user id from userdata table
                     ResultSet user_id_result = inner_statement.executeQuery(get_user_query);
                     user_id_result.next();
-                    int user_id = user_id_result.getInt("user_id");*/
+                    int user_id = user_id_result.getInt("user_id");
+
+
+                    if (showseen_id.size() > 0)
+                    {
+                        for (int media_id : showseen_id)
+                        {
+                            inner_statement.execute("INSERT INTO showsseen (user_id, media_id) VALUES (" + user_id + ", " + media_id + ");");
+                        }
+                    }
+
+                    if (watchlist_id.size() > 0)
+                    {
+                        for (int media_id : watchlist_id)
+                        {
+                            inner_statement.execute("INSERT INTO watchlists (user_id, media_id) VALUES (" + user_id + ", " + media_id + ");");
+                        }
+                    }*/
 
                     // prepare statements
                     String prepared_user_query = "INSERT INTO userdata (Name, Password) VALUES (?, ?);";
@@ -377,10 +392,6 @@ public class DatabaseIO
                     prepared_statement.setString(2, user.getPassword());
                     prepared_statement.execute();
 
-                    // Get user id from userdata table prepared statements
-                    /*ResultSet prepared_user_id_result = prepared_statement.executeQuery(get_user_query);
-                    prepared_user_id_result.next();
-                    int user_id = prepared_user_id_result.getInt("user_id");*/
 
                     //get user id from userdata table prepared statements
                     ResultSet prepared_user_id_result = statement.executeQuery();
@@ -412,25 +423,6 @@ public class DatabaseIO
                             insert_watchlist_statement.execute();
                         }
                     }
-
-                    /*// Insert showsseen not using prepared statements
-                    if (showseen_id.size() > 0)
-                    {
-                        for (int media_id : showseen_id)
-                        {
-
-                            inner_statement.execute("INSERT INTO showsseen (user_id, media_id) VALUES (" + user_id + ", " + media_id + ");");
-                        }
-                    }
-
-                    // Insert watchlists
-                    if (watchlist_id.size() > 0)
-                    {
-                        for (int media_id : watchlist_id)
-                        {
-                            inner_statement.execute("INSERT INTO watchlists (user_id, media_id) VALUES (" + user_id + ", " + media_id + ");");
-                        }
-                    }*/
                 }
             }
 
