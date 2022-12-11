@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class Player extends Entity{
 
-
+// delete me!
 
     GamePanel gp;
      public KeyHandler keyH;
