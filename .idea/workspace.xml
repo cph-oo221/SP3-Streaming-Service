@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="49755e85-8b9a-4018-9664-d609aac00604" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SP3 StreamingService/Data/userData.csv" beforeDir="false" afterPath="$PROJECT_DIR$/SP3 StreamingService/Data/userData.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SP3 StreamingService/out/production/SP3 StreamingService/FedFlix.class" beforeDir="false" afterPath="$PROJECT_DIR$/SP3 StreamingService/out/production/SP3 StreamingService/FedFlix.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SP3 StreamingService/out/production/SP3 StreamingService/FileIO.class" beforeDir="false" afterPath="$PROJECT_DIR$/SP3 StreamingService/out/production/SP3 StreamingService/FileIO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SP3 StreamingService/out/production/SP3 StreamingService/MainMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/SP3 StreamingService/out/production/SP3 StreamingService/MainMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SP3 StreamingService/out/production/SP3 StreamingService/Setup.class" beforeDir="false" afterPath="$PROJECT_DIR$/SP3 StreamingService/out/production/SP3 StreamingService/Setup.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SP3 StreamingService/src/FedFlix.java" beforeDir="false" afterPath="$PROJECT_DIR$/SP3 StreamingService/src/FedFlix.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SP3 StreamingService/src/FileIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/SP3 StreamingService/src/FileIO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SP3 StreamingService/src/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/SP3 StreamingService/src/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SP3 StreamingService/src/Setup.java" beforeDir="false" afterPath="$PROJECT_DIR$/SP3 StreamingService/src/Setup.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
